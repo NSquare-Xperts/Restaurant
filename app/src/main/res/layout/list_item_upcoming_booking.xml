@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/booking_mobile_bg"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.nsquare.restaurant.util.SquareImageView
+                android:id="@+id/list_item_upcoming_booking_imageview_profile_pic"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/cuisine_photo_one"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp">
+
+                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                    android:id="@+id/list_item_upcoming_booking_textview_restro_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Streak Cafe"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:id="@+id/list_item_upcoming_booking_textview_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Streak Cafe"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/review_separator"
+            android:layout_marginTop="8dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/list_item_upcoming_booking_textview_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummy."
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:layout_marginTop="10dp"/>
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/list_item_upcoming_booking_textview_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummy."
+                android:textColor="@color/green_light"
+                android:textSize="13dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/list_item_upcoming_booking_textview_date_time"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/next_button"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

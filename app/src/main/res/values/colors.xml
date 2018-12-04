@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#ff4081</color>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="orange_light">#F57E2E</color>
+    <color name="orange_dark">#B45C21</color>
+    <color name="yellow_light">#F4D03F</color>
+    <color name="yellow_dark">#D4AC0D</color>
+    <color name="green_light">#27AE60</color>
+    <color name="green_dark">#1E8449</color>
+
+    <color name="c1_light">#C4F707</color>
+    <color name="c1_dark">#9CD406</color>
+    <color name="c2_light">#DA03F7</color>
+    <color name="c2_dark">#70047F</color>
+    <color name="c3_light">#F8055D</color>
+    <color name="c3_dark">#9C023A</color>
+    <color name="c4_light">#F91402</color>
+    <color name="c4_dark">#940D02</color>
+    <color name="splash_background">#F2F2F2</color>
+    <color name="open_now">#39B54A</color>
+    <color name="pub_detail_tab">#3A3A3A</color>
+    <color name="grey_title">#C4C4C4</color>
+    <color name="drawer_background">#303030</color>
+    <color name="green_light_book_table">#39B54A</color>
+    <color name="green_dark_book_table">#248E33</color>
+    <color name="yellow_pending">#F4A83B</color>
+    <color name="red_canceled">#E30D17</color>
+    <color name="seperator_line">#7E7E7E</color>
+
+    <color name="blue">#FF1AA1E1</color>
+    <color name="orange">#ffe16b10</color>
+    <color name="green">#ff26e111</color>
+    <color name="green_light_">#4CA973</color>
+
+    <!--Floating Action Button colors-->
+    <color name="fab_color_1">#ff5252</color>
+    <color name="fab_color_1_muted">#ff8080</color>
+    <color name="quantity_button">#BF6427</color>
+    <color name="grey_E3E3E3">#E3E3E3</color>
+    <color name="grey_909090">#909090</color>
+
+</resources>

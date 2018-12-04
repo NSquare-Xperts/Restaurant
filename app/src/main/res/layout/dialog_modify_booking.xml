@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/booking_popup">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+            android:id="@+id/dialog_modify_booking_textview_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modify_booking"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_gravity="center_vertical"/>
+
+        <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+            android:id="@+id/dialog_modify_booking_textview_dialog_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modify_booking_dialog_message"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp">
+
+            <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+                android:id="@+id/dialog_modify_booking_button_yes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/button_yes"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_login"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"/>
+
+            <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+                android:id="@+id/dialog_modify_booking_button_no"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/button_no"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/selector_button_login"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/relative_layout_common_list_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/textview_no_record_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="No Dish Is Available..!"/>
+
+    <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
+        android:id="@+id/fragment_common_list_recycler_button_view_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_cart"
+        android:background="@drawable/selector_button_send_booking_request"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_above="@id/fragment_common_list_recycler_button_view_cart">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_recent_jobs_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_title"
+            android:scrollbars="vertical"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

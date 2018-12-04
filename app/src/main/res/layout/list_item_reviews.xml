@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/list_item_reviews_imageview_profile_pic"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/cafeb"
+                android:layout_weight="0.2"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2.5">
+
+                <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+                    android:id="@+id/list_item_reviews_textview_person_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Streak Cafe"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+
+                    android:layout_gravity="center_vertical"/>
+
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:id="@+id/list_item_reviews_textview_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="67 Reviews, 88 Followers"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_weight="0.2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rfollow_user"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/list_item_reviews_textview_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 days ago"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:layout_alignParentRight="true"/>
+
+            <RatingBar
+                android:id="@+id/activity_restro_details_ratingbar_rating"
+                style="@style/foodRatingBarSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressDrawable="@drawable/custom_ratting_image_small"
+                android:rating="3"
+                android:stepSize="0.5"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
+        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+            android:id="@+id/list_item_reviews_textview_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:layout_marginTop="10dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/review_separator"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

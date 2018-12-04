@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/activity_review_book_a_table_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+            android:id="@+id/activity_review_book_a_table_button_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_login"
+            android:text="@string/button_edit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+            android:id="@+id/activity_review_book_a_table_button_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button_login"
+            android:text="@string/button_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/activity_review_book_a_table_button_edit"/>
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/activity_review_book_a_table_relativelayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_edittext_name_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="@string/alphabet"
+                android:hint="@string/hint_name_"
+                android:inputType="text"
+                android:paddingTop="8dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp" />
+
+            <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_edittext_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="@string/alphabet"
+                android:hint="Steve Jobs"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                android:layout_below="@id/activity_review_book_a_table_edittext_name_"/>
+
+            <LinearLayout
+                android:id="@+id/activity_review_book_a_table_linearlayout_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_review_book_a_table_edittext_name"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginRight="15dp">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="@string/hint_date_"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp" />
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_review_book_a_table_textview_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="15-09-2017"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"
+                        android:layout_below="@id/activity_review_book_a_table_edittext_name_"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginRight="15dp">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="@string/hint_time_"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp" />
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_review_book_a_table_textview_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="09:00 PM"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"
+                        android:layout_below="@id/activity_review_book_a_table_edittext_name_"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_textview_phone_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="@string/alphabet"
+                android:hint="@string/phone"
+                android:inputType="text"
+                android:layout_marginTop="18dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                android:layout_below="@id/activity_review_book_a_table_linearlayout_date_time"/>
+
+            <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_textview_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="9999999999"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                android:layout_below="@id/activity_review_book_a_table_textview_phone_"/>
+
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_textview_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_review_book_a_table_textview_phone"
+                android:layout_marginTop="18dp"
+                android:text="@string/people_"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:id="@+id/activity_review_book_a_table_linearlayout_people"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_review_book_a_table_textview_people"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/activiity_book_a_table_textinputlayout_male"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_review_book_a_table_textview_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="Male : 1"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:drawableLeft="@drawable/male_icn"
+                        android:drawablePadding="8dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/activiity_book_a_table_textinputlayout_female"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_review_book_a_table_textview_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alphabet"
+                        android:hint="Female : 1"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:drawableLeft="@drawable/female_icn"
+                        android:drawablePadding="8dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15dp"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_textview_leave_a_message_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:digits="@string/alphabet"
+                android:hint="@string/leave_a_message"
+                android:inputType="text"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="18dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                android:layout_below="@id/activity_review_book_a_table_linearlayout_people"/>
+
+            <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                android:id="@+id/activity_review_book_a_table_textview_leave_a_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="15dp"
+                android:layout_below="@id/activity_review_book_a_table_textview_leave_a_message_"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

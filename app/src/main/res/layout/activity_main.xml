@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/drawer_background"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.wheelviewexample.gateway.wheelcarousel.WheelCarousel
+            android:id="@+id/wheelCarouselOuter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <com.wheelviewexample.gateway.wheelcarousel.Carousel
+                android:id="@+id/wheelCarousel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.wheelviewexample.gateway.wheelcarousel.WheelBackground
+                android:id="@+id/wheelBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.wheelviewexample.gateway.wheelcarousel.WheelSections
+                android:id="@+id/wheelSections"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/loadingSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/emptyContentMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@color/black"
+                android:text="kjncdsknmclkz"
+                android:textColor="#fff"
+                android:visibility="gone" />
+        </com.wheelviewexample.gateway.wheelcarousel.WheelCarousel>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/list_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:layout_behavior="@string/bottom_sheet_behavior">-->
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+

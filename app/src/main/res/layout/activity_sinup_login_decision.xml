@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_logo"
+                android:layout_gravity="center_horizontal"/>
+
+            <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
+                android:id="@+id/activity_signup_login_decision_button_staff_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_staff_login"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_login"
+                android:layout_below="@id/activity_login_relativelayout_checkbox"
+                android:layout_marginTop="20dp"/>
+
+            <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
+                android:id="@+id/activity_signup_login_decision_textview_guest_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guest_user"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_login"
+                android:layout_below="@id/activity_login_relativelayout_checkbox"
+                android:layout_marginTop="20dp"/>
+
+            <!--<com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="18dp"-->
+                <!--android:text="@string/or"-->
+                <!--android:textSize="15dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:shadowColor="@color/black"-->
+                <!--android:shadowDx="0"-->
+                <!--android:shadowDy="0"-->
+                <!--android:shadowRadius="6"-->
+                <!--android:drawableLeft="@drawable/or_line"-->
+                <!--android:drawableRight="@drawable/or_line"-->
+                <!--android:drawablePadding="15dp"/>-->
+
+            <!--<com.nsquare.restaurant.util.RobotoLight.ButtonTextRoboto-->
+                <!--android:id="@+id/activity_login_button_facebook"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/button_connect_with_facebook"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textSize="18dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@drawable/selector_button_facebook"-->
+                <!--android:layout_below="@id/activity_login_relativelayout_checkbox"-->
+                <!--android:layout_marginTop="30dp"/>-->
+
+            <!--<com.nsquare.restaurant.util.RobotoLight.ButtonTextRoboto-->
+                <!--android:id="@+id/activity_login_button_gmail"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/button_connect_with_google"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textSize="18dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:background="@drawable/selector_button_gmail"-->
+                <!--android:layout_below="@id/activity_login_relativelayout_checkbox"-->
+                <!--android:layout_marginTop="15dp"/>-->
+        </LinearLayout>
+
+
+
+        <!--<com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto-->
+            <!--android:id="@+id/activity_signup_login_decision_textview_skip"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginTop="18dp"-->
+            <!--android:text="@string/skip"-->
+            <!--android:textSize="18dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:shadowColor="@color/black"-->
+            <!--android:shadowDx="0"-->
+            <!--android:shadowDy="0"-->
+            <!--android:shadowRadius="6"-->
+            <!--/>-->
+    </RelativeLayout>
+</LinearLayout>

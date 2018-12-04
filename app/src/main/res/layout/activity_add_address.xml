@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:id="@+id/fragment_address_book_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
+
+        <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_address"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_vertical"/>
+
+        <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+            android:layout_marginTop="15dp"
+            android:id="@+id/activity_signup_edittext_mobileno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/white"
+            android:maxLines="4"
+            android:gravity="top"
+            android:background="@drawable/add_textbox"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"/>
+
+        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+            android:id="@+id/activity_add_address_button_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_submit"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_login"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

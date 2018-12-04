@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cafe_detail_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/list_item_speakers_imageview_profile_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:src="@drawable/cafeb"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/list_item_speakers_imageview_profile_pic"
+                    android:layout_alignParentBottom="@id/list_item_speakers_imageview_profile_pic"
+                    android:layout_alignBottom="@id/list_item_speakers_imageview_profile_pic"
+                    android:background="@drawable/rating_dark_bg"
+                    android:padding="5dp">
+
+                    <RatingBar
+                        android:id="@+id/activity_restro_details_ratingbar_rating"
+                        style="@style/foodRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/custom_ratting_image"
+                        android:rating="3"
+                        android:stepSize="0.5" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_restro_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Streak Cafe"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"/>
+
+                    <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="City Center One"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u20B9 1200 for two"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_dishes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cuisine: Thai, North Indian"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_order_online"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/tag_custom_border_orange"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/order_online"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/orange_light"
+                        android:textSize="14dp" />
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/list_item_speakers_textview_book_a_table"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/tag_custom_border_green"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/book_a_table"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/green_light"
+                        android:textSize="14dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

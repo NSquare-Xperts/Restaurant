@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:padding="10dp"
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textview_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:layout_gravity="right"
+        android:padding="2dp"
+        android:textColor="@color/red_canceled"
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_marginBottom="5dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_list_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:background="@color/black"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+            android:layout_width="wrap_content"
+            android:text="@string/select_quantity"
+            android:layout_marginRight="12dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content" />
+
+        <!--add quantity-->
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:id="@+id/list_item_veg_menu_list_linearlayout_count_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/layout_bg"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:layout_marginRight="5dp">
+
+            <ImageView
+                android:id="@+id/list_item_veg_menu_list_imageview_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/minus_icn"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                android:visibility="visible" />
+
+            <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                android:id="@+id/list_item_veg_menu_list_textview_quantity"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <ImageView
+                android:id="@+id/list_item_veg_menu_list_imageview_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_icn"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/button_add_to_card"
+        android:layout_width="match_parent"
+        android:text="@string/add_to_card"
+        android:layout_marginRight="12dp"
+        android:clickable="false"
+        android:background="@color/green_light_"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

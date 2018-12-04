@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/drawer_top_bg">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/activity_company_sign_up_imageView_profile_pic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:clickable="false"
+            android:src="@drawable/flipqlogo_small" />
+
+        <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+            android:id="@+id/textview_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/white"
+            android:text="Demo User"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_chevron_right"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+        android:id="@+id/activity_view_profile_button_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_edit"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_button_login"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/activity_view_profile_button_edit">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/activity_view_profile_imageview_profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/profile_pic"/>
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:id="@+id/activity_view_profile_textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="James Smith"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_marginTop="15dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/followers"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/followers_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/following"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/following_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/collection"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/collection_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/review"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/review_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/photos"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/photos_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bookmark"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/bookmark_icn"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:drawablePadding="8dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="109"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/profile_item_separator"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

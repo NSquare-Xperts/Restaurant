@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:id="@+id/gateway"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.nsquare.restaurant.util.GatewayScrollView
+            android:id="@+id/gatewayScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+                        android:id="@+id/activity_collapse_layout_textView_category_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Pub Finder"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                    <include
+                        android:id="@+id/wheelCarousel"
+                        layout="@layout/wheel_carousel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_bottom_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout_static_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                            android:id="@+id/activity_collapse_layout_textView_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:drawablePadding="8dp"
+                            android:drawableRight="@drawable/heart_logo"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/white"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+                            android:id="@+id/activity_collapse_layout_button_book_now"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/selector_button_login"
+                            android:text="@string/view_cart"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.AppBarLayout
+                            android:id="@+id/activity_museum_appBarLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                            <!--<android.support.v7.widget.Toolbar-->
+                            <!--android:id="@+id/toolbar"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="?attr/actionBarSize"-->
+                            <!--android:background="@color/actionBar"-->
+                            <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                            <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+
+                            <android.support.design.widget.TabLayout
+                                android:id="@+id/tabs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/black"
+                                app:tabGravity="fill"
+                                app:tabIndicatorColor="@color/orange_light"
+                                app:tabMode="fixed" />
+
+                        </android.support.design.widget.AppBarLayout>
+
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewpager"
+                            android:layout_width="match_parent"
+                            android:layout_height="500dp"
+                            android:layout_below="@id/activity_museum_appBarLayout"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.nsquare.restaurant.util.GatewayScrollView>
+
+
+    </RelativeLayout>
+</LinearLayout>

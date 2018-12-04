@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <!--<item android:id="@+id/home"-->
+        <!--android:title="@string/home"-->
+        <!--/>-->
+        <group android:id="@+id/grp">
+
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/home_icn"
+                android:title="@string/home" />
+
+        </group>
+        <group android:id="@+id/gr1">
+
+            <item
+                android:id="@+id/order_history"
+                android:icon="@drawable/order_history"
+                android:title="@string/order_history" />
+
+        </group>
+
+    </group>
+</menu>

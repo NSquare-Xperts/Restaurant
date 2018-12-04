@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginTop="15dp">
+
+        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/otp_message"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/activiity_book_a_table_textinputlayout_mobile_number"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            android:id="@+id/activiity_book_a_table_textinputlayout_name">
+
+            <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                android:id="@+id/activity_book_a_table_edittext_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColorHint="@color/white"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/edit_text_inactive"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+            android:id="@+id/activity_book_a_table_button_resend_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resend in 49 Sec"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_login"
+            android:layout_alignParentBottom="true" />
+
+        <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+            android:id="@+id/activity_book_a_table_button_book_a_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_submit"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_login"
+            android:layout_alignParentBottom="true" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <com.nsquare.restaurant.util.RobotoLight.ButtonTextRoboto
+                android:id="@+id/activity_login_button_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_connect_with_facebook"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_facebook"
+                android:layout_below="@id/activity_login_relativelayout_checkbox"/>
+
+            <com.nsquare.restaurant.util.RobotoLight.ButtonTextRoboto
+                android:id="@+id/activity_login_button_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_connect_with_google"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_gmail"
+                android:layout_below="@id/activity_login_relativelayout_checkbox"
+                android:layout_marginTop="15dp"/>
+
+            <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="18dp"
+                android:text="@string/or"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:shadowColor="@color/black"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="6"
+                android:drawableLeft="@drawable/or_line"
+                android:drawableRight="@drawable/or_line"
+                android:drawablePadding="15dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:id="@+id/activiity_login_textinputlayout_first_name"
+                android:layout_marginTop="15dp">
+
+                <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                    android:id="@+id/activity_signup_edittext_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name_title"
+                    android:textSize="15dp"
+                    android:inputType="text"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edit_text_inactive"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:digits="@string/alphabet"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:id="@+id/activiity_login_textinputlayout_last_name"
+                android:layout_marginTop="15dp">
+
+                <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                    android:id="@+id/activity_signup_edittext_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/last_name_title"
+                    android:textSize="15dp"
+                    android:inputType="text"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edit_text_inactive"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:digits="@string/alphabet"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:layout_marginTop="10dp"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:id="@+id/activiity_login_textinputlayout_emailid"
+                android:layout_below="@id/activiity_login_textinputlayout_name">
+
+                <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                    android:id="@+id/activity_signup_edittext_emailid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/emailid"
+                    android:textSize="15dp"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edit_text_inactive"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:id="@+id/activiity_login_textinputlayout_mobileno"
+                android:layout_marginTop="20dp">
+
+                <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                    android:id="@+id/activity_signup_edittext_mobileno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mobileno"
+                    android:textSize="15dp"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edit_text_inactive"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/activiity_login_textinputlayout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:layout_below="@id/activiity_login_textinputlayout_emailid">
+
+                <com.nsquare.restaurant.util.RobotoLight.EditTextRoboto
+                    android:id="@+id/activity_signup_edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:textSize="15dp"
+                    android:textColorHint="@color/white"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/edit_text_inactive"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:id="@+id/activity_login_relativelayout_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activiity_login_textinputlayout_password"
+                android:layout_marginTop="10dp">
+
+                <com.nsquare.restaurant.util.RobotoLight.CheckBoxTextRoboto
+                    android:id="@+id/activity_signup_checkbox_terms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i_agree_to_terms_and_conditions"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:button="@drawable/selector_checkbox"
+                    android:checked="true"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="6"/>
+            </RelativeLayout>
+
+            <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+                android:id="@+id/activity_signup_button_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_signup"
+                android:textAllCaps="false"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_button_login"
+                android:layout_below="@id/activity_login_relativelayout_checkbox"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

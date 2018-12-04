@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nsquare.restaurant.gateway.wheelcarousel.WheelCarousel
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wheelCarouselOuter"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <com.nsquare.restaurant.gateway.wheelcarousel.Carousel
+        android:id="@+id/wheelCarousel"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <com.nsquare.restaurant.gateway.wheelcarousel.WheelBackground
+        android:id="@+id/wheelBackground"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <com.nsquare.restaurant.gateway.wheelcarousel.WheelSections
+        android:id="@+id/wheelSections"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/loadingSpinner"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ProgressBar
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:background="@color/black"
+        android:id="@+id/emptyContentMessage"
+        android:layout_height="match_parent"
+
+        android:layout_width="match_parent"
+        android:text="kjncdsknmclkz"
+        android:textColor="#fff"
+        android:visibility="gone" />
+</com.nsquare.restaurant.gateway.wheelcarousel.WheelCarousel>

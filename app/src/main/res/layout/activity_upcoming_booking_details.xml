@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/booking_mobile_bg"
+                android:padding="8dp">
+
+                <com.nsquare.restaurant.util.SquareImageView
+                    android:id="@+id/activity_upcoming_booking_details_imageview_profile_pic"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+
+                    android:src="@drawable/cuisine_photo_one"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_restro_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Streak Cafe"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Streak Cafe"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_status"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/booking_mobile_bg"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_booking_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PENDING CONFIRMATION"
+                        android:textColor="@color/yellow_light"
+                        android:textSize="15dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_booking_status_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/booking_status_message"
+                        android:textColor="@color/grey_title"
+                        android:textSize="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/booking_date_time"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_date_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wed 23 Sept, 2 Guests, 7:00 PM"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_upcoming_booking_details_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/booking_status_update_message"
+                    android:textColor="@color/grey_title"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/booking_mobile_bg"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                            android:id="@+id/activity_upcoming_booking_details_textview_modify_booking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/modify_booking"
+                            android:textColor="@color/grey_title"
+                            android:drawableLeft="@drawable/pencil"
+                            android:drawablePadding="10dp"
+                            android:padding="5dp"
+                            android:textSize="15dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/review_separator"
+                            android:layout_marginTop="8dp"/>
+
+                        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                            android:id="@+id/activity_upcoming_booking_details_textview_cancel_booking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel_booking"
+                            android:textColor="@color/grey_title"
+                            android:drawableLeft="@drawable/cancel"
+                            android:drawablePadding="10dp"
+                            android:padding="5dp"
+                            android:textSize="15dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_flipq"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/booking_mobile_bg"
+                android:layout_marginTop="10dp"
+
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/phone_call"
+                    android:layout_gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/call_flipq_support"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"/>
+
+                    <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                        android:id="@+id/activity_upcoming_booking_details_textview_call_flipq_support"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/call_flipq_support_message"
+                        android:textColor="@color/grey_title"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_upcoming_booking_details_linearlayout_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CALL HARD ROCK CAFE"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/booking_mobile_bg"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                            android:id="@+id/activity_upcoming_booking_details_textview_contact1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0120 2222222"
+                            android:textColor="@color/grey_title"
+                            android:drawableLeft="@drawable/phone_call"
+                            android:drawablePadding="10dp"
+                            android:padding="5dp"
+                            android:textSize="15dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/review_separator"
+                            android:layout_marginTop="8dp"/>
+
+                        <com.nsquare.restaurant.util.RobotoLight.TextViewRoboto
+                            android:id="@+id/activity_upcoming_booking_details_textview_contact2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0120 2222222"
+                            android:textColor="@color/grey_title"
+                            android:drawableLeft="@drawable/phone_call"
+                            android:drawablePadding="10dp"
+                            android:padding="5dp"
+                            android:textSize="15dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

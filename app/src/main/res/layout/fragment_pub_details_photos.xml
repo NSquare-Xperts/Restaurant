@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <!--<nsquare.com.restorant.util.ExpandableHeightGridView-->
+        <!--android:id="@+id/fragment_pub_details_photos_gridView_photos"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:clickable="true"-->
+        <!--android:drawSelectorOnTop="true"-->
+        <!--android:gravity="center"-->
+        <!--android:horizontalSpacing="3dp"-->
+        <!--android:numColumns="3"-->
+        <!--android:scrollbars="horizontal"-->
+        <!--android:stretchMode="columnWidth"-->
+        <!--android:verticalSpacing="3dp"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_reviews_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
+</LinearLayout>
