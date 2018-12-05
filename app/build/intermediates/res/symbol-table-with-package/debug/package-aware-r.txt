@@ -1133,6 +1133,7 @@ drawable call_logo_h
 drawable cancel
 drawable cancel_button_bg
 drawable cancel_button_bg_select
+drawable cart_icon
 drawable checkbox
 drawable checkbox_select
 drawable collection_icn
@@ -1291,6 +1292,7 @@ drawable tag_custom_border_orange
 drawable time_icn
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable triangle
 drawable user_profile_review
 drawable veg_logo
 drawable visa
@@ -1437,6 +1439,7 @@ id activity_view_profile_imageview_profile_image
 id activity_view_profile_textview_name
 id adapter_vegmenu_linearlayout
 id add
+id add_to_cart
 id alertTitle
 id all
 id always
@@ -1466,7 +1469,10 @@ id button_add
 id button_add_new
 id button_add_to_card
 id button_cancel
+id button_popup_no
+id button_popup_yes
 id button_repeat_last
+id buymyrequirement_button_cancel
 id cancel_action
 id card_venue_details
 id center
@@ -1687,7 +1693,10 @@ id radio
 id radio_grp_select
 id recyclerView_list_popup
 id recyclerview_fast_scroller
+id relative_layout_cancel
+id relative_layout_checkout
 id relative_layout_common_list_recycler
+id relative_layout_see_all_prate
 id relative_layout_type_one
 id right
 id right_icon
@@ -1718,6 +1727,7 @@ id section_indicator_text
 id section_title_popup
 id select_dialog_listview
 id selected
+id selected_quantity
 id selector_button_back
 id selector_button_confirm
 id selector_content
@@ -1761,6 +1771,8 @@ id textSpacerNoTitle
 id textView
 id textView2
 id textView3
+id textView_popup
+id textView_total_qty
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1904,6 +1916,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout dialog_modify_booking
+layout dialog_remove_item
 layout fragment_add_customization_dialog
 layout fragment_address_book
 layout fragment_bottom_sheet_dialog
@@ -2013,6 +2026,7 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about
 string add
+string addCart
 string add_address
 string add_images
 string add_new
@@ -2145,9 +2159,14 @@ string failed_to_connect_with_google
 string favorite_order
 string fb
 string fb_login_protocol_scheme
+string field_cart_id
+string field_dish
+string field_dish_quantity
+string field_dishes_extra_id
 string field_menuType
 string field_password
 string field_subCategory
+string field_table
 string field_tableNo
 string field_username
 string find_friend_on_flipq
@@ -2301,6 +2320,8 @@ string qv_add
 string qv_remove
 string rate_review
 string rememberme
+string removeCart
+string remove_item_from_cart
 string repeat
 string repeat_last_used_customization
 string request

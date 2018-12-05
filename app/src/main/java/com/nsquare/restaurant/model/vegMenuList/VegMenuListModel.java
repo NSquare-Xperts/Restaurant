@@ -17,6 +17,7 @@ public class VegMenuListModel {
     private String dish_image;
     private String dish_position;
     private boolean dish_customizable;
+
     private ArrayList<DishExtrasModel> dish_extras= new ArrayList<>();
 
     public VegMenuListModel(String dish_id, String dish_name, String dish_desc, String dish_price, String dish_image, String dish_position,boolean dish_customizable, ArrayList dishExtrasModels) {

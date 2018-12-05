@@ -34,27 +34,27 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static final int fast_scroller_handle_rounded = 0x7f0800a6;
-        public static final int section_indicator_background_default_rounded = 0x7f080112;
+        public static final int fast_scroller_handle_rounded = 0x7f0800a7;
+        public static final int section_indicator_background_default_rounded = 0x7f080113;
     }
     public static final class id {
         private id() {}
 
-        public static final int scroll_bar = 0x7f09018f;
-        public static final int scroll_handle = 0x7f090190;
-        public static final int section_indicator_text = 0x7f09019c;
-        public static final int section_title_popup = 0x7f09019d;
+        public static final int scroll_bar = 0x7f090196;
+        public static final int scroll_handle = 0x7f090197;
+        public static final int section_indicator_text = 0x7f0901a3;
+        public static final int section_title_popup = 0x7f0901a4;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int section_indicator_with_title = 0x7f0b0082;
-        public static final int vertical_recycler_fast_scroller_layout = 0x7f0b0089;
+        public static final int section_indicator_with_title = 0x7f0b0083;
+        public static final int vertical_recycler_fast_scroller_layout = 0x7f0b008a;
     }
     public static final class string {
         private string() {}
 
-        public static final int app_name = 0x7f0e0034;
+        public static final int app_name = 0x7f0e0035;
     }
     public static final class styleable {
         private styleable() {}

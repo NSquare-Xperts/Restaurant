@@ -28,6 +28,14 @@
                 android:layout_gravity="center"
                 android:id="@+id/toolbar_title" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cart_icon"
+                android:layout_gravity="center|end"
+                android:layout_marginRight="10dp"
+                android:id="@+id/add_to_cart" />
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

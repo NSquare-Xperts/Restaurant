@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/relative_layout_common_list_recycler"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
 
     <TextView
         android:id="@+id/textview_no_record_found"
@@ -43,4 +40,36 @@
             android:background="@color/grey_title"
             android:scrollbars="vertical"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/green_light"
+        android:layout_alignParentBottom="true">
+
+        <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+
+        <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+            android:id="@+id/textView_total_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="900"
+            android:textSize="15sp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:background="@color/green_light"/>
+
+    </RelativeLayout>
 </RelativeLayout>

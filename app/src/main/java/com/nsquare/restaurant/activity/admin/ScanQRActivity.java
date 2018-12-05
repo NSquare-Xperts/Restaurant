@@ -244,6 +244,7 @@ public class ScanQRActivity extends ParentActivity implements View.OnClickListen
                         editor.putString(getResources().getString(R.string.sharedPreferencetablenumber), splittedValue[1]);
                         editor.putString(getResources().getString(R.string.sharedPreferencetabletype), splittedValue[2]);
                         editor.commit();
+
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
 

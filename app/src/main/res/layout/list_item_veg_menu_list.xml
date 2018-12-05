@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearlayout_veg_menu_list_item"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,6 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selected_quantity"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
 
             <com.nsquare.restaurant.util.SquareImageView
                 android:id="@+id/list_item_veg_menu_list_imageview_profile_pic"
@@ -90,7 +98,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

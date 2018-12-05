@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.text.TextUtils;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -23,7 +22,6 @@ public class APIController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-
     private static APIController mInstance;
 
     @Override
@@ -40,7 +38,6 @@ public class APIController extends Application {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
-
         return mRequestQueue;
     }
 
@@ -70,15 +67,11 @@ public class APIController extends Application {
         }
     }
 
-
-
-
     // Notifies UI to display a message.
     public void displayRegistrationMessageOnScreen(Context context, String message) {
 
         Intent intent = new Intent(Config.DISPLAY_REGISTRATION_MESSAGE_ACTION);
         intent.putExtra(Config.EXTRA_MESSAGE, message);
-
         // Send Broadcast to Broadcast receiver with message
         context.sendBroadcast(intent);
 

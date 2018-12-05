@@ -36,18 +36,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.CartPreviewActivity;
 import com.nsquare.restaurant.activity.MenuListActivity;
@@ -56,7 +46,6 @@ import com.nsquare.restaurant.adapter.VegMenuListAdapter;
 import com.nsquare.restaurant.databasehelper.DatabaseHelper;
 import com.nsquare.restaurant.model.CartModel;
 import com.nsquare.restaurant.model.CustomMenuParamterDetailsItem;
-import com.nsquare.restaurant.model.CustomeOrderItems;
 import com.nsquare.restaurant.model.UpcomingYourBookingModel;
 import com.nsquare.restaurant.model.vegMenuList.DishCustomExtrasModel;
 import com.nsquare.restaurant.model.vegMenuList.DishExtrasModel;
@@ -93,7 +82,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private TextView textview_no_record_found;
     private RelativeLayout relative_layout_common_list_recycler;
     private RecyclerView fragment_recent_jobs_recycler_view;
-   // private ArrayList<VegMenuListModel> upcomingYourBookingModelArrayList = new ArrayList<VegMenuListModel>();
+    private RelativeLayout relative_layout_checkout;
     private ArrayList<VegMenuList_NewModel> upcomingYourBookingModelArrayList_new = new ArrayList<VegMenuList_NewModel>();
     private InternetConnection internetConnection = new InternetConnection();
     public static VegMenuListFragment vegMenuListFragment;
@@ -103,9 +92,9 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private Context context;
     private boolean isRepeatClicable;
     private int currentQty=0;
-    private CustomExtraMenuAdapter customExtraMenuAdapter;
+    //private CustomExtraMenuAdapter customExtraMenuAdapter;
     public RadioButton radioButton;
-    CustomMenuParamterDetailsItem customMenuParamterDetailsItem;
+    //CustomMenuParamterDetailsItem customMenuParamterDetailsItem;
     private int totalQuantityCount = 0;
     private String[] quantityArray;
     private int tempGroupIdCustom ;
@@ -144,7 +133,8 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             @Override
             public void onItemClick(View view, int position) {
 
-                showCoordinatorLayout_with_custome_menu_if_available(position);
+                // if alredy in card pass selected_quantity
+                showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),"2");
             }
         }));
         //behavior = BottomSheetBehavior.from(bottomSheet);
@@ -156,6 +146,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private void findViewByIds(View view){
 
         fragment_recent_jobs_recycler_view = (RecyclerView) view.findViewById(R.id.fragment_recent_jobs_recycler_view);
+        relative_layout_checkout = (RelativeLayout) view.findViewById(R.id.relative_layout_checkout);
         swipe_refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         textview_no_record_found = (TextView) view.findViewById(R.id.textview_no_record_found);
         relative_layout_common_list_recycler = (RelativeLayout) view.findViewById(R.id.relative_layout_common_list_recycler);
@@ -183,14 +174,11 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         postParams.put(getActivity().getResources().getString(R.string.field_subCategory), MenuListActivity.key_subCategoryId);
         postParams.put(getActivity().getResources().getString(R.string.field_menuType), Constants.veg); //1 = Veg, 2 = Non Veg
 
-        System.out.println("getMenuListByType "+postParams.toString());
-
         APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getMenuListByType), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    JSONArray array = jsonObject.getJSONArray(Constants.data);
                     String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
                     if (jsonObject.getInt("status") == 200) {
 
@@ -200,7 +188,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                         String jsonOutput = jsonString;
                         Type listType = new TypeToken<ArrayList<VegMenuList_NewModel>>(){}.getType();
                         upcomingYourBookingModelArrayList_new = gson.fromJson(jsonOutput, listType);
-
                         //set data to adapter [list]
                         if (upcomingYourBookingModelArrayList_new.size() > 0) {
 
@@ -231,7 +218,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
     @Override
     public void onUpdateValuesInterface(String quantity, int position, int totalQuantity, VegMenuListModel vegMenuListModel, String menu_status) {
-
 
         if(vegMenuListModel.isDish_customizable()) {
             showCoordinatorLayout(quantity, position, totalQuantity, vegMenuListModel, menu_status);
@@ -282,9 +268,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 currentQty--;
             }
         }
-
-
-
 //        if(quantity.equalsIgnoreCase("0")){
 //            databaseHelper.deleteItem(Integer.parseInt(vegMenuListModel.getId()));
 //        }
@@ -296,7 +279,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
     public void showCoordinatorLayout(final String quantity, final int position, final int totalQuantity, final VegMenuListModel vegMenuListModel, final String menu_status){
 
-        // behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet_dialog, null);
         final BottomSheetDialog dialog = new BottomSheetDialog(context);
         dialog.setContentView(view);
@@ -364,14 +346,14 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         Button button_add = (Button) view1.findViewById(R.id.button_add);
         Button button_cancel = (Button) view1.findViewById(R.id.button_cancel);
 
-        //call 3 different adapters for custom/extra/quantity
+        //custom/extra/quantity
 
         //customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra());
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-        recyclerView_list_popup.setLayoutManager(linearLayoutManager);
+        //final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        // linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+        //recyclerView_list_popup.setLayoutManager(linearLayoutManager);
         //fragment_recent_jobs_recycler_view.addItemDecoration(new MyDividerItemDecoration(activity, LinearLayoutManager.VERTICAL, 8));
-        recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
+        //recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
         //show extras
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -484,6 +466,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     }
     //adapter to show extras
     public class CustomExtraMenuAdapter extends RecyclerView.Adapter<CustomExtraMenuAdapter.ViewHolder> {
+
         private List<DishCustomExtrasModel> requestItems;
         private Context context;
 
@@ -543,14 +526,10 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                             if(requestItems.get(position).getCustom().get(i) == requestItems.get(position).getCustom().get(j)){
 
                                 System.out.println("same group id"+requestItems.get(position).getCustom().get(i).getGroup_id());
-
-
-                            }
+                                //1 array
+                           }
                         }
                         if(Integer.parseInt(requestItems.get(i).getCustom().get(i).getGroup_id()) == tempGroupIdCustom){
-
-
-
                         }
                         //create radio button
                         /*radioButton = new RadioButton(context);
@@ -655,7 +634,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
 
     //open new co-ordinator layout
-    public void showCoordinatorLayout_with_custome_menu_if_available(final int position){
+    public void showCoordinatorLayout_with_custome_menu_if_available(final int position, final String dish_id, final String selected_quantity){
 
         // behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet_dialog, null);
@@ -663,30 +642,59 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         dialog.setContentView(view);
         dialog.show();
 
-        //Button button_add_new = (Button)view.findViewById(R.id.button_add_new);
-        // Button button_repeat_last = (Button)view.findViewById(R.id.button_repeat_last);
+        Button button_add_to_card = (Button)view.findViewById(R.id.button_add_to_card);
         TextView textview_cancel = (TextView) view.findViewById(R.id.textview_cancel);
-        TextView textview_qty = (TextView) view.findViewById(R.id.textview_qty);
         RecyclerView recyclerView_list_popup = (RecyclerView)view.findViewById(R.id.recyclerView_list_popup);
         ImageView list_item_veg_menu_list_imageview_plus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus);
         ImageView list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
         final TextView list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
 
-        //customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel());
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-        recyclerView_list_popup.setLayoutManager(linearLayoutManager);
+        //customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position). ());
+       // final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+       // linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+        //recyclerView_list_popup.setLayoutManager(linearLayoutManager);
         //fragment_recent_jobs_recycler_view.addItemDecoration(new MyDividerItemDecoration(activity, LinearLayoutManager.VERTICAL, 8));
-        recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
+        //recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
 
+
+        // if already present in cart
+
+        final int[] quantityCount = {0};
+        quantityArray = new String[upcomingYourBookingModelArrayList_new.size()];
+
+        if(Integer.parseInt(selected_quantity) > 1 ){
+
+            quantityCount[0] = quantityCount[0] + Integer.parseInt(selected_quantity);
+            totalQuantityCount = Integer.parseInt(selected_quantity);
+
+            quantityArray[position] = String.valueOf(quantityCount[0]);
+
+            list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
+            list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
+
+        }
         textview_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
             }
         });
-        final int[] quantityCount = {0};
-        quantityArray = new String[upcomingYourBookingModelArrayList_new.size()];
+
+        button_add_to_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //call Resto/addCart
+               String dish_qty = totalQuantityCount+"";
+               String table_id = tableNumberId;
+               String dishes_extra_id = "";
+
+                if (internetConnection.isNetworkAvailable(getActivity())) {
+                    addMenuToCart(dish_id,dish_qty,table_id,dishes_extra_id,dialog);
+                } else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         list_item_veg_menu_list_imageview_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -697,35 +705,157 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
                 quantityArray[position] = String.valueOf(quantityCount[0]);
 
-                //list_item_veg_menu_list_linearlayout_add_view.setVisibility(View.GONE);
-                // list_item_veg_menu_list_linearlayout_count_view.setVisibility(View.VISIBLE);
                 list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
                 list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
 
-                //updateValuesInterface.onUpdateValuesInterface(quantityArray[position], position, totalQuantityCount, issueItem, "");
             }
         });
 
         list_item_veg_menu_list_imageview_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // if (quantityCount[0] > 0) {
+                //check remaining quantity if 1 left
+                //open popup
+                //CALL REMOVEItem
 
                 if(quantityCount[0] <=  1) {
+
+                    if(Integer.parseInt(selected_quantity) > 1){
+                        alertRemoveItem(dish_id,dialog);
+                    }else
                     Toast.makeText(context,"Min quantity reached",Toast.LENGTH_SHORT).show();
                 }else {
                     quantityCount[0] = quantityCount[0] - 1;
                     totalQuantityCount = totalQuantityCount - 1;
 
                     quantityArray[position] = String.valueOf(quantityCount[0]);
-                    // list_item_veg_menu_list_linearlayout_add_view.setVisibility(View.GONE);
-                    // list_item_veg_menu_list_linearlayout_count_view.setVisibility(View.VISIBLE);
                     list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
                     list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
 
                 }
-                //updateValuesInterface.onUpdateValuesInterface(quantityArray[position], position, totalQuantityCount, issueItem, "");
             }
         });
     }
+
+    //add items to cart
+    private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id,final BottomSheetDialog bottomSheetDialog) {
+
+        ((ParentActivity)getActivity()).showProcessingDialog();
+
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(getActivity().getResources().getString(R.string.field_dish),dish_id);
+        postParams.put(getActivity().getResources().getString(R.string.field_dish_quantity),dish_qty);
+        postParams.put(getActivity().getResources().getString(R.string.field_table),table_no);
+        // send ids by comma seperated and it is optional
+        postParams.put(getActivity().getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
+
+        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.addCart), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.getInt("status") == 200) {
+                        ((ParentActivity)getActivity()).dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+
+                        //refresh
+                        if (internetConnection.isNetworkAvailable(getActivity())) {
+                            getMenuListByType();
+                        } else {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else if (jsonObject.getInt("status") == 400) {
+                        ((ParentActivity)getActivity()).dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    bottomSheetDialog.dismiss();
+                    ((ParentActivity)getActivity()).dismissProgressDialog();
+                }
+            }
+        });
+    }
+
+    //remove cart
+    //add items to cart
+    private void removeMenuFromCart(String dish_id, final BottomSheetDialog bottomSheetDialog) {
+
+        ((ParentActivity)getActivity()).showProcessingDialog();
+
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(getActivity().getResources().getString(R.string.field_cart_id),dish_id);
+
+        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.removeCart), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.getInt("status") == 200) {
+                        ((ParentActivity)getActivity()).dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+
+                        //refresh page
+                        if (internetConnection.isNetworkAvailable(getActivity())) {
+                            getMenuListByType();
+                        } else {
+                            Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else if (jsonObject.getInt("status") == 400) {
+                        ((ParentActivity)getActivity()).dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                     e.printStackTrace();
+                    bottomSheetDialog.dismiss();
+                    ((ParentActivity)getActivity()).dismissProgressDialog();
+                }
+            }
+        });
+    }
+
+   //pop of remove item
+   public void alertRemoveItem(final String dish_id, final BottomSheetDialog bottomSheetDialog){
+
+       final AlertDialog alert11;
+       final AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+
+       LayoutInflater factory = LayoutInflater.from(getContext());
+       final View view1 = factory.inflate(R.layout.dialog_remove_item, null);
+       builder1.setView(view1);
+       builder1.setCancelable(true);
+
+       alert11 = builder1.create();
+       alert11.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+       alert11.show();
+       Button button_popup_no = (Button) view1.findViewById(R.id.button_popup_no);
+       Button button_popup_yes = (Button) view1.findViewById(R.id.button_popup_yes);
+
+       button_popup_no.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               alert11.dismiss();
+           }
+       });
+
+       button_popup_yes.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               alert11.dismiss();
+               if (internetConnection.isNetworkAvailable(getActivity())) {
+                   removeMenuFromCart(dish_id,bottomSheetDialog);
+               } else {
+                   Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+               }
+
+           }
+       });
+   }
+
 }

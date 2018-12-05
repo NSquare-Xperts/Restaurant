@@ -17,7 +17,7 @@ public class DishCustomExtrasModel {
     private ArrayList<DishExtrasModel> quantity= new ArrayList<>();
 
     @SerializedName("Custom")
-    private ArrayList<DishExtrasModel> custom= new ArrayList<>();
+    private ArrayList<DishCustomModel> custom= new ArrayList<>();
 
     public ArrayList<DishExtrasModel> getExtra() {
         return extra;
@@ -35,11 +35,11 @@ public class DishCustomExtrasModel {
         this.quantity = quantity;
     }
 
-    public ArrayList<DishExtrasModel> getCustom() {
+    public ArrayList<DishCustomModel> getCustom() {
         return custom;
     }
 
-    public void setCustom(ArrayList<DishExtrasModel> custom) {
+    public void setCustom(ArrayList<DishCustomModel> custom) {
         this.custom = custom;
     }
 }

@@ -1,7 +1,7 @@
 package com.nsquare.restaurant.model.vegMenuList;
 
 /**
- * Created  by Ritu Chavan
+ * Created by Ritu Chavan
  * 4-12-2018
  */
 
@@ -13,10 +13,8 @@ public class VegMenuList_NewModel {
     private String dish_price;
     private String dish_image;
     private String dish_position;
-    //private String dish_extras;
     private boolean dish_customizable;
     private DishCustomExtrasModel dish_extras;
-    //private ArrayList<DishExtrasModel> dish_extras_list = new ArrayList<>();
 
     public VegMenuList_NewModel(String dish_id, String dish_name, String dish_desc, String dish_price, String dish_image, String dish_position, boolean dish_customizable, DishCustomExtrasModel dishCustomExtrasModel) {
         this.dish_id = dish_id;

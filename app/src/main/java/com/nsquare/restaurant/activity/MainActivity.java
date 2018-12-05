@@ -46,6 +46,7 @@ public class MainActivity extends ParentActivity
     AlertDialog alert11;
     public static Activity myActivity;
     private ImageView toolbar_title;
+    private ImageView add_to_cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,14 @@ public class MainActivity extends ParentActivity
 
         linearlayout = (LinearLayout) findViewById(R.id.linearlayout);
         toolbar_title = (ImageView) findViewById(R.id.toolbar_title);
+        add_to_cart = (ImageView) findViewById(R.id.add_to_cart);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View hView = navigationView.getHeaderView(0);
         textview_name = (TextView) hView.findViewById(R.id.textview_name);
         activity_company_sign_up_imageView_profile_pic = (CircularImageView) hView.findViewById(R.id.activity_company_sign_up_imageView_profile_pic);
+
 
         if(sharedPreferencefirst_name == null || sharedPreferencefirst_name.equalsIgnoreCase("")){
         }else {
@@ -109,6 +112,16 @@ public class MainActivity extends ParentActivity
 
             }
         });
+
+        add_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Clicked ",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,CartPreviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment fragment = new HomeFragment();

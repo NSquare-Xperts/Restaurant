@@ -2,6 +2,10 @@ package com.nsquare.restaurant.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +38,7 @@ public class VegMenuListAdapter extends RecyclerView.Adapter<VegMenuListAdapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView list_item_veg_menu_list_imageview_profile_pic;
+        public TextView selected_quantity;
         public TextView list_item_veg_menu_list_textview_menu_name;
         public TextView list_item_veg_menu_list_textview_menu_price;
         public TextView list_item_veg_menu_list_textview_menu_description;
@@ -59,6 +64,7 @@ public class VegMenuListAdapter extends RecyclerView.Adapter<VegMenuListAdapter.
             list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
             list_item_veg_menu_list_imageview_plus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus);
             adapter_vegmenu_linearlayout = (LinearLayout) view.findViewById(R.id.adapter_vegmenu_linearlayout);
+            selected_quantity = (TextView) view.findViewById(R.id.selected_quantity);
 
             list_item_veg_menu_list_imageview_plus_general = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus_general);
         }
