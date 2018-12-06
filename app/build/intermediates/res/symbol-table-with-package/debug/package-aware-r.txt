@@ -1698,6 +1698,7 @@ id relative_layout_checkout
 id relative_layout_common_list_recycler
 id relative_layout_see_all_prate
 id relative_layout_type_one
+id relative_layout_type_two
 id right
 id right_icon
 id right_side
@@ -1778,6 +1779,7 @@ id textinput_counter
 id textinput_error
 id textview_cancel
 id textview_label
+id textview_label_chk
 id textview_name
 id textview_no_record_found
 id textview_qty
@@ -2168,6 +2170,7 @@ string field_password
 string field_subCategory
 string field_table
 string field_tableNo
+string field_table_id
 string field_username
 string find_friend_on_flipq
 string first_name

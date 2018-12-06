@@ -215,26 +215,26 @@ public final class R {
         public static final int promo_root = 0x7f09017c;
         public static final int promo_subtitle = 0x7f09017d;
         public static final int promo_title = 0x7f09017e;
-        public static final int right = 0x7f09018a;
-        public static final int selected = 0x7f0901a6;
-        public static final int start = 0x7f0901c0;
-        public static final int test_dropin = 0x7f0901c8;
-        public static final int test_dropin_styled = 0x7f0901c9;
-        public static final int test_dropin_tag = 0x7f0901ca;
-        public static final int test_interactive = 0x7f0901cb;
-        public static final int top = 0x7f0901e3;
-        public static final int upper = 0x7f0901ef;
-        public static final int web_back = 0x7f0901f4;
-        public static final int web_chrome = 0x7f0901f5;
-        public static final int web_chrome_top = 0x7f0901f6;
-        public static final int web_close = 0x7f0901f7;
-        public static final int web_controls = 0x7f0901f8;
-        public static final int web_forward = 0x7f0901f9;
-        public static final int web_loading = 0x7f0901fa;
-        public static final int web_open_app = 0x7f0901fb;
-        public static final int web_open_app_icon = 0x7f0901fc;
-        public static final int web_open_app_text = 0x7f0901fd;
-        public static final int web_webview = 0x7f0901fe;
+        public static final int right = 0x7f09018b;
+        public static final int selected = 0x7f0901a7;
+        public static final int start = 0x7f0901c1;
+        public static final int test_dropin = 0x7f0901c9;
+        public static final int test_dropin_styled = 0x7f0901ca;
+        public static final int test_dropin_tag = 0x7f0901cb;
+        public static final int test_interactive = 0x7f0901cc;
+        public static final int top = 0x7f0901e5;
+        public static final int upper = 0x7f0901f1;
+        public static final int web_back = 0x7f0901f6;
+        public static final int web_chrome = 0x7f0901f7;
+        public static final int web_chrome_top = 0x7f0901f8;
+        public static final int web_close = 0x7f0901f9;
+        public static final int web_controls = 0x7f0901fa;
+        public static final int web_forward = 0x7f0901fb;
+        public static final int web_loading = 0x7f0901fc;
+        public static final int web_open_app = 0x7f0901fd;
+        public static final int web_open_app_icon = 0x7f0901fe;
+        public static final int web_open_app_text = 0x7f0901ff;
+        public static final int web_webview = 0x7f090200;
     }
     public static final class integer {
         private integer() {}
@@ -265,14 +265,14 @@ public final class R {
 
         public static final int app_name = 0x7f0e0035;
         public static final int continue_in_app = 0x7f0e006d;
-        public static final int go_to_app = 0x7f0e00cd;
-        public static final int install = 0x7f0e00e5;
-        public static final int loading_promotion = 0x7f0e00f7;
-        public static final int message_waiting_to_install = 0x7f0e0105;
-        public static final int no_store_close = 0x7f0e011a;
-        public static final int no_store_message = 0x7f0e011b;
-        public static final int no_store_title = 0x7f0e011c;
-        public static final int was_installed = 0x7f0e01b0;
+        public static final int go_to_app = 0x7f0e00ce;
+        public static final int install = 0x7f0e00e6;
+        public static final int loading_promotion = 0x7f0e00f8;
+        public static final int message_waiting_to_install = 0x7f0e0106;
+        public static final int no_store_close = 0x7f0e011b;
+        public static final int no_store_message = 0x7f0e011c;
+        public static final int no_store_title = 0x7f0e011d;
+        public static final int was_installed = 0x7f0e01b1;
     }
     public static final class style {
         private style() {}

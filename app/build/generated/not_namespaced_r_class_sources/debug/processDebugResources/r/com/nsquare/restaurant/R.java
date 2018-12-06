@@ -1216,7 +1216,6 @@ public final class R {
      */
     public static final int circularImageViewStyle=0x7f040097;
     /**
-     * Screen edge padding.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -1777,7 +1776,6 @@ public final class R {
      */
     public static final int fabSize=0x7f0400e0;
     /**
-     * Length of the delay to fade the indicator.
      * <p>May be an integer value, such as "<code>100</code>".
      */
     public static final int fadeDelay=0x7f0400e1;
@@ -1786,12 +1784,10 @@ public final class R {
      */
     public static final int fadeDuration=0x7f0400e2;
     /**
-     * Length of the indicator fade to transparent.
      * <p>May be an integer value, such as "<code>100</code>".
      */
     public static final int fadeLength=0x7f0400e3;
     /**
-     * Whether or not the selected indicator fades.
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
@@ -1856,7 +1852,6 @@ public final class R {
      */
     public static final int fastScrollVerticalTrackDrawable=0x7f0400eb;
     /**
-     * Color of the filled circle that represents the current page.
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
@@ -1945,14 +1940,12 @@ public final class R {
      */
     public static final int fontWeight=0x7f0400f7;
     /**
-     * Color of the footer line and indicator.
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
      */
     public static final int footerColor=0x7f0400f8;
     /**
-     * Height of the indicator above the footer line.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -1961,7 +1954,6 @@ public final class R {
      */
     public static final int footerIndicatorHeight=0x7f0400f9;
     /**
-     * Style of the indicator. Default is triangle.
      * <p>Must be one of the following constant values.</p>
      * <table>
      * <colgroup align="left" />
@@ -1975,7 +1967,6 @@ public final class R {
      */
     public static final int footerIndicatorStyle=0x7f0400fa;
     /**
-     * Left and right padding of the underline indicator.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -1984,7 +1975,6 @@ public final class R {
      */
     public static final int footerIndicatorUnderlinePadding=0x7f0400fb;
     /**
-     * Height of the footer line.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -1993,7 +1983,6 @@ public final class R {
      */
     public static final int footerLineHeight=0x7f0400fc;
     /**
-     * Padding between the bottom of the title and the footer.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -2015,7 +2004,6 @@ public final class R {
      */
     public static final int gapBetweenBars=0x7f0400ff;
     /**
-     * Width of the gap between each indicator line.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -2795,7 +2783,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>
@@ -2840,7 +2828,6 @@ public final class R {
      */
     public static final int lb_slideEdge=0x7f04015a;
     /**
-     * Position of the line.
      * <p>Must be one of the following constant values.</p>
      * <table>
      * <colgroup align="left" />
@@ -2853,7 +2840,6 @@ public final class R {
      */
     public static final int linePosition=0x7f04015b;
     /**
-     * Width of each indicator line.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -3092,7 +3078,6 @@ public final class R {
      */
     public static final int paddingTopNoTitle=0x7f04017b;
     /**
-     * Color of the filled circles that represents pages.
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
@@ -3373,7 +3358,6 @@ public final class R {
      */
     public static final int radioButtonStyle=0x7f0401a1;
     /**
-     * Radius of the circles. This is also the spacing between circles.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -3628,7 +3612,6 @@ public final class R {
      */
     public static final int selectableItemBackgroundBorderless=0x7f0401c4;
     /**
-     * Whether or not the selected item is displayed as bold.
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
@@ -3706,7 +3689,6 @@ public final class R {
      */
     public static final int singleChoiceItemLayout=0x7f0401cf;
     /**
-     * Whether or not the selected indicator snaps to the circles.
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
@@ -3788,7 +3770,6 @@ public final class R {
      */
     public static final int statusBarScrim=0x7f0401dd;
     /**
-     * Color of the open circles.
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
      * "<code>#<i>aarrggbb</i></code>".
@@ -4256,7 +4237,6 @@ public final class R {
      */
     public static final int titleMargins=0x7f040218;
     /**
-     * Padding between titles when bumping into each other.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -4328,7 +4308,6 @@ public final class R {
      */
     public static final int tooltipText=0x7f040222;
     /**
-     * Padding between titles and the top of the View.
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
      * Available units are: px (pixels), dp (density-independent pixels),
@@ -4393,7 +4372,6 @@ public final class R {
      */
     public static final int voiceIcon=0x7f04022b;
     /**
-     * Style of the circle indicator.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -4401,7 +4379,6 @@ public final class R {
      */
     public static final int vpiCirclePageIndicatorStyle=0x7f04022c;
     /**
-     * Style of the icon indicator's views.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -4409,7 +4386,6 @@ public final class R {
      */
     public static final int vpiIconPageIndicatorStyle=0x7f04022d;
     /**
-     * Style of the line indicator.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -4417,7 +4393,6 @@ public final class R {
      */
     public static final int vpiLinePageIndicatorStyle=0x7f04022e;
     /**
-     * Style of the tab indicator's tabs.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -4425,7 +4400,6 @@ public final class R {
      */
     public static final int vpiTabPageIndicatorStyle=0x7f04022f;
     /**
-     * Style of the title indicator.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -4433,7 +4407,6 @@ public final class R {
      */
     public static final int vpiTitlePageIndicatorStyle=0x7f040230;
     /**
-     * Style of the underline indicator.
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -5640,131 +5613,133 @@ public final class R {
     public static final int relative_layout_common_list_recycler=0x7f090187;
     public static final int relative_layout_see_all_prate=0x7f090188;
     public static final int relative_layout_type_one=0x7f090189;
-    public static final int right=0x7f09018a;
-    public static final int right_icon=0x7f09018b;
-    public static final int right_side=0x7f09018c;
-    public static final int save_image_matrix=0x7f09018d;
-    public static final int save_non_transition_alpha=0x7f09018e;
-    public static final int save_scale_type=0x7f09018f;
-    public static final int scan_qr_code_zing_scanner=0x7f090190;
-    public static final int screen=0x7f090191;
-    public static final int scroll=0x7f090192;
-    public static final int scrollIndicatorDown=0x7f090193;
-    public static final int scrollIndicatorUp=0x7f090194;
-    public static final int scrollView=0x7f090195;
-    public static final int scroll_bar=0x7f090196;
-    public static final int scroll_handle=0x7f090197;
-    public static final int scrollable=0x7f090198;
-    public static final int search_badge=0x7f090199;
-    public static final int search_bar=0x7f09019a;
-    public static final int search_button=0x7f09019b;
-    public static final int search_close_btn=0x7f09019c;
-    public static final int search_edit_frame=0x7f09019d;
-    public static final int search_go_btn=0x7f09019e;
-    public static final int search_mag_icon=0x7f09019f;
-    public static final int search_plate=0x7f0901a0;
-    public static final int search_src_text=0x7f0901a1;
-    public static final int search_voice_btn=0x7f0901a2;
-    public static final int section_indicator_text=0x7f0901a3;
-    public static final int section_title_popup=0x7f0901a4;
-    public static final int select_dialog_listview=0x7f0901a5;
-    public static final int selected=0x7f0901a6;
-    public static final int selected_quantity=0x7f0901a7;
-    public static final int selector_button_back=0x7f0901a8;
-    public static final int selector_button_confirm=0x7f0901a9;
-    public static final int selector_content=0x7f0901aa;
-    public static final int selector_footer=0x7f0901ab;
-    public static final int selector_image_folder_button=0x7f0901ac;
-    public static final int selector_image_preview_button=0x7f0901ad;
-    public static final int shortcut=0x7f0901ae;
-    public static final int showCustom=0x7f0901af;
-    public static final int showHome=0x7f0901b0;
-    public static final int showTitle=0x7f0901b1;
-    public static final int signout=0x7f0901b2;
-    public static final int smallLabel=0x7f0901b3;
-    public static final int snackbar_action=0x7f0901b4;
-    public static final int snackbar_text=0x7f0901b5;
-    public static final int snap=0x7f0901b6;
-    public static final int spacer=0x7f0901b7;
-    public static final int splash_logo_image=0x7f0901b8;
-    public static final int split_action_bar=0x7f0901b9;
-    public static final int spread=0x7f0901ba;
-    public static final int spread_inside=0x7f0901bb;
-    public static final int src_atop=0x7f0901bc;
-    public static final int src_in=0x7f0901bd;
-    public static final int src_over=0x7f0901be;
-    public static final int standard=0x7f0901bf;
-    public static final int start=0x7f0901c0;
-    public static final int status_bar_latest_event_content=0x7f0901c1;
-    public static final int submenuarrow=0x7f0901c2;
-    public static final int submit_area=0x7f0901c3;
-    public static final int swipe_refresh_layout=0x7f0901c4;
-    public static final int tabMode=0x7f0901c5;
-    public static final int tabs=0x7f0901c6;
-    public static final int tag_transition_group=0x7f0901c7;
-    public static final int test_dropin=0x7f0901c8;
-    public static final int test_dropin_styled=0x7f0901c9;
-    public static final int test_dropin_tag=0x7f0901ca;
-    public static final int test_interactive=0x7f0901cb;
-    public static final int text=0x7f0901cc;
-    public static final int text2=0x7f0901cd;
-    public static final int textSpacerNoButtons=0x7f0901ce;
-    public static final int textSpacerNoTitle=0x7f0901cf;
-    public static final int textView=0x7f0901d0;
-    public static final int textView2=0x7f0901d1;
-    public static final int textView3=0x7f0901d2;
-    public static final int textView_popup=0x7f0901d3;
-    public static final int textView_total_qty=0x7f0901d4;
-    public static final int text_input_password_toggle=0x7f0901d5;
-    public static final int textinput_counter=0x7f0901d6;
-    public static final int textinput_error=0x7f0901d7;
-    public static final int textview_cancel=0x7f0901d8;
-    public static final int textview_label=0x7f0901d9;
-    public static final int textview_name=0x7f0901da;
-    public static final int textview_no_record_found=0x7f0901db;
-    public static final int textview_qty=0x7f0901dc;
-    public static final int time=0x7f0901dd;
-    public static final int title=0x7f0901de;
-    public static final int titleDividerNoCustom=0x7f0901df;
-    public static final int title_template=0x7f0901e0;
-    public static final int toolbar=0x7f0901e1;
-    public static final int toolbar_title=0x7f0901e2;
-    public static final int top=0x7f0901e3;
-    public static final int topPanel=0x7f0901e4;
-    public static final int touch_outside=0x7f0901e5;
-    public static final int transition_current_scene=0x7f0901e6;
-    public static final int transition_layout_save=0x7f0901e7;
-    public static final int transition_position=0x7f0901e8;
-    public static final int transition_scene_layoutid_cache=0x7f0901e9;
-    public static final int transition_transform=0x7f0901ea;
-    public static final int triangle=0x7f0901eb;
-    public static final int underline=0x7f0901ec;
-    public static final int uniform=0x7f0901ed;
-    public static final int up=0x7f0901ee;
-    public static final int upper=0x7f0901ef;
-    public static final int useLogo=0x7f0901f0;
-    public static final int view_offset_helper=0x7f0901f1;
-    public static final int viewpager=0x7f0901f2;
-    public static final int visible=0x7f0901f3;
-    public static final int web_back=0x7f0901f4;
-    public static final int web_chrome=0x7f0901f5;
-    public static final int web_chrome_top=0x7f0901f6;
-    public static final int web_close=0x7f0901f7;
-    public static final int web_controls=0x7f0901f8;
-    public static final int web_forward=0x7f0901f9;
-    public static final int web_loading=0x7f0901fa;
-    public static final int web_open_app=0x7f0901fb;
-    public static final int web_open_app_icon=0x7f0901fc;
-    public static final int web_open_app_text=0x7f0901fd;
-    public static final int web_webview=0x7f0901fe;
-    public static final int wheelBackground=0x7f0901ff;
-    public static final int wheelCarousel=0x7f090200;
-    public static final int wheelCarouselOuter=0x7f090201;
-    public static final int wheelSections=0x7f090202;
-    public static final int withText=0x7f090203;
-    public static final int wrap=0x7f090204;
-    public static final int wrap_content=0x7f090205;
-    public static final int year=0x7f090206;
+    public static final int relative_layout_type_two=0x7f09018a;
+    public static final int right=0x7f09018b;
+    public static final int right_icon=0x7f09018c;
+    public static final int right_side=0x7f09018d;
+    public static final int save_image_matrix=0x7f09018e;
+    public static final int save_non_transition_alpha=0x7f09018f;
+    public static final int save_scale_type=0x7f090190;
+    public static final int scan_qr_code_zing_scanner=0x7f090191;
+    public static final int screen=0x7f090192;
+    public static final int scroll=0x7f090193;
+    public static final int scrollIndicatorDown=0x7f090194;
+    public static final int scrollIndicatorUp=0x7f090195;
+    public static final int scrollView=0x7f090196;
+    public static final int scroll_bar=0x7f090197;
+    public static final int scroll_handle=0x7f090198;
+    public static final int scrollable=0x7f090199;
+    public static final int search_badge=0x7f09019a;
+    public static final int search_bar=0x7f09019b;
+    public static final int search_button=0x7f09019c;
+    public static final int search_close_btn=0x7f09019d;
+    public static final int search_edit_frame=0x7f09019e;
+    public static final int search_go_btn=0x7f09019f;
+    public static final int search_mag_icon=0x7f0901a0;
+    public static final int search_plate=0x7f0901a1;
+    public static final int search_src_text=0x7f0901a2;
+    public static final int search_voice_btn=0x7f0901a3;
+    public static final int section_indicator_text=0x7f0901a4;
+    public static final int section_title_popup=0x7f0901a5;
+    public static final int select_dialog_listview=0x7f0901a6;
+    public static final int selected=0x7f0901a7;
+    public static final int selected_quantity=0x7f0901a8;
+    public static final int selector_button_back=0x7f0901a9;
+    public static final int selector_button_confirm=0x7f0901aa;
+    public static final int selector_content=0x7f0901ab;
+    public static final int selector_footer=0x7f0901ac;
+    public static final int selector_image_folder_button=0x7f0901ad;
+    public static final int selector_image_preview_button=0x7f0901ae;
+    public static final int shortcut=0x7f0901af;
+    public static final int showCustom=0x7f0901b0;
+    public static final int showHome=0x7f0901b1;
+    public static final int showTitle=0x7f0901b2;
+    public static final int signout=0x7f0901b3;
+    public static final int smallLabel=0x7f0901b4;
+    public static final int snackbar_action=0x7f0901b5;
+    public static final int snackbar_text=0x7f0901b6;
+    public static final int snap=0x7f0901b7;
+    public static final int spacer=0x7f0901b8;
+    public static final int splash_logo_image=0x7f0901b9;
+    public static final int split_action_bar=0x7f0901ba;
+    public static final int spread=0x7f0901bb;
+    public static final int spread_inside=0x7f0901bc;
+    public static final int src_atop=0x7f0901bd;
+    public static final int src_in=0x7f0901be;
+    public static final int src_over=0x7f0901bf;
+    public static final int standard=0x7f0901c0;
+    public static final int start=0x7f0901c1;
+    public static final int status_bar_latest_event_content=0x7f0901c2;
+    public static final int submenuarrow=0x7f0901c3;
+    public static final int submit_area=0x7f0901c4;
+    public static final int swipe_refresh_layout=0x7f0901c5;
+    public static final int tabMode=0x7f0901c6;
+    public static final int tabs=0x7f0901c7;
+    public static final int tag_transition_group=0x7f0901c8;
+    public static final int test_dropin=0x7f0901c9;
+    public static final int test_dropin_styled=0x7f0901ca;
+    public static final int test_dropin_tag=0x7f0901cb;
+    public static final int test_interactive=0x7f0901cc;
+    public static final int text=0x7f0901cd;
+    public static final int text2=0x7f0901ce;
+    public static final int textSpacerNoButtons=0x7f0901cf;
+    public static final int textSpacerNoTitle=0x7f0901d0;
+    public static final int textView=0x7f0901d1;
+    public static final int textView2=0x7f0901d2;
+    public static final int textView3=0x7f0901d3;
+    public static final int textView_popup=0x7f0901d4;
+    public static final int textView_total_qty=0x7f0901d5;
+    public static final int text_input_password_toggle=0x7f0901d6;
+    public static final int textinput_counter=0x7f0901d7;
+    public static final int textinput_error=0x7f0901d8;
+    public static final int textview_cancel=0x7f0901d9;
+    public static final int textview_label=0x7f0901da;
+    public static final int textview_label_chk=0x7f0901db;
+    public static final int textview_name=0x7f0901dc;
+    public static final int textview_no_record_found=0x7f0901dd;
+    public static final int textview_qty=0x7f0901de;
+    public static final int time=0x7f0901df;
+    public static final int title=0x7f0901e0;
+    public static final int titleDividerNoCustom=0x7f0901e1;
+    public static final int title_template=0x7f0901e2;
+    public static final int toolbar=0x7f0901e3;
+    public static final int toolbar_title=0x7f0901e4;
+    public static final int top=0x7f0901e5;
+    public static final int topPanel=0x7f0901e6;
+    public static final int touch_outside=0x7f0901e7;
+    public static final int transition_current_scene=0x7f0901e8;
+    public static final int transition_layout_save=0x7f0901e9;
+    public static final int transition_position=0x7f0901ea;
+    public static final int transition_scene_layoutid_cache=0x7f0901eb;
+    public static final int transition_transform=0x7f0901ec;
+    public static final int triangle=0x7f0901ed;
+    public static final int underline=0x7f0901ee;
+    public static final int uniform=0x7f0901ef;
+    public static final int up=0x7f0901f0;
+    public static final int upper=0x7f0901f1;
+    public static final int useLogo=0x7f0901f2;
+    public static final int view_offset_helper=0x7f0901f3;
+    public static final int viewpager=0x7f0901f4;
+    public static final int visible=0x7f0901f5;
+    public static final int web_back=0x7f0901f6;
+    public static final int web_chrome=0x7f0901f7;
+    public static final int web_chrome_top=0x7f0901f8;
+    public static final int web_close=0x7f0901f9;
+    public static final int web_controls=0x7f0901fa;
+    public static final int web_forward=0x7f0901fb;
+    public static final int web_loading=0x7f0901fc;
+    public static final int web_open_app=0x7f0901fd;
+    public static final int web_open_app_icon=0x7f0901fe;
+    public static final int web_open_app_text=0x7f0901ff;
+    public static final int web_webview=0x7f090200;
+    public static final int wheelBackground=0x7f090201;
+    public static final int wheelCarousel=0x7f090202;
+    public static final int wheelCarouselOuter=0x7f090203;
+    public static final int wheelSections=0x7f090204;
+    public static final int withText=0x7f090205;
+    public static final int wrap=0x7f090206;
+    public static final int wrap_content=0x7f090207;
+    public static final int year=0x7f090208;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f0a0000;
@@ -6120,264 +6095,265 @@ public final class R {
     public static final int field_subCategory=0x7f0e00af;
     public static final int field_table=0x7f0e00b0;
     public static final int field_tableNo=0x7f0e00b1;
-    public static final int field_username=0x7f0e00b2;
-    public static final int find_friend_on_flipq=0x7f0e00b3;
-    public static final int first_name=0x7f0e00b4;
-    public static final int first_name_title=0x7f0e00b5;
-    public static final int flipq_credits=0x7f0e00b6;
-    public static final int followers=0x7f0e00b7;
-    public static final int following=0x7f0e00b8;
-    public static final int font_name_roboto_bold=0x7f0e00b9;
-    public static final int font_name_roboto_bold_=0x7f0e00ba;
-    public static final int font_name_roboto_light=0x7f0e00bb;
-    public static final int font_name_roboto_light_=0x7f0e00bc;
-    public static final int font_name_roboto_medium=0x7f0e00bd;
-    public static final int font_name_roboto_medium_=0x7f0e00be;
-    public static final int font_name_roboto_regular=0x7f0e00bf;
-    public static final int font_name_roboto_regular_=0x7f0e00c0;
-    public static final int forgot_password=0x7f0e00c1;
-    public static final int forgot_password_message=0x7f0e00c2;
-    public static final int forgotpassword=0x7f0e00c3;
-    public static final int full=0x7f0e00c4;
-    public static final int gallery=0x7f0e00c5;
-    public static final int general=0x7f0e00c6;
-    public static final int getCartItems=0x7f0e00c7;
-    public static final int getCategories=0x7f0e00c8;
-    public static final int getMastervalues=0x7f0e00c9;
-    public static final int getMenuListByType=0x7f0e00ca;
-    public static final int getOrderListByCustomer=0x7f0e00cb;
-    public static final int get_map=0x7f0e00cc;
-    public static final int go_to_app=0x7f0e00cd;
-    public static final int google=0x7f0e00ce;
-    public static final int grand_total=0x7f0e00cf;
-    public static final int grandtotal=0x7f0e00d0;
-    public static final int guest_user=0x7f0e00d1;
-    public static final int half=0x7f0e00d2;
-    public static final int hint_date=0x7f0e00d3;
-    public static final int hint_date_=0x7f0e00d4;
-    public static final int hint_link_mobile=0x7f0e00d5;
-    public static final int hint_name=0x7f0e00d6;
-    public static final int hint_name_=0x7f0e00d7;
-    public static final int hint_no_of_female=0x7f0e00d8;
-    public static final int hint_no_of_female_=0x7f0e00d9;
-    public static final int hint_no_of_male=0x7f0e00da;
-    public static final int hint_no_of_male_=0x7f0e00db;
-    public static final int hint_time=0x7f0e00dc;
-    public static final int hint_time_=0x7f0e00dd;
-    public static final int home=0x7f0e00de;
-    public static final int i_agree_to_terms_and_conditions=0x7f0e00df;
-    public static final int id=0x7f0e00e0;
-    public static final int imageName=0x7f0e00e1;
-    public static final int image_file=0x7f0e00e2;
-    public static final int imageview_capture_photo_content_description=0x7f0e00e3;
-    public static final int imageview_content_description=0x7f0e00e4;
-    public static final int install=0x7f0e00e5;
-    public static final int internet_connection=0x7f0e00e6;
-    public static final int invite_friend_on_flipq=0x7f0e00e7;
-    public static final int isFirstTime=0x7f0e00e8;
-    public static final int isMakePayment=0x7f0e00e9;
-    public static final int is_processed=0x7f0e00ea;
-    public static final int itemDescription=0x7f0e00eb;
-    public static final int itemName=0x7f0e00ec;
-    public static final int itemPrice=0x7f0e00ed;
-    public static final int key=0x7f0e00ee;
-    public static final int key_flag=0x7f0e00ef;
-    public static final int key_status=0x7f0e00f0;
-    public static final int key_subCategoryId=0x7f0e00f1;
-    public static final int key_title=0x7f0e00f2;
-    public static final int label=0x7f0e00f3;
-    public static final int last_name=0x7f0e00f4;
-    public static final int last_name_title=0x7f0e00f5;
-    public static final int leave_a_message=0x7f0e00f6;
-    public static final int loading_promotion=0x7f0e00f7;
-    public static final int londge=0x7f0e00f8;
-    public static final int make_payment=0x7f0e00f9;
-    public static final int masterType=0x7f0e00fa;
-    public static final int menu=0x7f0e00fb;
-    public static final int menuItemId=0x7f0e00fc;
-    public static final int menuItems=0x7f0e00fd;
-    public static final int menuType=0x7f0e00fe;
-    public static final int menu_amount=0x7f0e00ff;
-    public static final int menu_id=0x7f0e0100;
-    public static final int menu_name=0x7f0e0101;
-    public static final int menu_price=0x7f0e0102;
-    public static final int menu_quantity=0x7f0e0103;
-    public static final int message=0x7f0e0104;
-    public static final int message_waiting_to_install=0x7f0e0105;
-    public static final int minus_sign=0x7f0e0106;
-    public static final int mobile_number=0x7f0e0107;
-    public static final int mobile_number1=0x7f0e0108;
-    public static final int mobile_number_=0x7f0e0109;
-    public static final int mobileno=0x7f0e010a;
-    public static final int modify_booking=0x7f0e010b;
-    public static final int modify_booking_dialog_message=0x7f0e010c;
-    public static final int more_info=0x7f0e010d;
-    public static final int msg=0x7f0e010e;
-    public static final int msg_no_camera=0x7f0e010f;
-    public static final int multiple_order=0x7f0e0110;
-    public static final int my_addresses=0x7f0e0111;
-    public static final int my_profile=0x7f0e0112;
-    public static final int n_images_selected=0x7f0e0113;
-    public static final int name=0x7f0e0114;
-    public static final int navigation_drawer_close=0x7f0e0115;
-    public static final int navigation_drawer_open=0x7f0e0116;
-    public static final int need_to_allow=0x7f0e0117;
-    public static final int no=0x7f0e0118;
-    public static final int no_images_selected=0x7f0e0119;
-    public static final int no_store_close=0x7f0e011a;
-    public static final int no_store_message=0x7f0e011b;
-    public static final int no_store_title=0x7f0e011c;
-    public static final int offerId=0x7f0e011d;
-    public static final int offers=0x7f0e011e;
-    public static final int offers_key=0x7f0e011f;
-    public static final int open_now=0x7f0e0120;
-    public static final int or=0x7f0e0121;
-    public static final int orderMenuIds=0x7f0e0122;
-    public static final int order_history=0x7f0e0123;
-    public static final int order_id=0x7f0e0124;
-    public static final int order_list=0x7f0e0125;
-    public static final int order_menus_id=0x7f0e0126;
-    public static final int order_online=0x7f0e0127;
-    public static final int order_preview=0x7f0e0128;
-    public static final int order_status=0x7f0e0129;
-    public static final int order_unique_id=0x7f0e012a;
-    public static final int os=0x7f0e012b;
-    public static final int otp_message=0x7f0e012c;
-    public static final int password=0x7f0e012d;
-    public static final int password_=0x7f0e012e;
-    public static final int password_toggle_content_description=0x7f0e012f;
-    public static final int path_password_eye=0x7f0e0130;
-    public static final int path_password_eye_mask_strike_through=0x7f0e0131;
-    public static final int path_password_eye_mask_visible=0x7f0e0132;
-    public static final int path_password_strike_through=0x7f0e0133;
-    public static final int payment=0x7f0e0134;
-    public static final int pending=0x7f0e0135;
-    public static final int people=0x7f0e0136;
-    public static final int people_=0x7f0e0137;
-    public static final int phone=0x7f0e0138;
-    public static final int photo_save_error_toast=0x7f0e0139;
-    public static final int photos=0x7f0e013a;
-    public static final int placeOrder=0x7f0e013b;
-    public static final int place_order=0x7f0e013c;
-    public static final int please_wait=0x7f0e013d;
-    public static final int plus_sign=0x7f0e013e;
-    public static final int popular_for=0x7f0e013f;
-    public static final int preference_file_key=0x7f0e0140;
-    public static final int profile=0x7f0e0141;
-    public static final int profileimage=0x7f0e0142;
-    public static final int progress_title=0x7f0e0143;
-    public static final int quanity=0x7f0e0144;
-    public static final int quantity=0x7f0e0145;
-    public static final int qv_add=0x7f0e0146;
-    public static final int qv_remove=0x7f0e0147;
-    public static final int rate_review=0x7f0e0148;
-    public static final int rememberme=0x7f0e0149;
-    public static final int removeCart=0x7f0e014a;
-    public static final int remove_item_from_cart=0x7f0e014b;
-    public static final int repeat=0x7f0e014c;
-    public static final int repeat_last_used_customization=0x7f0e014d;
-    public static final int request=0x7f0e014e;
-    public static final int reset_device=0x7f0e014f;
-    public static final int review=0x7f0e0150;
-    public static final int role=0x7f0e0151;
-    public static final int role_title=0x7f0e0152;
-    public static final int scan_QR=0x7f0e0153;
-    public static final int scan_qr_to_configure=0x7f0e0154;
-    public static final int search_menu_title=0x7f0e0155;
-    public static final int see_all_reviews=0x7f0e0156;
-    public static final int select_quantity=0x7f0e0157;
-    public static final int selector_action_done=0x7f0e0158;
-    public static final int selector_caption=0x7f0e0159;
-    public static final int selector_folder_all=0x7f0e015a;
-    public static final int selector_permission_error=0x7f0e015b;
-    public static final int selector_preview=0x7f0e015c;
-    public static final int selector_reach_max_image_hint=0x7f0e015d;
-    public static final int send_you_code=0x7f0e015e;
-    public static final int server_not_reachable=0x7f0e015f;
-    public static final int sharedPreferenceIsInfoVisited=0x7f0e0160;
-    public static final int sharedPreferenceRememberCustomerId=0x7f0e0161;
-    public static final int sharedPreferenceRememberCustomerOrderId=0x7f0e0162;
-    public static final int sharedPreferenceRememberMobileno=0x7f0e0163;
-    public static final int sharedPreferenceRememberUsername=0x7f0e0164;
-    public static final int sharedPreferenceRememberemail=0x7f0e0165;
-    public static final int sharedPreferenceRememberpassword=0x7f0e0166;
-    public static final int sharedPreferenceUserId=0x7f0e0167;
-    public static final int sharedPreferenceemail=0x7f0e0168;
-    public static final int sharedPreferencefirst_name=0x7f0e0169;
-    public static final int sharedPreferencelast_name=0x7f0e016a;
-    public static final int sharedPreferencepassword=0x7f0e016b;
-    public static final int sharedPreferenceprofileimage=0x7f0e016c;
-    public static final int sharedPreferencerole=0x7f0e016d;
-    public static final int sharedPreferencerole_title=0x7f0e016e;
-    public static final int sharedPreferencetableid=0x7f0e016f;
-    public static final int sharedPreferencetablenumber=0x7f0e0170;
-    public static final int sharedPreferencetabletype=0x7f0e0171;
-    public static final int sharedPreferencewaiterName=0x7f0e0172;
-    public static final int sharedPreferencewaiterUniqueId=0x7f0e0173;
-    public static final int show_selected_qty_here=0x7f0e0174;
-    public static final int signout=0x7f0e0175;
-    public static final int signup=0x7f0e0176;
-    public static final int single_order=0x7f0e0177;
-    public static final int skip=0x7f0e0178;
-    public static final int social_strategy=0x7f0e0179;
-    public static final int socialaccesstoken=0x7f0e017a;
-    public static final int socialmedialink=0x7f0e017b;
-    public static final int status=0x7f0e017c;
-    public static final int status200=0x7f0e017d;
-    public static final int status_bar_notification_info_overflow=0x7f0e017e;
-    public static final int subCategories=0x7f0e017f;
-    public static final int subCategoryId=0x7f0e0180;
-    public static final int sub_total=0x7f0e0181;
-    public static final int subcategoryId=0x7f0e0182;
-    public static final int subcategoryName=0x7f0e0183;
-    public static final int subtotal=0x7f0e0184;
-    public static final int tab_cuisines=0x7f0e0185;
-    public static final int tab_history=0x7f0e0186;
-    public static final int tab_non_veg=0x7f0e0187;
-    public static final int tab_photos=0x7f0e0188;
-    public static final int tab_reviews=0x7f0e0189;
-    public static final int tab_upcoming=0x7f0e018a;
-    public static final int tab_veg=0x7f0e018b;
-    public static final int tableId=0x7f0e018c;
-    public static final int tableIdValues=0x7f0e018d;
-    public static final int tableNumber=0x7f0e018e;
-    public static final int tables=0x7f0e018f;
-    public static final int take_photo=0x7f0e0190;
-    public static final int taxes=0x7f0e0191;
-    public static final int taxes_=0x7f0e0192;
-    public static final int timeout_error=0x7f0e0193;
-    public static final int tip_take_photo=0x7f0e0194;
-    public static final int title=0x7f0e0195;
-    public static final int toast_exit=0x7f0e0196;
-    public static final int total_amount=0x7f0e0197;
-    public static final int type=0x7f0e0198;
-    public static final int types=0x7f0e0199;
-    public static final int url_auth=0x7f0e019a;
-    public static final int url_deviceregistration=0x7f0e019b;
-    public static final int url_forgotpassword=0x7f0e019c;
-    public static final int url_login=0x7f0e019d;
-    public static final int url_main=0x7f0e019e;
-    public static final int url_signup=0x7f0e019f;
-    public static final int user=0x7f0e01a0;
-    public static final int userOrder=0x7f0e01a1;
-    public static final int user_authenticate=0x7f0e01a2;
-    public static final int user_id=0x7f0e01a3;
-    public static final int user_name=0x7f0e01a4;
-    public static final int userid=0x7f0e01a5;
-    public static final int username=0x7f0e01a6;
-    public static final int username_=0x7f0e01a7;
-    public static final int validateQRCode=0x7f0e01a8;
-    public static final int verify_booking=0x7f0e01a9;
-    public static final int verify_otp=0x7f0e01aa;
-    public static final int verify_phone=0x7f0e01ab;
-    public static final int view_cart=0x7f0e01ac;
-    public static final int waiterId=0x7f0e01ad;
-    public static final int waiterName=0x7f0e01ae;
-    public static final int waiterUniqueId=0x7f0e01af;
-    public static final int was_installed=0x7f0e01b0;
-    public static final int yes=0x7f0e01b1;
-    public static final int your_booking=0x7f0e01b2;
-    public static final int your_preorder_details=0x7f0e01b3;
+    public static final int field_table_id=0x7f0e00b2;
+    public static final int field_username=0x7f0e00b3;
+    public static final int find_friend_on_flipq=0x7f0e00b4;
+    public static final int first_name=0x7f0e00b5;
+    public static final int first_name_title=0x7f0e00b6;
+    public static final int flipq_credits=0x7f0e00b7;
+    public static final int followers=0x7f0e00b8;
+    public static final int following=0x7f0e00b9;
+    public static final int font_name_roboto_bold=0x7f0e00ba;
+    public static final int font_name_roboto_bold_=0x7f0e00bb;
+    public static final int font_name_roboto_light=0x7f0e00bc;
+    public static final int font_name_roboto_light_=0x7f0e00bd;
+    public static final int font_name_roboto_medium=0x7f0e00be;
+    public static final int font_name_roboto_medium_=0x7f0e00bf;
+    public static final int font_name_roboto_regular=0x7f0e00c0;
+    public static final int font_name_roboto_regular_=0x7f0e00c1;
+    public static final int forgot_password=0x7f0e00c2;
+    public static final int forgot_password_message=0x7f0e00c3;
+    public static final int forgotpassword=0x7f0e00c4;
+    public static final int full=0x7f0e00c5;
+    public static final int gallery=0x7f0e00c6;
+    public static final int general=0x7f0e00c7;
+    public static final int getCartItems=0x7f0e00c8;
+    public static final int getCategories=0x7f0e00c9;
+    public static final int getMastervalues=0x7f0e00ca;
+    public static final int getMenuListByType=0x7f0e00cb;
+    public static final int getOrderListByCustomer=0x7f0e00cc;
+    public static final int get_map=0x7f0e00cd;
+    public static final int go_to_app=0x7f0e00ce;
+    public static final int google=0x7f0e00cf;
+    public static final int grand_total=0x7f0e00d0;
+    public static final int grandtotal=0x7f0e00d1;
+    public static final int guest_user=0x7f0e00d2;
+    public static final int half=0x7f0e00d3;
+    public static final int hint_date=0x7f0e00d4;
+    public static final int hint_date_=0x7f0e00d5;
+    public static final int hint_link_mobile=0x7f0e00d6;
+    public static final int hint_name=0x7f0e00d7;
+    public static final int hint_name_=0x7f0e00d8;
+    public static final int hint_no_of_female=0x7f0e00d9;
+    public static final int hint_no_of_female_=0x7f0e00da;
+    public static final int hint_no_of_male=0x7f0e00db;
+    public static final int hint_no_of_male_=0x7f0e00dc;
+    public static final int hint_time=0x7f0e00dd;
+    public static final int hint_time_=0x7f0e00de;
+    public static final int home=0x7f0e00df;
+    public static final int i_agree_to_terms_and_conditions=0x7f0e00e0;
+    public static final int id=0x7f0e00e1;
+    public static final int imageName=0x7f0e00e2;
+    public static final int image_file=0x7f0e00e3;
+    public static final int imageview_capture_photo_content_description=0x7f0e00e4;
+    public static final int imageview_content_description=0x7f0e00e5;
+    public static final int install=0x7f0e00e6;
+    public static final int internet_connection=0x7f0e00e7;
+    public static final int invite_friend_on_flipq=0x7f0e00e8;
+    public static final int isFirstTime=0x7f0e00e9;
+    public static final int isMakePayment=0x7f0e00ea;
+    public static final int is_processed=0x7f0e00eb;
+    public static final int itemDescription=0x7f0e00ec;
+    public static final int itemName=0x7f0e00ed;
+    public static final int itemPrice=0x7f0e00ee;
+    public static final int key=0x7f0e00ef;
+    public static final int key_flag=0x7f0e00f0;
+    public static final int key_status=0x7f0e00f1;
+    public static final int key_subCategoryId=0x7f0e00f2;
+    public static final int key_title=0x7f0e00f3;
+    public static final int label=0x7f0e00f4;
+    public static final int last_name=0x7f0e00f5;
+    public static final int last_name_title=0x7f0e00f6;
+    public static final int leave_a_message=0x7f0e00f7;
+    public static final int loading_promotion=0x7f0e00f8;
+    public static final int londge=0x7f0e00f9;
+    public static final int make_payment=0x7f0e00fa;
+    public static final int masterType=0x7f0e00fb;
+    public static final int menu=0x7f0e00fc;
+    public static final int menuItemId=0x7f0e00fd;
+    public static final int menuItems=0x7f0e00fe;
+    public static final int menuType=0x7f0e00ff;
+    public static final int menu_amount=0x7f0e0100;
+    public static final int menu_id=0x7f0e0101;
+    public static final int menu_name=0x7f0e0102;
+    public static final int menu_price=0x7f0e0103;
+    public static final int menu_quantity=0x7f0e0104;
+    public static final int message=0x7f0e0105;
+    public static final int message_waiting_to_install=0x7f0e0106;
+    public static final int minus_sign=0x7f0e0107;
+    public static final int mobile_number=0x7f0e0108;
+    public static final int mobile_number1=0x7f0e0109;
+    public static final int mobile_number_=0x7f0e010a;
+    public static final int mobileno=0x7f0e010b;
+    public static final int modify_booking=0x7f0e010c;
+    public static final int modify_booking_dialog_message=0x7f0e010d;
+    public static final int more_info=0x7f0e010e;
+    public static final int msg=0x7f0e010f;
+    public static final int msg_no_camera=0x7f0e0110;
+    public static final int multiple_order=0x7f0e0111;
+    public static final int my_addresses=0x7f0e0112;
+    public static final int my_profile=0x7f0e0113;
+    public static final int n_images_selected=0x7f0e0114;
+    public static final int name=0x7f0e0115;
+    public static final int navigation_drawer_close=0x7f0e0116;
+    public static final int navigation_drawer_open=0x7f0e0117;
+    public static final int need_to_allow=0x7f0e0118;
+    public static final int no=0x7f0e0119;
+    public static final int no_images_selected=0x7f0e011a;
+    public static final int no_store_close=0x7f0e011b;
+    public static final int no_store_message=0x7f0e011c;
+    public static final int no_store_title=0x7f0e011d;
+    public static final int offerId=0x7f0e011e;
+    public static final int offers=0x7f0e011f;
+    public static final int offers_key=0x7f0e0120;
+    public static final int open_now=0x7f0e0121;
+    public static final int or=0x7f0e0122;
+    public static final int orderMenuIds=0x7f0e0123;
+    public static final int order_history=0x7f0e0124;
+    public static final int order_id=0x7f0e0125;
+    public static final int order_list=0x7f0e0126;
+    public static final int order_menus_id=0x7f0e0127;
+    public static final int order_online=0x7f0e0128;
+    public static final int order_preview=0x7f0e0129;
+    public static final int order_status=0x7f0e012a;
+    public static final int order_unique_id=0x7f0e012b;
+    public static final int os=0x7f0e012c;
+    public static final int otp_message=0x7f0e012d;
+    public static final int password=0x7f0e012e;
+    public static final int password_=0x7f0e012f;
+    public static final int password_toggle_content_description=0x7f0e0130;
+    public static final int path_password_eye=0x7f0e0131;
+    public static final int path_password_eye_mask_strike_through=0x7f0e0132;
+    public static final int path_password_eye_mask_visible=0x7f0e0133;
+    public static final int path_password_strike_through=0x7f0e0134;
+    public static final int payment=0x7f0e0135;
+    public static final int pending=0x7f0e0136;
+    public static final int people=0x7f0e0137;
+    public static final int people_=0x7f0e0138;
+    public static final int phone=0x7f0e0139;
+    public static final int photo_save_error_toast=0x7f0e013a;
+    public static final int photos=0x7f0e013b;
+    public static final int placeOrder=0x7f0e013c;
+    public static final int place_order=0x7f0e013d;
+    public static final int please_wait=0x7f0e013e;
+    public static final int plus_sign=0x7f0e013f;
+    public static final int popular_for=0x7f0e0140;
+    public static final int preference_file_key=0x7f0e0141;
+    public static final int profile=0x7f0e0142;
+    public static final int profileimage=0x7f0e0143;
+    public static final int progress_title=0x7f0e0144;
+    public static final int quanity=0x7f0e0145;
+    public static final int quantity=0x7f0e0146;
+    public static final int qv_add=0x7f0e0147;
+    public static final int qv_remove=0x7f0e0148;
+    public static final int rate_review=0x7f0e0149;
+    public static final int rememberme=0x7f0e014a;
+    public static final int removeCart=0x7f0e014b;
+    public static final int remove_item_from_cart=0x7f0e014c;
+    public static final int repeat=0x7f0e014d;
+    public static final int repeat_last_used_customization=0x7f0e014e;
+    public static final int request=0x7f0e014f;
+    public static final int reset_device=0x7f0e0150;
+    public static final int review=0x7f0e0151;
+    public static final int role=0x7f0e0152;
+    public static final int role_title=0x7f0e0153;
+    public static final int scan_QR=0x7f0e0154;
+    public static final int scan_qr_to_configure=0x7f0e0155;
+    public static final int search_menu_title=0x7f0e0156;
+    public static final int see_all_reviews=0x7f0e0157;
+    public static final int select_quantity=0x7f0e0158;
+    public static final int selector_action_done=0x7f0e0159;
+    public static final int selector_caption=0x7f0e015a;
+    public static final int selector_folder_all=0x7f0e015b;
+    public static final int selector_permission_error=0x7f0e015c;
+    public static final int selector_preview=0x7f0e015d;
+    public static final int selector_reach_max_image_hint=0x7f0e015e;
+    public static final int send_you_code=0x7f0e015f;
+    public static final int server_not_reachable=0x7f0e0160;
+    public static final int sharedPreferenceIsInfoVisited=0x7f0e0161;
+    public static final int sharedPreferenceRememberCustomerId=0x7f0e0162;
+    public static final int sharedPreferenceRememberCustomerOrderId=0x7f0e0163;
+    public static final int sharedPreferenceRememberMobileno=0x7f0e0164;
+    public static final int sharedPreferenceRememberUsername=0x7f0e0165;
+    public static final int sharedPreferenceRememberemail=0x7f0e0166;
+    public static final int sharedPreferenceRememberpassword=0x7f0e0167;
+    public static final int sharedPreferenceUserId=0x7f0e0168;
+    public static final int sharedPreferenceemail=0x7f0e0169;
+    public static final int sharedPreferencefirst_name=0x7f0e016a;
+    public static final int sharedPreferencelast_name=0x7f0e016b;
+    public static final int sharedPreferencepassword=0x7f0e016c;
+    public static final int sharedPreferenceprofileimage=0x7f0e016d;
+    public static final int sharedPreferencerole=0x7f0e016e;
+    public static final int sharedPreferencerole_title=0x7f0e016f;
+    public static final int sharedPreferencetableid=0x7f0e0170;
+    public static final int sharedPreferencetablenumber=0x7f0e0171;
+    public static final int sharedPreferencetabletype=0x7f0e0172;
+    public static final int sharedPreferencewaiterName=0x7f0e0173;
+    public static final int sharedPreferencewaiterUniqueId=0x7f0e0174;
+    public static final int show_selected_qty_here=0x7f0e0175;
+    public static final int signout=0x7f0e0176;
+    public static final int signup=0x7f0e0177;
+    public static final int single_order=0x7f0e0178;
+    public static final int skip=0x7f0e0179;
+    public static final int social_strategy=0x7f0e017a;
+    public static final int socialaccesstoken=0x7f0e017b;
+    public static final int socialmedialink=0x7f0e017c;
+    public static final int status=0x7f0e017d;
+    public static final int status200=0x7f0e017e;
+    public static final int status_bar_notification_info_overflow=0x7f0e017f;
+    public static final int subCategories=0x7f0e0180;
+    public static final int subCategoryId=0x7f0e0181;
+    public static final int sub_total=0x7f0e0182;
+    public static final int subcategoryId=0x7f0e0183;
+    public static final int subcategoryName=0x7f0e0184;
+    public static final int subtotal=0x7f0e0185;
+    public static final int tab_cuisines=0x7f0e0186;
+    public static final int tab_history=0x7f0e0187;
+    public static final int tab_non_veg=0x7f0e0188;
+    public static final int tab_photos=0x7f0e0189;
+    public static final int tab_reviews=0x7f0e018a;
+    public static final int tab_upcoming=0x7f0e018b;
+    public static final int tab_veg=0x7f0e018c;
+    public static final int tableId=0x7f0e018d;
+    public static final int tableIdValues=0x7f0e018e;
+    public static final int tableNumber=0x7f0e018f;
+    public static final int tables=0x7f0e0190;
+    public static final int take_photo=0x7f0e0191;
+    public static final int taxes=0x7f0e0192;
+    public static final int taxes_=0x7f0e0193;
+    public static final int timeout_error=0x7f0e0194;
+    public static final int tip_take_photo=0x7f0e0195;
+    public static final int title=0x7f0e0196;
+    public static final int toast_exit=0x7f0e0197;
+    public static final int total_amount=0x7f0e0198;
+    public static final int type=0x7f0e0199;
+    public static final int types=0x7f0e019a;
+    public static final int url_auth=0x7f0e019b;
+    public static final int url_deviceregistration=0x7f0e019c;
+    public static final int url_forgotpassword=0x7f0e019d;
+    public static final int url_login=0x7f0e019e;
+    public static final int url_main=0x7f0e019f;
+    public static final int url_signup=0x7f0e01a0;
+    public static final int user=0x7f0e01a1;
+    public static final int userOrder=0x7f0e01a2;
+    public static final int user_authenticate=0x7f0e01a3;
+    public static final int user_id=0x7f0e01a4;
+    public static final int user_name=0x7f0e01a5;
+    public static final int userid=0x7f0e01a6;
+    public static final int username=0x7f0e01a7;
+    public static final int username_=0x7f0e01a8;
+    public static final int validateQRCode=0x7f0e01a9;
+    public static final int verify_booking=0x7f0e01aa;
+    public static final int verify_otp=0x7f0e01ab;
+    public static final int verify_phone=0x7f0e01ac;
+    public static final int view_cart=0x7f0e01ad;
+    public static final int waiterId=0x7f0e01ae;
+    public static final int waiterName=0x7f0e01af;
+    public static final int waiterUniqueId=0x7f0e01b0;
+    public static final int was_installed=0x7f0e01b1;
+    public static final int yes=0x7f0e01b2;
+    public static final int your_booking=0x7f0e01b3;
+    public static final int your_preorder_details=0x7f0e01b4;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0f0000;
@@ -10598,11 +10574,11 @@ public final class R {
      * <tr><td><code>{@link #CirclePageIndicator_android_orientation android:orientation}</code></td><td></td></tr>
      * <tr><td><code>{@link #CirclePageIndicator_android_background android:background}</code></td><td></td></tr>
      * <tr><td><code>{@link #CirclePageIndicator_centered com.nsquare.restaurant:centered}</code></td><td></td></tr>
-     * <tr><td><code>{@link #CirclePageIndicator_fillColor com.nsquare.restaurant:fillColor}</code></td><td>Color of the filled circle that represents the current page.</td></tr>
-     * <tr><td><code>{@link #CirclePageIndicator_pageColor com.nsquare.restaurant:pageColor}</code></td><td>Color of the filled circles that represents pages.</td></tr>
-     * <tr><td><code>{@link #CirclePageIndicator_radius com.nsquare.restaurant:radius}</code></td><td>Radius of the circles.</td></tr>
-     * <tr><td><code>{@link #CirclePageIndicator_snap com.nsquare.restaurant:snap}</code></td><td>Whether or not the selected indicator snaps to the circles.</td></tr>
-     * <tr><td><code>{@link #CirclePageIndicator_strokeColor com.nsquare.restaurant:strokeColor}</code></td><td>Color of the open circles.</td></tr>
+     * <tr><td><code>{@link #CirclePageIndicator_fillColor com.nsquare.restaurant:fillColor}</code></td><td></td></tr>
+     * <tr><td><code>{@link #CirclePageIndicator_pageColor com.nsquare.restaurant:pageColor}</code></td><td></td></tr>
+     * <tr><td><code>{@link #CirclePageIndicator_radius com.nsquare.restaurant:radius}</code></td><td></td></tr>
+     * <tr><td><code>{@link #CirclePageIndicator_snap com.nsquare.restaurant:snap}</code></td><td></td></tr>
+     * <tr><td><code>{@link #CirclePageIndicator_strokeColor com.nsquare.restaurant:strokeColor}</code></td><td></td></tr>
      * <tr><td><code>{@link #CirclePageIndicator_strokeWidth com.nsquare.restaurant:strokeWidth}</code></td><td></td></tr>
      * </table>
      * @see #CirclePageIndicator_android_orientation
@@ -10621,9 +10597,8 @@ public final class R {
       0x7f0401df
     };
     /**
-     * <p>
-     * @attr description
-     * Orientation of the indicator.
+     * <p>This symbol is the offset where the {@link android.R.attr#orientation}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -10639,9 +10614,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_android_orientation=0;
     /**
-     * <p>
-     * @attr description
-     * View background
+     * <p>This symbol is the offset where the {@link android.R.attr#background}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -10655,9 +10629,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_android_background=1;
     /**
-     * <p>
-     * @attr description
-     * Whether or not the indicators should be centered.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#centered}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
@@ -10666,9 +10639,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_centered=2;
     /**
-     * <p>
-     * @attr description
-     * Color of the filled circle that represents the current page.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#fillColor}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -10678,9 +10650,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_fillColor=3;
     /**
-     * <p>
-     * @attr description
-     * Color of the filled circles that represents pages.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#pageColor}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -10690,9 +10661,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_pageColor=4;
     /**
-     * <p>
-     * @attr description
-     * Radius of the circles. This is also the spacing between circles.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#radius}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -10704,9 +10674,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_radius=5;
     /**
-     * <p>
-     * @attr description
-     * Whether or not the selected indicator snaps to the circles.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#snap}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
@@ -10715,9 +10684,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_snap=6;
     /**
-     * <p>
-     * @attr description
-     * Color of the open circles.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#strokeColor}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -10727,9 +10695,8 @@ public final class R {
      */
     public static final int CirclePageIndicator_strokeColor=7;
     /**
-     * <p>
-     * @attr description
-     * Width of the stroke used to draw the circles.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#strokeWidth}
+     * attribute's value can be found in the {@link #CirclePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -12252,7 +12219,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>
@@ -14794,8 +14761,8 @@ public final class R {
      * <tr><th>Attribute</th><th>Description</th></tr>
      * <tr><td><code>{@link #LinePageIndicator_android_background android:background}</code></td><td></td></tr>
      * <tr><td><code>{@link #LinePageIndicator_centered com.nsquare.restaurant:centered}</code></td><td></td></tr>
-     * <tr><td><code>{@link #LinePageIndicator_gapWidth com.nsquare.restaurant:gapWidth}</code></td><td>Width of the gap between each indicator line.</td></tr>
-     * <tr><td><code>{@link #LinePageIndicator_lineWidth com.nsquare.restaurant:lineWidth}</code></td><td>Width of each indicator line.</td></tr>
+     * <tr><td><code>{@link #LinePageIndicator_gapWidth com.nsquare.restaurant:gapWidth}</code></td><td></td></tr>
+     * <tr><td><code>{@link #LinePageIndicator_lineWidth com.nsquare.restaurant:lineWidth}</code></td><td></td></tr>
      * <tr><td><code>{@link #LinePageIndicator_selectedColor com.nsquare.restaurant:selectedColor}</code></td><td></td></tr>
      * <tr><td><code>{@link #LinePageIndicator_strokeWidth com.nsquare.restaurant:strokeWidth}</code></td><td></td></tr>
      * <tr><td><code>{@link #LinePageIndicator_unselectedColor com.nsquare.restaurant:unselectedColor}</code></td><td></td></tr>
@@ -14813,9 +14780,8 @@ public final class R {
       0x7f0401c6, 0x7f0401df, 0x7f040227
     };
     /**
-     * <p>
-     * @attr description
-     * View background
+     * <p>This symbol is the offset where the {@link android.R.attr#background}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -14829,9 +14795,8 @@ public final class R {
      */
     public static final int LinePageIndicator_android_background=0;
     /**
-     * <p>
-     * @attr description
-     * Whether or not the indicators should be centered.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#centered}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
@@ -14840,9 +14805,8 @@ public final class R {
      */
     public static final int LinePageIndicator_centered=1;
     /**
-     * <p>
-     * @attr description
-     * Width of the gap between each indicator line.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#gapWidth}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -14854,9 +14818,8 @@ public final class R {
      */
     public static final int LinePageIndicator_gapWidth=2;
     /**
-     * <p>
-     * @attr description
-     * Width of each indicator line.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#lineWidth}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -14868,9 +14831,8 @@ public final class R {
      */
     public static final int LinePageIndicator_lineWidth=3;
     /**
-     * <p>
-     * @attr description
-     * Color of the selected line that represents the current page.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#selectedColor}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -14880,9 +14842,8 @@ public final class R {
      */
     public static final int LinePageIndicator_selectedColor=4;
     /**
-     * <p>
-     * @attr description
-     * Width of each indicator line's stroke.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#strokeWidth}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -14894,9 +14855,8 @@ public final class R {
      */
     public static final int LinePageIndicator_strokeWidth=5;
     /**
-     * <p>
-     * @attr description
-     * Color of the unselected lines that represent the pages.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#unselectedColor}
+     * attribute's value can be found in the {@link #LinePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -18094,18 +18054,18 @@ public final class R {
      * <tr><td><code>{@link #TitlePageIndicator_android_textSize android:textSize}</code></td><td></td></tr>
      * <tr><td><code>{@link #TitlePageIndicator_android_textColor android:textColor}</code></td><td></td></tr>
      * <tr><td><code>{@link #TitlePageIndicator_android_background android:background}</code></td><td></td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_clipPadding com.nsquare.restaurant:clipPadding}</code></td><td>Screen edge padding.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerColor com.nsquare.restaurant:footerColor}</code></td><td>Color of the footer line and indicator.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorHeight com.nsquare.restaurant:footerIndicatorHeight}</code></td><td>Height of the indicator above the footer line.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorStyle com.nsquare.restaurant:footerIndicatorStyle}</code></td><td>Style of the indicator.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorUnderlinePadding com.nsquare.restaurant:footerIndicatorUnderlinePadding}</code></td><td>Left and right padding of the underline indicator.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerLineHeight com.nsquare.restaurant:footerLineHeight}</code></td><td>Height of the footer line.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_footerPadding com.nsquare.restaurant:footerPadding}</code></td><td>Padding between the bottom of the title and the footer.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_linePosition com.nsquare.restaurant:linePosition}</code></td><td>Position of the line.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_selectedBold com.nsquare.restaurant:selectedBold}</code></td><td>Whether or not the selected item is displayed as bold.</td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_clipPadding com.nsquare.restaurant:clipPadding}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerColor com.nsquare.restaurant:footerColor}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorHeight com.nsquare.restaurant:footerIndicatorHeight}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorStyle com.nsquare.restaurant:footerIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerIndicatorUnderlinePadding com.nsquare.restaurant:footerIndicatorUnderlinePadding}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerLineHeight com.nsquare.restaurant:footerLineHeight}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_footerPadding com.nsquare.restaurant:footerPadding}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_linePosition com.nsquare.restaurant:linePosition}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_selectedBold com.nsquare.restaurant:selectedBold}</code></td><td></td></tr>
      * <tr><td><code>{@link #TitlePageIndicator_selectedColor com.nsquare.restaurant:selectedColor}</code></td><td></td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_titlePadding com.nsquare.restaurant:titlePadding}</code></td><td>Padding between titles when bumping into each other.</td></tr>
-     * <tr><td><code>{@link #TitlePageIndicator_topPadding com.nsquare.restaurant:topPadding}</code></td><td>Padding between titles and the top of the View.</td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_titlePadding com.nsquare.restaurant:titlePadding}</code></td><td></td></tr>
+     * <tr><td><code>{@link #TitlePageIndicator_topPadding com.nsquare.restaurant:topPadding}</code></td><td></td></tr>
      * </table>
      * @see #TitlePageIndicator_android_textSize
      * @see #TitlePageIndicator_android_textColor
@@ -18130,9 +18090,8 @@ public final class R {
       0x7f0401c6, 0x7f040219, 0x7f040223
     };
     /**
-     * <p>
-     * @attr description
-     * Size of title text.
+     * <p>This symbol is the offset where the {@link android.R.attr#textSize}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18144,9 +18103,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_android_textSize=0;
     /**
-     * <p>
-     * @attr description
-     * Color of regular titles.
+     * <p>This symbol is the offset where the {@link android.R.attr#textColor}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -18160,9 +18118,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_android_textColor=1;
     /**
-     * <p>
-     * @attr description
-     * View background
+     * <p>This symbol is the offset where the {@link android.R.attr#background}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -18176,9 +18133,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_android_background=2;
     /**
-     * <p>
-     * @attr description
-     * Screen edge padding.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#clipPadding}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18190,9 +18146,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_clipPadding=3;
     /**
-     * <p>
-     * @attr description
-     * Color of the footer line and indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerColor}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -18202,9 +18157,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerColor=4;
     /**
-     * <p>
-     * @attr description
-     * Height of the indicator above the footer line.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerIndicatorHeight}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18216,9 +18170,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerIndicatorHeight=5;
     /**
-     * <p>
-     * @attr description
-     * Style of the indicator. Default is triangle.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerIndicatorStyle}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -18235,9 +18188,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerIndicatorStyle=6;
     /**
-     * <p>
-     * @attr description
-     * Left and right padding of the underline indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerIndicatorUnderlinePadding}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18249,9 +18201,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerIndicatorUnderlinePadding=7;
     /**
-     * <p>
-     * @attr description
-     * Height of the footer line.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerLineHeight}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18263,9 +18214,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerLineHeight=8;
     /**
-     * <p>
-     * @attr description
-     * Padding between the bottom of the title and the footer.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#footerPadding}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18277,9 +18227,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_footerPadding=9;
     /**
-     * <p>
-     * @attr description
-     * Position of the line.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#linePosition}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -18295,9 +18244,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_linePosition=10;
     /**
-     * <p>
-     * @attr description
-     * Whether or not the selected item is displayed as bold.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#selectedBold}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
@@ -18306,9 +18254,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_selectedBold=11;
     /**
-     * <p>
-     * @attr description
-     * Color of the selected title.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#selectedColor}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -18318,9 +18265,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_selectedColor=12;
     /**
-     * <p>
-     * @attr description
-     * Padding between titles when bumping into each other.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#titlePadding}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18332,9 +18278,8 @@ public final class R {
      */
     public static final int TitlePageIndicator_titlePadding=13;
     /**
-     * <p>
-     * @attr description
-     * Padding between titles and the top of the View.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#topPadding}
+     * attribute's value can be found in the {@link #TitlePageIndicator} array.
      *
      * <p>May be a dimension value, which is a floating point number appended with a
      * unit such as "<code>14.5sp</code>".
@@ -18802,9 +18747,9 @@ public final class R {
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
      * <tr><td><code>{@link #UnderlinePageIndicator_android_background android:background}</code></td><td></td></tr>
-     * <tr><td><code>{@link #UnderlinePageIndicator_fadeDelay com.nsquare.restaurant:fadeDelay}</code></td><td>Length of the delay to fade the indicator.</td></tr>
-     * <tr><td><code>{@link #UnderlinePageIndicator_fadeLength com.nsquare.restaurant:fadeLength}</code></td><td>Length of the indicator fade to transparent.</td></tr>
-     * <tr><td><code>{@link #UnderlinePageIndicator_fades com.nsquare.restaurant:fades}</code></td><td>Whether or not the selected indicator fades.</td></tr>
+     * <tr><td><code>{@link #UnderlinePageIndicator_fadeDelay com.nsquare.restaurant:fadeDelay}</code></td><td></td></tr>
+     * <tr><td><code>{@link #UnderlinePageIndicator_fadeLength com.nsquare.restaurant:fadeLength}</code></td><td></td></tr>
+     * <tr><td><code>{@link #UnderlinePageIndicator_fades com.nsquare.restaurant:fades}</code></td><td></td></tr>
      * <tr><td><code>{@link #UnderlinePageIndicator_selectedColor com.nsquare.restaurant:selectedColor}</code></td><td></td></tr>
      * </table>
      * @see #UnderlinePageIndicator_android_background
@@ -18818,9 +18763,8 @@ public final class R {
       0x7f0401c6
     };
     /**
-     * <p>
-     * @attr description
-     * View background
+     * <p>This symbol is the offset where the {@link android.R.attr#background}
+     * attribute's value can be found in the {@link #UnderlinePageIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -18834,9 +18778,8 @@ public final class R {
      */
     public static final int UnderlinePageIndicator_android_background=0;
     /**
-     * <p>
-     * @attr description
-     * Length of the delay to fade the indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#fadeDelay}
+     * attribute's value can be found in the {@link #UnderlinePageIndicator} array.
      *
      * <p>May be an integer value, such as "<code>100</code>".
      *
@@ -18844,9 +18787,8 @@ public final class R {
      */
     public static final int UnderlinePageIndicator_fadeDelay=1;
     /**
-     * <p>
-     * @attr description
-     * Length of the indicator fade to transparent.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#fadeLength}
+     * attribute's value can be found in the {@link #UnderlinePageIndicator} array.
      *
      * <p>May be an integer value, such as "<code>100</code>".
      *
@@ -18854,9 +18796,8 @@ public final class R {
      */
     public static final int UnderlinePageIndicator_fadeLength=2;
     /**
-     * <p>
-     * @attr description
-     * Whether or not the selected indicator fades.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#fades}
+     * attribute's value can be found in the {@link #UnderlinePageIndicator} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
@@ -18865,9 +18806,8 @@ public final class R {
      */
     public static final int UnderlinePageIndicator_fades=3;
     /**
-     * <p>
-     * @attr description
-     * Color of the selected line that represents the current page.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#selectedColor}
+     * attribute's value can be found in the {@link #UnderlinePageIndicator} array.
      *
      * <p>May be a color value, in the form of "<code>#<i>rgb</i></code>",
      * "<code>#<i>argb</i></code>", "<code>#<i>rrggbb</i></code>", or
@@ -19039,12 +18979,12 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle com.nsquare.restaurant:vpiCirclePageIndicatorStyle}</code></td><td>Style of the circle indicator.</td></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiIconPageIndicatorStyle com.nsquare.restaurant:vpiIconPageIndicatorStyle}</code></td><td>Style of the icon indicator's views.</td></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiLinePageIndicatorStyle com.nsquare.restaurant:vpiLinePageIndicatorStyle}</code></td><td>Style of the line indicator.</td></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiTabPageIndicatorStyle com.nsquare.restaurant:vpiTabPageIndicatorStyle}</code></td><td>Style of the tab indicator's tabs.</td></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiTitlePageIndicatorStyle com.nsquare.restaurant:vpiTitlePageIndicatorStyle}</code></td><td>Style of the title indicator.</td></tr>
-     * <tr><td><code>{@link #ViewPagerIndicator_vpiUnderlinePageIndicatorStyle com.nsquare.restaurant:vpiUnderlinePageIndicatorStyle}</code></td><td>Style of the underline indicator.</td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle com.nsquare.restaurant:vpiCirclePageIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiIconPageIndicatorStyle com.nsquare.restaurant:vpiIconPageIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiLinePageIndicatorStyle com.nsquare.restaurant:vpiLinePageIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiTabPageIndicatorStyle com.nsquare.restaurant:vpiTabPageIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiTitlePageIndicatorStyle com.nsquare.restaurant:vpiTitlePageIndicatorStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #ViewPagerIndicator_vpiUnderlinePageIndicatorStyle com.nsquare.restaurant:vpiUnderlinePageIndicatorStyle}</code></td><td></td></tr>
      * </table>
      * @see #ViewPagerIndicator_vpiCirclePageIndicatorStyle
      * @see #ViewPagerIndicator_vpiIconPageIndicatorStyle
@@ -19058,9 +18998,8 @@ public final class R {
       0x7f040230, 0x7f040231
     };
     /**
-     * <p>
-     * @attr description
-     * Style of the circle indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiCirclePageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -19071,9 +19010,8 @@ public final class R {
      */
     public static final int ViewPagerIndicator_vpiCirclePageIndicatorStyle=0;
     /**
-     * <p>
-     * @attr description
-     * Style of the icon indicator's views.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiIconPageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -19084,9 +19022,8 @@ public final class R {
      */
     public static final int ViewPagerIndicator_vpiIconPageIndicatorStyle=1;
     /**
-     * <p>
-     * @attr description
-     * Style of the line indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiLinePageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -19097,9 +19034,8 @@ public final class R {
      */
     public static final int ViewPagerIndicator_vpiLinePageIndicatorStyle=2;
     /**
-     * <p>
-     * @attr description
-     * Style of the tab indicator's tabs.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiTabPageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -19110,9 +19046,8 @@ public final class R {
      */
     public static final int ViewPagerIndicator_vpiTabPageIndicatorStyle=3;
     /**
-     * <p>
-     * @attr description
-     * Style of the title indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiTitlePageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -19123,9 +19058,8 @@ public final class R {
      */
     public static final int ViewPagerIndicator_vpiTitlePageIndicatorStyle=4;
     /**
-     * <p>
-     * @attr description
-     * Style of the underline indicator.
+     * <p>This symbol is the offset where the {@link com.nsquare.restaurant.R.attr#vpiUnderlinePageIndicatorStyle}
+     * attribute's value can be found in the {@link #ViewPagerIndicator} array.
      *
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme

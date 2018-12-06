@@ -19,6 +19,7 @@ public class Constants {
    public static String quantity="Quantity";
    public static String extra="Extra";
    public static String custom="Custom";
+   public static String table_id="1";
 
    public static String veg="Veg";
    public static String data="data";

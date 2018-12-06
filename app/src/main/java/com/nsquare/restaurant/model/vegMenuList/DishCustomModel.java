@@ -22,6 +22,16 @@ public class DishCustomModel {
     public void setGroup_id(String group_id) {
         this.group_id = group_id;
     }
+
+
+    public ArrayList<DishCustomDataModel> getDishCustomDataModelArrayList() {
+        return dishCustomDataModelArrayList;
+    }
+
+    public void setDishCustomDataModelArrayList(ArrayList<DishCustomDataModel> dishCustomDataModelArrayList) {
+        this.dishCustomDataModelArrayList = dishCustomDataModelArrayList;
+    }
+
     public String getGroup_label() {
         return group_label;
     }

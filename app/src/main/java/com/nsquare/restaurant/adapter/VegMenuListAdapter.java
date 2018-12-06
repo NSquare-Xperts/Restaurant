@@ -90,6 +90,8 @@ public class VegMenuListAdapter extends RecyclerView.Adapter<VegMenuListAdapter.
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final VegMenuList_NewModel issueItem = upcomingYourBookingModelArrayList.get(position);
 
+        holder.selected_quantity.setText(issueItem.getSelected_dish_quantity());
+        holder.selected_quantity.setTag(position);
         //add visibly status for customization
             if(issueItem.isDish_customizable()){
                 //show label

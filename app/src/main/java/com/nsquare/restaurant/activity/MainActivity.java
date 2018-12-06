@@ -116,12 +116,11 @@ public class MainActivity extends ParentActivity
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Clicked ",Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(MainActivity.this,CartPreviewActivity.class);
                 startActivity(intent);
             }
         });
-
 
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment fragment = new HomeFragment();

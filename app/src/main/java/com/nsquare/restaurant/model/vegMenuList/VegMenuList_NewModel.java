@@ -14,9 +14,10 @@ public class VegMenuList_NewModel {
     private String dish_image;
     private String dish_position;
     private boolean dish_customizable;
+    private String selected_dish_quantity;
     private DishCustomExtrasModel dish_extras;
 
-    public VegMenuList_NewModel(String dish_id, String dish_name, String dish_desc, String dish_price, String dish_image, String dish_position, boolean dish_customizable, DishCustomExtrasModel dishCustomExtrasModel) {
+    public VegMenuList_NewModel(String dish_id, String dish_name, String dish_desc, String dish_price, String dish_image, String dish_position, boolean dish_customizable, DishCustomExtrasModel dishCustomExtrasModel,String selected_dish_quantity) {
         this.dish_id = dish_id;
         this.dish_name = dish_name;
         this.dish_desc = dish_desc;
@@ -24,8 +25,8 @@ public class VegMenuList_NewModel {
         this.dish_image = dish_image;
         this.dish_position = dish_position;
         this.dish_customizable = dish_customizable;
-        //this.dish_extras = dish_extras;
         this.dish_extras = dishCustomExtrasModel;
+        this.selected_dish_quantity = selected_dish_quantity;
     }
 
     public String getDish_id() {
@@ -90,5 +91,13 @@ public class VegMenuList_NewModel {
 
     public void setDishCustomExtrasModel(DishCustomExtrasModel dishCustomExtrasModel) {
         this.dish_extras = dishCustomExtrasModel;
+    }
+
+    public String getSelected_dish_quantity() {
+        return selected_dish_quantity;
+    }
+
+    public void setSelected_dish_quantity(String selected_dish_quantity) {
+        this.selected_dish_quantity = selected_dish_quantity;
     }
 }

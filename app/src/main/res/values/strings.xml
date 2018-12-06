@@ -19,6 +19,7 @@
 
     <!--<string name="baseURL">http://192.168.0.156/RestaurantPortal/api/</string>-->
    <!-- <string name="baseURL">http://192.168.0.115/webRestaurant/api/</string>-->
+    <!-- LIVE -->
     <string name="baseURL">http://18.188.253.46/webRestaurant/api/</string>
     <!--<string name="baseURL">http://18.218.171.53/webRestaurant/api/</string>-->
 
@@ -399,6 +400,7 @@
     <string name="image_file">image_file</string>
     <string name="field_subCategory">field_subCategory</string>
     <string name="field_menuType">field_menuType</string>
+    <string name="field_table_id">field_table_id</string>
     <string name="dish_id">dish_id</string>
     <string name="dish_name">dish_name</string>
     <string name="dish_desc">dish_desc</string>

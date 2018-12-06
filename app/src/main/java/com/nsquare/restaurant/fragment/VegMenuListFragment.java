@@ -40,6 +40,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.CartPreviewActivity;
+import com.nsquare.restaurant.activity.MainActivity;
 import com.nsquare.restaurant.activity.MenuListActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.adapter.VegMenuListAdapter;
@@ -80,6 +81,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private VegMenuListAdapter yourUpcomingBookingAdapter;
     private SwipeRefreshLayout swipe_refresh_layout;
     private TextView textview_no_record_found;
+    private TextView textView_total;
     private RelativeLayout relative_layout_common_list_recycler;
     private RecyclerView fragment_recent_jobs_recycler_view;
     private RelativeLayout relative_layout_checkout;
@@ -92,10 +94,11 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private Context context;
     private boolean isRepeatClicable;
     private int currentQty=0;
-    //private CustomExtraMenuAdapter customExtraMenuAdapter;
+    private CustomExtraMenuAdapter customExtraMenuAdapter;
     public RadioButton radioButton;
     //CustomMenuParamterDetailsItem customMenuParamterDetailsItem;
     private int totalQuantityCount = 0;
+    private int selectedQuantity;
     private String[] quantityArray;
     private int tempGroupIdCustom ;
 
@@ -121,6 +124,25 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             }
         });
 
+        relative_layout_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context,CartPreviewActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        textView_total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //on checkout move to cart view
+                Intent intent = new Intent(context,CartPreviewActivity.class);
+                startActivity(intent);
+
+            }
+        });
         fragment_common_list_recycler_button_view_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,9 +154,11 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         fragment_recent_jobs_recycler_view.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 // if alredy in card pass selected_quantity
-                showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),"2");
+                if(!upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity().isEmpty()){
+                    selectedQuantity = Integer.parseInt(upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity());
+                }
+                showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),selectedQuantity);
             }
         }));
         //behavior = BottomSheetBehavior.from(bottomSheet);
@@ -149,6 +173,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         relative_layout_checkout = (RelativeLayout) view.findViewById(R.id.relative_layout_checkout);
         swipe_refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         textview_no_record_found = (TextView) view.findViewById(R.id.textview_no_record_found);
+        textView_total = (TextView) view.findViewById(R.id.textView_total_qty);
         relative_layout_common_list_recycler = (RelativeLayout) view.findViewById(R.id.relative_layout_common_list_recycler);
         fragment_common_list_recycler_button_view_cart = (Button) view.findViewById(R.id.fragment_common_list_recycler_button_view_cart);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -173,12 +198,20 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_subCategory), MenuListActivity.key_subCategoryId);
         postParams.put(getActivity().getResources().getString(R.string.field_menuType), Constants.veg); //1 = Veg, 2 = Non Veg
+        postParams.put(getActivity().getResources().getString(R.string.field_table_id), Constants.table_id); //1 = Veg, 2 = Non Veg
 
         APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getMenuListByType), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
+                    String totalCartAmount = jsonObject.getString("totalcartamount");
+                    if(!totalCartAmount.isEmpty()){
+                            relative_layout_checkout.setVisibility(View.VISIBLE);
+                        textView_total.setText("Rs. "+ totalCartAmount);
+                    }else{
+                        relative_layout_checkout.setVisibility(View.GONE);
+                    }
                     String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
                     if (jsonObject.getInt("status") == 200) {
 
@@ -201,6 +234,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                             fragment_recent_jobs_recycler_view.setAdapter(yourUpcomingBookingAdapter);
                             fragment_recent_jobs_recycler_view.setEnabled(true);
                             swipe_refresh_layout.setRefreshing(false);
+
                         }else {
                             textview_no_record_found.setVisibility(View.VISIBLE);
                             swipe_refresh_layout.setVisibility(View.GONE);
@@ -382,7 +416,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 //                           vegMenuListModel.getDish_extras().get(position).get
 //                       }
 
-                   // for (int a = 0; a < upcomingYourBookingModelArrayList_new.getDishCustomExtrasModel().getExtra().size(); a++){
+                    // for (int a = 0; a < upcomingYourBookingModelArrayList_new.getDishCustomExtrasModel().getExtra().size(); a++){
 
 
 //                           CartModel cartModel = new CartModel();
@@ -446,9 +480,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.error_select_atleast_one), Toast.LENGTH_SHORT).show();
                 }
                 //}
-
-
-
             }
         });
 
@@ -467,12 +498,14 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     //adapter to show extras
     public class CustomExtraMenuAdapter extends RecyclerView.Adapter<CustomExtraMenuAdapter.ViewHolder> {
 
-        private List<DishCustomExtrasModel> requestItems;
+        private DishCustomExtrasModel requestItems;
         private Context context;
+        private int size;
 
-        public CustomExtraMenuAdapter(Context context, List<DishCustomExtrasModel> requestItems) {
+        public CustomExtraMenuAdapter(Context context,DishCustomExtrasModel requestItems, int size) {
             this.context = context;
             this.requestItems = requestItems;
+            this.size = size;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -480,11 +513,15 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             public TextView textView_label;
             public TextView textViewNewsCreateDate;
             public RadioGroup radioGroup;
+            public RelativeLayout relative_layout_type_two;
+            public RelativeLayout relative_layout_type_one;
             CheckBoxTextRoboto checkbox_select_multiple_menu;
-            //AdapterInterface listener;
 
             public ViewHolder(View itemView) {
                 super(itemView);
+
+                relative_layout_type_one = (RelativeLayout) itemView.findViewById(R.id.relative_layout_type_one);
+                relative_layout_type_two = (RelativeLayout) itemView.findViewById(R.id.relative_layout_type_one);
                 textView_label = (TextView) itemView.findViewById(R.id.textview_label);
                 checkbox_select_multiple_menu = (CheckBoxTextRoboto) itemView.findViewById(R.id.checkbox_select_multiple_menu);
                 radioGroup =(RadioGroup)itemView.findViewById(R.id.radio_grp_select);
@@ -505,7 +542,8 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
         @Override
         public void onBindViewHolder(final CustomExtraMenuAdapter.ViewHolder holder, final int position) {
-            final DishCustomExtrasModel dishExtrasModel = requestItems.get(position);
+            final DishCustomExtrasModel dishExtrasModel = requestItems;
+            //get(position);
             //System.out.println("******onBindViewHolder******** : "+homeRecyclerView.getTitle());
             //holder.textView_label.setText(dishExtrasModel.g());
             //holder.textView_label.setTag(position);
@@ -514,54 +552,77 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             //1. Extra if available
             //2. Custom
             //3.Quantity
-            //TODO : FOR 'CUSTOM'
-            if(requestItems.get(position).getCustom().size() > 0) {
-                //if(requestItems.get(position).getCustom().equals(Constants.single_choice)){
-                    holder.radioGroup.setVisibility(View.VISIBLE);
-                    holder.checkbox_select_multiple_menu.setVisibility(View.GONE);
-                    for(int i=0 ; i< requestItems.get(position).getCustom().size() ; i++){
 
-                        for(int j=1; j<i ; j++){
+            //TODO : for 'Extra'
+            for(int e=0 ; e < dishExtrasModel.getExtra().size() ; e++){
 
-                            if(requestItems.get(position).getCustom().get(i) == requestItems.get(position).getCustom().get(j)){
+                holder.textView_label.setText("Extras \n");
+                //holder.textView_label.setTag(position);
 
-                                System.out.println("same group id"+requestItems.get(position).getCustom().get(i).getGroup_id());
-                                //1 array
-                           }
-                        }
-                        if(Integer.parseInt(requestItems.get(i).getCustom().get(i).getGroup_id()) == tempGroupIdCustom){
-                        }
-                        //create radio button
-                        /*radioButton = new RadioButton(context);
-                        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
-                        params.setMargins(10, 20, 20, 5);
-                        radioButton.setLayoutParams(params);
-                        radioButton.setText(requestItems.get(i).getCustom().get(i).getDish_extra_name());
-                        radioButton.setTextSize(14);
-                        radioButton.setPadding(5,0,7,0);
-                        radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
-                        radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
-                        radioButton.setId(Integer.parseInt(requestItems.get(i).getCustom().get(i).getDish_extra_id()));
-                        holder.radioGroup.addView(radioButton);*/
+                holder.relative_layout_type_one.setVisibility(View.GONE);
+                holder.relative_layout_type_two.setVisibility(View.VISIBLE);
+                holder.checkbox_select_multiple_menu.setText(getActivity().getResources().getString(R.string.Rs)+" "+dishExtrasModel.getExtra().get(e).getDish_extra_name());
+               // holder.checkbox_select_multiple_menu.setText(getActivity().getResources().getString(R.string.Rs)+" "+dishExtrasModel.getDish_extra_price());
+
+                holder.checkbox_select_multiple_menu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                       /* if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("0")){
+                        holder.checkbox_select_multiple_menu.setChecked(true);
+                        dishExtrasModel.setDish_extra_is_selected("1");
+                    }else if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("1")){
+                        holder.checkbox_select_multiple_menu.setChecked(false);
+                        dishExtrasModel.setDish_extra_is_selected("0");
+                    }*/
+
                     }
+                });
+                holder.checkbox_select_multiple_menu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                    holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    }
+                });
+            }
+            //TODO : FOR 'CUSTOM'
+            for(int i = 0 ; i < dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().size(); i++){
+
+                holder.relative_layout_type_one.setVisibility(View.VISIBLE);
+                holder.relative_layout_type_two.setVisibility(View.GONE);
+
+                holder.textView_label.setText(dishExtrasModel.getCustom().get(i).getGroup_label());
+                holder.textView_label.setTag(position);
+
+                for(int j=0 ; j < dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().size() ; j++) {
+
+                    radioButton = new RadioButton(context);
+                    RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
+                    params.setMargins(10, 20, 20, 5);
+                    radioButton.setLayoutParams(params);
+                    radioButton.setText(dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().get(j).getDish_extra_name());
+                    radioButton.setTextSize(14);
+                    radioButton.setPadding(5, 0, 7, 0);
+                    radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
+                    radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
+                    radioButton.setId(Integer.parseInt(dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().get(j).getDish_extra_id()));
+                    holder.radioGroup.addView(radioButton);
+
+           /*  holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(RadioGroup radioGroup, int i) {
                             String selectedRadioButtonId = i + "";
-                   /* for(RoleSignUpItem roleSignUpItem: arraylistroleNames){
+                    for(RoleSignUpItem roleSignUpItem: arraylistroleNames){
                         if(roleSignUpItem.getId().equals(selectedId)) {
                             //found it!
                             spinner_role_signup.setText(roleSignUpItem.getRoleName());
                         }
-                    }*/
+                    }
                         }
-                    });
-
-           // }
+                    });*/
+                }
+                break;
             }
-
-
 
             //TODO : Extras will be in two types
             // 1 : Single choice
@@ -625,16 +686,17 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 //                    }
 //                });
             }*/
+
         }
         @Override
         public int getItemCount() {
-            return requestItems.size();
+            return size;
         }
     }
 
 
     //open new co-ordinator layout
-    public void showCoordinatorLayout_with_custome_menu_if_available(final int position, final String dish_id, final String selected_quantity){
+    public void showCoordinatorLayout_with_custome_menu_if_available(final int position, final String dish_id, final int selected_quantity){
 
         // behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         View view = getLayoutInflater().inflate(R.layout.fragment_bottom_sheet_dialog, null);
@@ -649,23 +711,25 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         ImageView list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
         final TextView list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
 
-        //customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position). ());
-       // final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-       // linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-        //recyclerView_list_popup.setLayoutManager(linearLayoutManager);
+        int size = upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getCustom().size() +
+                upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra().size() +
+                upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity().size();
+        customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel(),size);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+        recyclerView_list_popup.setLayoutManager(linearLayoutManager);
         //fragment_recent_jobs_recycler_view.addItemDecoration(new MyDividerItemDecoration(activity, LinearLayoutManager.VERTICAL, 8));
-        //recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
+        recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
 
 
         // if already present in cart
-
         final int[] quantityCount = {0};
         quantityArray = new String[upcomingYourBookingModelArrayList_new.size()];
 
-        if(Integer.parseInt(selected_quantity) > 1 ){
+        if(selected_quantity > 1 ){
 
-            quantityCount[0] = quantityCount[0] + Integer.parseInt(selected_quantity);
-            totalQuantityCount = Integer.parseInt(selected_quantity);
+            quantityCount[0] = quantityCount[0] + selected_quantity;
+            totalQuantityCount = selected_quantity;
 
             quantityArray[position] = String.valueOf(quantityCount[0]);
 
@@ -684,9 +748,9 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             @Override
             public void onClick(View view) {
                 //call Resto/addCart
-               String dish_qty = totalQuantityCount+"";
-               String table_id = tableNumberId;
-               String dishes_extra_id = "";
+                String dish_qty = totalQuantityCount+"";
+                String table_id = tableNumberId;
+                String dishes_extra_id = "";
 
                 if (internetConnection.isNetworkAvailable(getActivity())) {
                     addMenuToCart(dish_id,dish_qty,table_id,dishes_extra_id,dialog);
@@ -720,10 +784,10 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
                 if(quantityCount[0] <=  1) {
 
-                    if(Integer.parseInt(selected_quantity) > 1){
+                    if(selected_quantity > 1){
                         alertRemoveItem(dish_id,dialog);
                     }else
-                    Toast.makeText(context,"Min quantity reached",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"Min quantity reached",Toast.LENGTH_SHORT).show();
                 }else {
                     quantityCount[0] = quantityCount[0] - 1;
                     totalQuantityCount = totalQuantityCount - 1;
@@ -731,12 +795,10 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                     quantityArray[position] = String.valueOf(quantityCount[0]);
                     list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
                     list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
-
                 }
             }
         });
     }
-
     //add items to cart
     private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id,final BottomSheetDialog bottomSheetDialog) {
 
@@ -745,7 +807,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_dish),dish_id);
         postParams.put(getActivity().getResources().getString(R.string.field_dish_quantity),dish_qty);
-        postParams.put(getActivity().getResources().getString(R.string.field_table),table_no);
+        postParams.put(getActivity().getResources().getString(R.string.field_table),"1");
         // send ids by comma seperated and it is optional
         postParams.put(getActivity().getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
 
@@ -788,6 +850,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_cart_id),dish_id);
+        postParams.put(getActivity().getResources().getString(R.string.field_table_id),Constants.table_id);
 
         APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.removeCart), postParams, new APIManager.VolleyCallback() {
             @Override
@@ -798,7 +861,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                         ((ParentActivity)getActivity()).dismissProgressDialog();
                         bottomSheetDialog.dismiss();
                         Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-
                         //refresh page
                         if (internetConnection.isNetworkAvailable(getActivity())) {
                             getMenuListByType();
@@ -812,50 +874,48 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                         Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                     e.printStackTrace();
+                    e.printStackTrace();
                     bottomSheetDialog.dismiss();
                     ((ParentActivity)getActivity()).dismissProgressDialog();
                 }
             }
         });
     }
+    //pop of remove item
+    public void alertRemoveItem(final String dish_id, final BottomSheetDialog bottomSheetDialog){
 
-   //pop of remove item
-   public void alertRemoveItem(final String dish_id, final BottomSheetDialog bottomSheetDialog){
+        final AlertDialog alert11;
+        final AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
 
-       final AlertDialog alert11;
-       final AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View view1 = factory.inflate(R.layout.dialog_remove_item, null);
+        builder1.setView(view1);
+        builder1.setCancelable(true);
 
-       LayoutInflater factory = LayoutInflater.from(getContext());
-       final View view1 = factory.inflate(R.layout.dialog_remove_item, null);
-       builder1.setView(view1);
-       builder1.setCancelable(true);
+        alert11 = builder1.create();
+        alert11.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        alert11.show();
+        Button button_popup_no = (Button) view1.findViewById(R.id.button_popup_no);
+        Button button_popup_yes = (Button) view1.findViewById(R.id.button_popup_yes);
 
-       alert11 = builder1.create();
-       alert11.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-       alert11.show();
-       Button button_popup_no = (Button) view1.findViewById(R.id.button_popup_no);
-       Button button_popup_yes = (Button) view1.findViewById(R.id.button_popup_yes);
+        button_popup_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert11.dismiss();
+            }
+        });
 
-       button_popup_no.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               alert11.dismiss();
-           }
-       });
+        button_popup_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert11.dismiss();
+                if (internetConnection.isNetworkAvailable(getActivity())) {
+                    removeMenuFromCart(dish_id,bottomSheetDialog);
+                } else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                }
 
-       button_popup_yes.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               alert11.dismiss();
-               if (internetConnection.isNetworkAvailable(getActivity())) {
-                   removeMenuFromCart(dish_id,bottomSheetDialog);
-               } else {
-                   Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-               }
-
-           }
-       });
-   }
-
+            }
+        });
+    }
 }

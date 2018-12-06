@@ -40,10 +40,10 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int scroll_bar = 0x7f090196;
-        public static final int scroll_handle = 0x7f090197;
-        public static final int section_indicator_text = 0x7f0901a3;
-        public static final int section_title_popup = 0x7f0901a4;
+        public static final int scroll_bar = 0x7f090197;
+        public static final int scroll_handle = 0x7f090198;
+        public static final int section_indicator_text = 0x7f0901a4;
+        public static final int section_title_popup = 0x7f0901a5;
     }
     public static final class layout {
         private layout() {}
