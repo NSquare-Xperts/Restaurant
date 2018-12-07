@@ -17,7 +17,20 @@
         android:textAllCaps="false"
         android:textSize="16dp"
         android:layout_alignParentBottom="true"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
+
+    <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
+        android:id="@+id/fragment_common_list_recycler_button_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Cart"
+        android:background="@drawable/selector_button_send_booking_request"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -35,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 android:text="@string/your_preorder_details"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"/>
@@ -45,6 +59,7 @@
                 android:orientation="vertical"
                 android:background="@drawable/add_review_box"
                 android:layout_marginTop="8dp"
+                android:visibility="gone"
                 android:gravity="center">
 
                 <LinearLayout
@@ -142,6 +157,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:padding="5dp">
 
                 <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
@@ -161,6 +177,7 @@
                     android:textColor="@color/white"
                     android:layout_alignParentRight="true"
                     android:text=""
+
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"/>
             </RelativeLayout>
@@ -168,6 +185,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:padding="5dp">
 
                 <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
@@ -200,6 +218,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:padding="5dp">
 
                 <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto

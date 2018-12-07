@@ -21,11 +21,11 @@
         <shape>
             <gradient
                 android:angle="270"
-                android:endColor="@color/green_light_book_table"
-                android:startColor="@color/green_light_book_table"/>
+                android:endColor="@color/green_light"
+                android:startColor="@color/green_light"/>
             <stroke
                 android:width="4dp"
-                android:color="@color/green_light_book_table"/>
+                android:color="@color/green_light"/>
             <corners
                 android:radius="0dp"/>
             <padding

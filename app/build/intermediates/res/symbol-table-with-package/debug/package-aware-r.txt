@@ -1377,13 +1377,19 @@ id activity_forgot_password_textinputlayout_emailid
 id activity_info_screen_pager
 id activity_info_screen_titles
 id activity_linearlayout
+id activity_login
 id activity_login_button_facebook
 id activity_login_button_gmail
 id activity_login_button_login
+id activity_login_button_send_otp
+id activity_login_button_verify_otp
 id activity_login_checkbox_rememberme
 id activity_login_edittext_emailid
 id activity_login_edittext_password
+id activity_login_relative_layout_otp
 id activity_login_relativelayout_checkbox
+id activity_login_textView_label_verifyotp
+id activity_login_textView_resend_otp
 id activity_login_textview_forgot_password
 id activity_museum_appBarLayout
 id activity_order_preview_textview_grand_total
@@ -1437,6 +1443,10 @@ id activity_upcoming_booking_details_textview_restro_name
 id activity_view_profile_button_edit
 id activity_view_profile_imageview_profile_image
 id activity_view_profile_textview_name
+id activitylogin_edittextview_mobileno
+id activitylogin_edittextview_otp
+id activitylogin_edittextview_username
+id activitylogin_textview
 id adapter_vegmenu_linearlayout
 id add
 id add_to_cart
@@ -1470,6 +1480,7 @@ id button_add_new
 id button_add_to_card
 id button_cancel
 id button_popup_no
+id button_popup_ok
 id button_popup_yes
 id button_repeat_last
 id buymyrequirement_button_cancel
@@ -1539,6 +1550,7 @@ id forever
 id fragment_address_book_button_add_new_address
 id fragment_address_book_linearlayout
 id fragment_address_book_recycler_view
+id fragment_common_list_recycler_button_checkout
 id fragment_common_list_recycler_button_place_order
 id fragment_common_list_recycler_button_view_cart
 id fragment_cuisines_horizontalview
@@ -1573,6 +1585,8 @@ id info
 id infoOver
 id infoUnder
 id infoUnderWithExtra
+id input_layout_mobile
+id input_layout_password
 id inventory_icon
 id inventory_icon_full
 id inventory_icon_text
@@ -1589,6 +1603,7 @@ id left
 id line1
 id line2
 id line3
+id linearLayout_mobile_no
 id linearlayout
 id linearlayout_bottom_view
 id linearlayout_static_data
@@ -1622,12 +1637,9 @@ id list_item_upcoming_booking_textview_address
 id list_item_upcoming_booking_textview_date_time
 id list_item_upcoming_booking_textview_restro_name
 id list_item_upcoming_booking_textview_status
-id list_item_veg_menu_list_imageview_add_general
 id list_item_veg_menu_list_imageview_minus
 id list_item_veg_menu_list_imageview_plus
-id list_item_veg_menu_list_imageview_plus_general
 id list_item_veg_menu_list_imageview_profile_pic
-id list_item_veg_menu_list_linearlayout_add_view
 id list_item_veg_menu_list_linearlayout_common_view
 id list_item_veg_menu_list_linearlayout_count_view
 id list_item_veg_menu_list_textview_customize
@@ -1884,6 +1896,7 @@ layout activity_forgot_password
 layout activity_images_selector
 layout activity_info_screen
 layout activity_login
+layout activity_login_via_otp
 layout activity_main
 layout activity_main_new
 layout activity_order_preview
@@ -1918,6 +1931,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout dialog_modify_booking
+layout dialog_oder_confirmed
 layout dialog_remove_item
 layout fragment_add_customization_dialog
 layout fragment_address_book
@@ -2144,6 +2158,7 @@ string error_first_name
 string error_invalid_email_id
 string error_invalid_qr
 string error_last_name
+string error_mobile
 string error_mobile_length
 string error_mobileno
 string error_name
@@ -2154,6 +2169,7 @@ string error_password_lenght
 string error_select_atleast_one
 string error_something_went_wrong
 string error_terms
+string error_username
 string events
 string facebook_app_id
 string failed_to_connect_with_facebook
@@ -2163,14 +2179,20 @@ string fb
 string fb_login_protocol_scheme
 string field_cart_id
 string field_dish
+string field_dish_id
 string field_dish_quantity
 string field_dishes_extra_id
+string field_fullname
 string field_menuType
+string field_mobile
+string field_order_id
+string field_otp
 string field_password
 string field_subCategory
 string field_table
 string field_tableNo
 string field_table_id
+string field_user_id
 string field_username
 string find_friend_on_flipq
 string first_name
@@ -2193,10 +2215,12 @@ string full
 string gallery
 string general
 string getCartItems
+string getCartList
 string getCategories
 string getMastervalues
 string getMenuListByType
 string getOrderListByCustomer
+string getTableList
 string get_map
 string go_to_app
 string google
@@ -2294,6 +2318,7 @@ string order_status
 string order_unique_id
 string os
 string otp_message
+string otp_will_be_sent_on_mobile_number
 string password
 string password_
 string password_toggle_content_description
@@ -2309,6 +2334,7 @@ string phone
 string photo_save_error_toast
 string photos
 string placeOrder
+string placeOrder_
 string place_order
 string please_wait
 string plus_sign
@@ -2328,6 +2354,8 @@ string remove_item_from_cart
 string repeat
 string repeat_last_used_customization
 string request
+string resend
+string resendOTP
 string reset_device
 string review
 string role
@@ -2343,6 +2371,7 @@ string selector_folder_all
 string selector_permission_error
 string selector_preview
 string selector_reach_max_image_hint
+string sendUserOTP
 string send_you_code
 string server_not_reachable
 string sharedPreferenceIsInfoVisited
@@ -2418,6 +2447,8 @@ string userid
 string username
 string username_
 string validateQRCode
+string verify
+string verifyOTP
 string verify_booking
 string verify_otp
 string verify_phone

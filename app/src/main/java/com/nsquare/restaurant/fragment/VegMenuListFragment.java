@@ -843,7 +843,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     }
 
     //remove cart
-    //add items to cart
     private void removeMenuFromCart(String dish_id, final BottomSheetDialog bottomSheetDialog) {
 
         ((ParentActivity)getActivity()).showProcessingDialog();

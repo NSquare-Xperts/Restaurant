@@ -1,7 +1,9 @@
 package com.nsquare.restaurant.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -11,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -20,42 +21,47 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nsquare.restaurant.adapter.MyCartItemsListAdapter;
 import com.nsquare.restaurant.adapter.VegMenuListAdapter;
 import com.nsquare.restaurant.databasehelper.DatabaseHelper;
 import com.nsquare.restaurant.model.CartModel;
-
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.adapter.CartItemsListAdapter;
+import com.nsquare.restaurant.model.MyCartData;
+import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Pushkar on 23-04-2018.
+ * Updated by Ritu Chavan on 12-06-2018.
  */
 
-public class CartPreviewActivity extends ParentActivity implements CartItemsListAdapter.UpdateValuesInterface {
+public class CartPreviewActivity extends ParentActivity implements MyCartItemsListAdapter.IsQuantityChanged{
 
     private RecyclerView fragment_recent_jobs_recycler_view;
-    private ArrayList<CartModel> cartModelArrayList = new ArrayList<CartModel>();
-    private DatabaseHelper databaseHelper;
-    private CartItemsListAdapter cartItemsListAdapter;
+    private ArrayList<MyCartData> cartModelArrayList = new ArrayList<MyCartData>();
+    private MyCartItemsListAdapter cartItemsListAdapter;
     public static CartPreviewActivity cartPreviewActivity;
-    private TextView activity_order_preview_textview_subtotal, activity_order_preview_textview_tax, activity_order_preview_textview_grand_total;
+    private TextView activity_order_preview_textview_subtotal,fragment_common_list_recycler_button_checkout, activity_order_preview_textview_tax, activity_order_preview_textview_grand_total;
     private Button fragment_common_list_recycler_button_place_order;
     private double taxes = 0;
-    private JSONObject jsonObjectCart;
     double subTotal = 0, grandTotal = 0, taxAmount = 0;
     private EditText activity_book_a_table_edittext_name, activity_book_a_table_edittext_mobile_number;
-    private String mobileNumber, userName, customer_id = "", customerOrderId = "";
+    private String mobileNumber, userName, customer_id = "", customerOrderId = "",order_id="";
+
+    boolean flagisTrue=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,17 +72,20 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.order_preview));
         findViewByIds();
 
+        fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+        fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
+
         mobileNumber = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberMobileno),"");
         userName = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberUsername),"");
         customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
         customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+        order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
 
         if(mobileNumber.equalsIgnoreCase(null) || mobileNumber.equalsIgnoreCase("")) {
             editor = sharedPreferencesRemember.edit();
             editor.putString(getResources().getString(R.string.sharedPreferenceRememberMobileno), activity_book_a_table_edittext_mobile_number.getText().toString());
             editor.putString(getResources().getString(R.string.sharedPreferenceRememberUsername), activity_book_a_table_edittext_name.getText().toString());
-            //customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
-            //customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+
             editor.commit();
         }else {
             activity_book_a_table_edittext_name.setText(userName);
@@ -84,52 +93,50 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
             activity_book_a_table_edittext_mobile_number.setText(mobileNumber);
             activity_book_a_table_edittext_mobile_number.setEnabled(false);
         }
-
         cartPreviewActivity = this;
-        getInstance();
-        CartItemsListAdapter.updateValuesInterface = (CartItemsListAdapter.UpdateValuesInterface) cartPreviewActivity;
+        MyCartItemsListAdapter.isQuantityChanged = (MyCartItemsListAdapter.IsQuantityChanged)cartPreviewActivity;
+        ///
+        //getInstance();
+        //CartItemsListAdapter.updateValuesInterface = (CartItemsListAdapter.UpdateValuesInterface) cartPreviewActivity;
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        cartModelArrayList = databaseHelper.getAllCartItem(1);
-
-        if(cartModelArrayList.size() > 0){
-            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
-        }else{
-            fragment_common_list_recycler_button_place_order.setVisibility(View.GONE);
-        }
-
-        cartItemsListAdapter = new CartItemsListAdapter(getApplicationContext(),cartModelArrayList);
+        //if(cartModelArrayList.size() > 0){
+       /* cartItemsListAdapter = new MyCartItemsListAdapter(CartPreviewActivity.this,cartModelArrayList);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
-        fragment_recent_jobs_recycler_view.setAdapter(cartItemsListAdapter);
+        fragment_recent_jobs_recycler_view.setAdapter(cartItemsListAdapter);*/
 
-        activity_order_preview_textview_tax.setText(taxes+"");
 
-        if(cartModelArrayList.size() > 0){
-            getMastervalues();
+        if(internetConnection.isNetworkAvailable(getApplicationContext())){
+            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+            getCartList();
+        }else{
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
         }
-
-//        if(internetConnection.isNetworkAvailable(getApplicationContext())){
-//            getCartItems();
-//        }else{
-//            Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-//        }
 
         fragment_common_list_recycler_button_place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(validateForm()){
-                    if (internetConnection.isNetworkAvailable(getApplicationContext())){
-                        placeOrder();
-                    }else{
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-                    }
+                //move to verify OTP page if first time
+                //check order-id is already present or not
+                if(order_id.isEmpty()) {
+                    Intent intent = new Intent(CartPreviewActivity.this, LoginViaOTPActivity.class);
+                    startActivity(intent);
+                }else {
+                    //place order
+                    placeOrder();
                 }
             }
         });
 
+        fragment_common_list_recycler_button_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //call update cart API
+               // addMenuToCart(cartModelArrayList.get(po),);
+            }
+        });
     }
 
     private void findViewByIds(){
@@ -137,6 +144,8 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
         activity_order_preview_textview_subtotal = (TextView) findViewById(R.id.activity_order_preview_textview_subtotal);
         activity_order_preview_textview_tax = (TextView) findViewById(R.id.activity_order_preview_textview_tax);
         activity_order_preview_textview_grand_total = (TextView) findViewById(R.id.activity_order_preview_textview_grand_total);
+        fragment_common_list_recycler_button_checkout = (TextView) findViewById(R.id.fragment_common_list_recycler_button_checkout);
+
         fragment_common_list_recycler_button_place_order = (Button) findViewById(R.id.fragment_common_list_recycler_button_place_order);
         activity_book_a_table_edittext_name = (EditText) findViewById(R.id.activity_book_a_table_edittext_name);
         activity_book_a_table_edittext_mobile_number = (EditText) findViewById(R.id.activity_book_a_table_edittext_mobile_number);
@@ -151,7 +160,6 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -160,59 +168,6 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
 //        super.onBackPressed();
         finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
-
-    public static CartPreviewActivity getInstance(){
-        return cartPreviewActivity;
-    }
-
-    @Override
-    public void onUpdateValuesInterface(String quantity, int position, int totalQuantity, CartModel issueItem, String menu_status) {
-
-        CartModel cartModel = issueItem;
-
-        int menuCount = databaseHelper.getCountOfMenuById(Integer.parseInt(cartModel.getDatabase_menu_id()), "111");
-
-        if(menuCount == 0){
-            databaseHelper.addInTo(cartModel);
-        }else{
-            databaseHelper.updateRecordById(Integer.parseInt(cartModel.getDatabase_menu_id()), "111", cartModel);
-        }
-
-        if(quantity.equalsIgnoreCase("0")){
-            databaseHelper.deleteItem(Integer.parseInt(cartModel.getDatabase_menu_id()), "111");
-        }
-
-        System.out.println("totalQuantity: "+totalQuantity);
-        if(totalQuantity == 0){
-            //fragment_common_list_recycler_button_view_cart.setVisibility(View.GONE);
-
-            databaseHelper.deleteAll();
-        }else{
-            //fragment_common_list_recycler_button_view_cart.setVisibility(View.VISIBLE);
-        }
-
-        System.out.println("cart values: "+databaseHelper.getCartItemsByUserId("111").size());
-
-        ArrayList<CartModel> cartModelArrayList = databaseHelper.getCartItemsByUserId("111");
-
-        double subTotal = 0, grandTotal = 0;
-        for(int i = 0; i < cartModelArrayList.size(); i++){
-            subTotal = subTotal + (Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_quantity()) * Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_price()));
-        }
-
-        activity_order_preview_textview_subtotal.setText(getResources().getString(R.string.Rs)+" "+subTotal);
-
-        grandTotal = subTotal + taxes;
-
-        activity_order_preview_textview_grand_total.setText(getResources().getString(R.string.Rs)+" "+grandTotal);
-
-        if(cartModelArrayList.size() > 0){
-            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
-        }else{
-            fragment_common_list_recycler_button_place_order.setVisibility(View.GONE);
-        }
-
     }
 
     private boolean validateForm(){
@@ -228,10 +183,9 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
         return true;
     }
 
-
-    private void placeOrder() {
+    private void placeOrder__() {
         int isFirstTime = 0;
-        try {
+/*        try {
 
             mobileNumber = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberMobileno),"");
             userName = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberUsername),"");
@@ -273,10 +227,10 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
 
             System.out.println("placeOrder: "+jsonObjectCart.toString());
         } catch (Exception ignored) {
-        }
+        }*/
 
         Map<String, String> postParams = new HashMap<String, String>();
-        postParams.put(getResources().getString(R.string.userOrder), jsonObjectCart.toString());
+        // postParams.put(getResources().getString(R.string.userOrder), jsonObjectCart.toString());
 
         showProcessingDialog();
         APIManager.requestPostMethod(this, getResources().getString(R.string.placeOrder), postParams, new APIManager.VolleyCallback() {
@@ -301,10 +255,10 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
                             String order_menus_id = jsonObject1.getString(getResources().getString(R.string.order_menus_id));
 
                             //cartModelArrayList.get(i).setDatabase_menu_status("1");
-                            CartModel cartModel = cartModelArrayList.get(i);
-                            cartModel.setDatabase_menu_status("1");
-                            cartModel.setDatabase_order_menus_id(order_menus_id);
-                            databaseHelper.updateRecordById(Integer.parseInt(cartModel.getDatabase_menu_id()), cartModel.getDatabase_user_id(), cartModel);
+                            MyCartData cartModel = cartModelArrayList.get(i);
+                            //cartModel.setDatabase_menu_status("1");
+                            //cartModel.setDatabase_order_menus_id(order_menus_id);
+                            //databaseHelper.updateRecordById(Integer.parseInt(cartModel.getDatabase_menu_id()), cartModel.getDatabase_user_id(), cartModel);
                         }
 
                         progressDialog.dismiss();
@@ -343,7 +297,7 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
                         taxes = Double.parseDouble(jsonObject.getString(getResources().getString(R.string.taxes_)));
 
                         for(int i = 0; i < cartModelArrayList.size(); i++){
-                            subTotal = subTotal + (Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_quantity()) * Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_price()));
+                            //subTotal = subTotal + (Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_quantity()) * Double.parseDouble(cartModelArrayList.get(i).getDatabase_menu_price()));
                         }
 
                         activity_order_preview_textview_subtotal.setText(getResources().getString(R.string.Rs)+" "+subTotal);
@@ -440,9 +394,8 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
                                 activity_book_a_table_edittext_mobile_number.setText(mobile_number);
                                 activity_book_a_table_edittext_mobile_number.setEnabled(false);
 
-                                cartModelArrayList.add(new CartModel("", order_menus_id, customer_id, menu_id, itemName, menu_price, imageName, menu_quantity, is_processed));
+                                // cartModelArrayList.add(new CartModel("", order_menus_id, customer_id, menu_id, itemName, menu_price, imageName, menu_quantity, is_processed));
                             }
-
                             if(cartModelArrayList.size() > 0){
                                 getMastervalues();
                             }else{
@@ -458,5 +411,188 @@ public class CartPreviewActivity extends ParentActivity implements CartItemsList
                 dismissProgressDialog();
             }
         });
+    }
+
+    //get cart details
+
+    private void getCartList() {
+
+        // swipe_refresh_layout.setRefreshing(true);
+        HashMap<String, String> postParams = new HashMap<>();
+
+        postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
+
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.getCartList), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    String totalCartAmount = jsonObject.getString("total_amount");
+                    activity_order_preview_textview_grand_total.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
+                    activity_order_preview_textview_subtotal.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
+                    String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
+                    if (jsonObject.getInt("status") == 200) {
+
+                        cartModelArrayList.clear();
+
+                        Gson gson = new Gson();
+                        String jsonOutput = jsonString;
+                        Type listType = new TypeToken<ArrayList<MyCartData>>(){}.getType();
+                        cartModelArrayList = gson.fromJson(jsonOutput, listType);
+                        //set data to adapter [list]
+                        if (cartModelArrayList.size() > 0) {
+                            // textview_no_record_found.setVisibility(View.GONE);
+                            //swipe_refresh_layout.setVisibility(View.VISIBLE);
+                            if(flagisTrue){
+                                cartItemsListAdapter.updateList(cartModelArrayList);
+                            }else {
+                                cartItemsListAdapter = new MyCartItemsListAdapter(CartPreviewActivity.this, cartModelArrayList);
+                                final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CartPreviewActivity.this);
+                                linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+                                fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
+                                fragment_recent_jobs_recycler_view.setAdapter(cartItemsListAdapter);
+                                fragment_recent_jobs_recycler_view.setEnabled(true);
+                                //swipe_refresh_layout.setRefreshing(false);
+                            }
+
+                        }else {
+                            //textview_no_record_found.setVisibility(View.VISIBLE);
+                            //swipe_refresh_layout.setVisibility(View.GONE);
+                        }
+                    }else if (jsonObject.getInt("status") == 400) {
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //swipe_refresh_layout.setRefreshing(false);
+            }
+        });
+    }
+    private void sendUserOtp() {
+
+        // swipe_refresh_layout.setRefreshing(true);
+        HashMap<String, String> postParams = new HashMap<>();
+
+        postParams.put(getResources().getString(R.string.field_mobile), mobileNumber);
+        postParams.put(getResources().getString(R.string.field_fullname), userName);
+        postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
+
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+
+
+                    if (jsonObject.getInt("status") == 200) {
+
+                        String order_id = jsonObject.getString("order_id");
+
+
+                    }else if (jsonObject.getInt("status") == 400) {
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //swipe_refresh_layout.setRefreshing(false);
+            }
+        });
+    }
+
+
+    private void placeOrder() {
+
+        // swipe_refresh_layout.setRefreshing(true);
+        HashMap<String, String> postParams = new HashMap<>();
+
+        postParams.put(getResources().getString(R.string.field_order_id), mobileNumber);
+        postParams.put(getResources().getString(R.string.field_dish_id), userName);
+        postParams.put(getResources().getString(R.string.field_dish_quantity), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_dishes_extra_id), Constants.table_id);
+
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+
+
+                    if (jsonObject.getInt("status") == 200) {
+
+                        String order_id = jsonObject.getString("order_id");
+
+
+                    }else if (jsonObject.getInt("status") == 400) {
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //swipe_refresh_layout.setRefreshing(false);
+            }
+        });
+    }
+    //on cart update call
+    private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id,final BottomSheetDialog bottomSheetDialog) {
+
+        showProcessingDialog();
+
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(getResources().getString(R.string.field_dish),dish_id);
+        postParams.put(getResources().getString(R.string.field_dish_quantity),dish_qty);
+        postParams.put(getResources().getString(R.string.field_table),"1");
+        // send ids by comma seperated and it is optional
+        postParams.put(getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
+
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.addCart), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.getInt("status") == 200) {
+                        dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+
+                        //refresh
+                        if (internetConnection.isNetworkAvailable(CartPreviewActivity.this)) {
+                            //getMenuListByType();
+                        } else {
+                            Toast.makeText(CartPreviewActivity.this, getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else if (jsonObject.getInt("status") == 400) {
+                        dismissProgressDialog();
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    bottomSheetDialog.dismiss();
+                    dismissProgressDialog();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void checkQuantityIsChangedOrNot(String data) {
+        //refresh page
+        //TODO : call  update cart API else
+        //call place order API
+        if(data.equalsIgnoreCase("1")){
+            flagisTrue= true;
+            //getCartList();
+            //add to cart api
+            fragment_common_list_recycler_button_place_order.setVisibility(View.GONE);
+            fragment_common_list_recycler_button_checkout.setVisibility(View.VISIBLE);
+        }else {
+            //place order
+            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+            fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
+        }
     }
 }

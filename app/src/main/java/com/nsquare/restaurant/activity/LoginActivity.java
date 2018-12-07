@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,15 +25,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.nsquare.restaurant.activity.admin.AdminConfigurationActivity;
 import com.nsquare.restaurant.activity.waiter.WaiterMainActivity;
-import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
-import com.nsquare.restaurant.model.OrderHistoryModel;
 import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
 
 import com.nsquare.restaurant.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,7 +54,7 @@ public class LoginActivity extends ParentActivity implements View.OnClickListene
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_via_otp);
 
         setStatusBar();
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.button_login));

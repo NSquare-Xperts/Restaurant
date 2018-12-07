@@ -14,24 +14,29 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
+import com.nsquare.restaurant.activity.waiter.WaiterCartPreviewActivity;
 import com.nsquare.restaurant.activity.waiter.TableOrdersActivity;
 import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
 import com.nsquare.restaurant.adapter.waiter.TablesAdapter;
 import com.nsquare.restaurant.model.OrderHistoryModel;
 import com.nsquare.restaurant.model.TablesItem;
+import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIManager;
+import com.nsquare.restaurant.util.Constants;
 import com.nsquare.restaurant.util.InternetConnection;
 import com.nsquare.restaurant.util.RecyclerItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class WaiterTablesFragment extends Fragment {
     private SharedPreferences sharedPreferencesRemember;
@@ -64,8 +69,9 @@ public class WaiterTablesFragment extends Fragment {
         fragment_recent_jobs_recycler_view.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), TableOrdersActivity.class);
-                intent.putExtra(getActivity().getResources().getString(R.string.tableId), orderHistoryModelArrayList.get(position).getTableName());
+                Intent intent = new Intent(getActivity(), WaiterCartPreviewActivity.class);
+                intent.putExtra(getActivity().getResources().getString(R.string.customerOrderId), orderHistoryModelArrayList.get(position).getOrder_id());
+                intent.putExtra(getActivity().getResources().getString(R.string.tableId), orderHistoryModelArrayList.get(position).getId());
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
@@ -83,42 +89,37 @@ public class WaiterTablesFragment extends Fragment {
 
         orderHistoryModelArrayList.clear();
 
-        swipe_refresh_layout.setRefreshing(true);
+        swipe_refresh_layout.setRefreshing(false);
 
         if(internetConnection.isNetworkAvailable(getActivity())){
-            getOrderListByCustomer();
+            getTableList();
         }else{
             Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void getOrderListByCustomer() {
+    private void getTableList() {
 
         final String sharedPreferenceUserId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceUserId), "");
 
         HashMap<String, String> postParams = new HashMap<>();
-        postParams.put(getActivity().getResources().getString(R.string.masterType), getActivity().getResources().getString(R.string.tables));
-        postParams.put(getActivity().getResources().getString(R.string.waiterId), sharedPreferenceUserId); //1 = Veg, 2 = Non Veg
-
+        postParams.put(getActivity().getResources().getString(R.string.field_user_id), sharedPreferenceUserId); //1 = Veg, 2 = Non Veg
 
         ((ParentActivity) getActivity()).showProcessingDialog();
-        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getMastervalues), postParams, new APIManager.VolleyCallback() {
+        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getTableList), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-                        JSONArray jsonArrayMenuItems = jsonObject.getJSONArray(getResources().getString(R.string.masterType));
-                        if (jsonArrayMenuItems.length() > 0) {
 
-                            for (int i = 0; i < jsonArrayMenuItems.length(); i++) {
-                                JSONObject json = jsonArrayMenuItems.getJSONObject(i);
-                                String tableId = json.getString(getActivity().getResources().getString(R.string.tableId));
-                                String tableNumber = json.getString(getActivity().getResources().getString(R.string.tableNumber));
+                        String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
+                        Gson gson = new Gson();
+                        String jsonOutput = jsonString;
+                        Type listType = new TypeToken<ArrayList<TablesItem>>(){}.getType();
+                        orderHistoryModelArrayList = gson.fromJson(jsonOutput, listType);
 
-                                orderHistoryModelArrayList.add(new TablesItem(tableId, tableNumber));
-                            }
-
+                        if (orderHistoryModelArrayList.size() > 0) {
                             orderHistoryAdapter = new TablesAdapter(getActivity(), orderHistoryModelArrayList, getActivity());
                             final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                             linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
@@ -126,8 +127,10 @@ public class WaiterTablesFragment extends Fragment {
                             fragment_recent_jobs_recycler_view.setAdapter(orderHistoryAdapter);
                             fragment_recent_jobs_recycler_view.setEnabled(true);
                             swipe_refresh_layout.setRefreshing(false);
+                            fragment_recent_jobs_recycler_view.setVisibility(View.VISIBLE);
+                            swipe_refresh_layout.setVisibility(View.VISIBLE);
 
-                        } else {
+                        }else{
                             orderHistoryAdapter = new TablesAdapter(getActivity(), orderHistoryModelArrayList, getActivity());
                             final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                             linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
@@ -143,6 +146,7 @@ public class WaiterTablesFragment extends Fragment {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.out.println("Exception: "+e.toString());
                 }
                 swipe_refresh_layout.setRefreshing(false);
                 ((ParentActivity) getActivity()).dismissProgressDialog();

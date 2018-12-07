@@ -1,6 +1,7 @@
 package com.nsquare.restaurant.adapter;
 
 import android.content.Context;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +9,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nsquare.restaurant.R;
+import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.model.CartModel;
+import com.nsquare.restaurant.util.APIManager;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Pushkar on 07-09-2017.
  */
-
 public class CartItemsListAdapter extends RecyclerView.Adapter<CartItemsListAdapter.MyViewHolder> {
 
     private ArrayList<CartModel> upcomingYourBookingModelArrayList;
@@ -48,12 +54,12 @@ public class CartItemsListAdapter extends RecyclerView.Adapter<CartItemsListAdap
             list_item_veg_menu_list_textview_total = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_total);
             list_item_veg_menu_list_textview_menu_description = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_menu_description);
             list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
-            list_item_veg_menu_list_imageview_add_general = (TextView) view.findViewById(R.id.list_item_veg_menu_list_imageview_add_general);
-            list_item_veg_menu_list_linearlayout_add_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_add_view);
+            //list_item_veg_menu_list_imageview_add_general = (TextView) view.findViewById(R.id.list_item_veg_menu_list_imageview_add_general);
+            // list_item_veg_menu_list_linearlayout_add_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_add_view);
             list_item_veg_menu_list_linearlayout_count_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_count_view);
             list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
             list_item_veg_menu_list_imageview_plus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus);
-            list_item_veg_menu_list_imageview_plus_general = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus_general);
+            //list_item_veg_menu_list_imageview_plus_general = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus_general);
             list_item_selected_cart_menus_imageview_close = (ImageView) view.findViewById(R.id.list_item_selected_cart_menus_imageview_close);
         }
     }
@@ -92,7 +98,6 @@ public class CartItemsListAdapter extends RecyclerView.Adapter<CartItemsListAdap
         final int[] quantityCount = {0};
 
         quantityCount[0] = Integer.parseInt(issueItem.getDatabase_menu_quantity());
-
 
         if (quantityCount[0] > 0) {
             //quantityCount[0] = quantityCount[0] + 1;
@@ -240,4 +245,6 @@ public class CartItemsListAdapter extends RecyclerView.Adapter<CartItemsListAdap
 
         public void onUpdateValuesInterface(String quantity, int position, int totalQuantity, CartModel issueItem, String menu_status);
     }
+
+
 }

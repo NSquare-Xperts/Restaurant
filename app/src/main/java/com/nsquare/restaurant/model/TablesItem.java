@@ -6,7 +6,9 @@ package com.nsquare.restaurant.model;
 public class TablesItem {
 
     String id;
-    String tableName;
+    String title;
+    String type;
+    String order_id;
 
     public String getId() {
         return id;
@@ -16,16 +18,34 @@ public class TablesItem {
         this.id = id;
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public TablesItem(String id, String tableName) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+
+    public TablesItem(String id, String title, String type, String order_id) {
         this.id = id;
-        this.tableName = tableName;
+        this.title = title;
+        this.type = type;
+        this.order_id = order_id;
     }
 }

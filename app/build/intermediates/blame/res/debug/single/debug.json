@@ -140,6 +140,10 @@
         "source": "C:\\Users\\Nsquare Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\abb4dc248b9b88163e73428a9dd55388\\res\\drawable\\abc_dialog_material_background.xml"
     },
     {
+        "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login_via_otp.xml.flat",
+        "source": "F:\\Restaurant\\Self-Order-master\\app\\src\\main\\res\\layout\\activity_login_via_otp.xml"
+    },
+    {
         "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Nsquare Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\abb4dc248b9b88163e73428a9dd55388\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
@@ -2562,6 +2566,10 @@
     {
         "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "C:\\Users\\Nsquare Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\abb4dc248b9b88163e73428a9dd55388\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_oder_confirmed.xml.flat",
+        "source": "F:\\Restaurant\\Self-Order-master\\app\\src\\main\\res\\layout\\dialog_oder_confirmed.xml"
     },
     {
         "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",

@@ -28,6 +28,10 @@
     <string name="getMenuListByType">resto/getMenuListByType</string>
     <string name="addCart">Resto/addCart</string>
     <string name="removeCart">Resto/removeCart</string>
+    <string name="getCartList">Resto/getCartList</string>
+    <string name="sendUserOTP">Resto/sendUserOTP</string>
+    <string name="verifyOTP">Resto/verifyOTP</string>
+    <string name="placeOrder_">Resto/placeOrder</string>
 
     <string name="getCategories">resto/getCategories</string>
     <!--<string name="getCategories">getCategories.php</string>-->
@@ -322,6 +326,7 @@
     <string name="cart_details">Cart Details</string>
     <string name="cart_items">cart_items</string>
     <string name="order_preview">Order Preview</string>
+    <string name="verify">Verify </string>
     <string name="subtotal">Subtotal</string>
     <string name="taxes">Taxes</string>
     <string name="taxes_">taxes</string>
@@ -427,7 +432,6 @@
     <string name="dish_extra_selection_type">dish_extra_selection_type</string>
     <string name="error_select_atleast_one">Please select atleast one.</string>
 
-
     <string name="field_dish">field_dish</string>
     <string name="field_dish_quantity">field_dish_quantity</string>
     <string name="field_table">field_table</string>
@@ -435,5 +439,19 @@
 
     <string name="field_cart_id">field_cart_id</string>
     <string name="remove_item_from_cart">Remove Item from cart</string>
+
+
+    <string name="field_mobile">field_mobile</string>
+    <string name="field_fullname">field_fullname</string>
+    <string name="resend">resend</string>
+    <string name="resendOTP">resendOTP</string>
+    <string name="otp_will_be_sent_on_mobile_number">OTP will be sent on mobile number</string>
+    <string name="error_mobile">Mobile No can not be empty</string>
+    <string name="error_username">Username cannot be empty</string>
+    <string name="field_otp">field_otp</string>
+    <string name="field_order_id">field_order_id</string>
+    <string name="field_dish_id">field_dish_id</string>
+    <string name="getTableList">Resto/getTableList</string>
+    <string name="field_user_id">field_user_id</string>
 
 </resources>

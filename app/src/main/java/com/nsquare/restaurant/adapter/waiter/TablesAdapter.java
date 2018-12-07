@@ -67,7 +67,7 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, final int position)
     {
         final TablesItem issueItem= orderHistoryModelArrayList.get(position);
-        holder.list_item_tables_table_number.setText("Table No: - "+issueItem.getTableName());
+        holder.list_item_tables_table_number.setText("Table No: - "+issueItem.getTitle());
 
     }
 
