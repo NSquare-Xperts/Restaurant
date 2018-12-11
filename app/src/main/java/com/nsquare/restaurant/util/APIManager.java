@@ -24,7 +24,6 @@ import com.nsquare.restaurant.R;
 /**
  * Created by pratik on 3/5/18
  */
-
 public class APIManager {
     public static void requestGetMethod(final Context context, String url, final VolleyCallback callback) {
         if (InternetConnection.isNetworkAvailable(context)) {

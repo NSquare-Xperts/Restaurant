@@ -58,15 +58,11 @@ public class VegMenuListAdapter extends RecyclerView.Adapter<VegMenuListAdapter.
             list_item_veg_menu_list_textview_menu_description = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_menu_description);
             list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
             list_item_veg_menu_list_textview_customize = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_customize);
-           // list_item_veg_menu_list_imageview_add_general = (TextView) view.findViewById(R.id.list_item_veg_menu_list_imageview_add_general);
-           // list_item_veg_menu_list_linearlayout_add_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_add_view);
             list_item_veg_menu_list_linearlayout_count_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_count_view);
             list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
             list_item_veg_menu_list_imageview_plus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus);
             adapter_vegmenu_linearlayout = (LinearLayout) view.findViewById(R.id.adapter_vegmenu_linearlayout);
             selected_quantity = (TextView) view.findViewById(R.id.selected_quantity);
-
-           // list_item_veg_menu_list_imageview_plus_general = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus_general);
         }
     }
 

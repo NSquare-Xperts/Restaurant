@@ -1,31 +1,23 @@
 package com.nsquare.restaurant.fragment;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -40,49 +32,37 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.CartPreviewActivity;
-import com.nsquare.restaurant.activity.MainActivity;
 import com.nsquare.restaurant.activity.MenuListActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.adapter.VegMenuListAdapter;
 import com.nsquare.restaurant.databasehelper.DatabaseHelper;
 import com.nsquare.restaurant.model.CartModel;
-import com.nsquare.restaurant.model.CustomMenuParamterDetailsItem;
-import com.nsquare.restaurant.model.UpcomingYourBookingModel;
-import com.nsquare.restaurant.model.vegMenuList.DishCustomExtrasModel;
+import com.nsquare.restaurant.model.vegMenuList.DishCustomModel;
 import com.nsquare.restaurant.model.vegMenuList.DishExtrasModel;
-import com.nsquare.restaurant.model.vegMenuList.DishExtrasSubCategoriesModel;
 import com.nsquare.restaurant.model.vegMenuList.VegMenuListModel;
 import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIManager;
-import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.Constants;
 import com.nsquare.restaurant.util.InternetConnection;
-
 import com.nsquare.restaurant.util.RecyclerItemClickListener;
-import com.nsquare.restaurant.util.RobotoRegular.CheckBoxTextRoboto;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.UpdateValuesInterface, MenuListActivity.UpdateDataOnTabChangeVeg
 {
     private Button fragment_common_list_recycler_button_view_cart;
     private VegMenuListAdapter yourUpcomingBookingAdapter;
+    private QuantityMenuAdapter quantityMenuAdapter;
+    private CustomMenuAdapter customMenuAdapter;
+    private ExtraMenuAdapter extraMenuAdapter;
+
     private SwipeRefreshLayout swipe_refresh_layout;
     private TextView textview_no_record_found;
     private TextView textView_total;
-    private RelativeLayout relative_layout_common_list_recycler;
+    //private RelativeLayout relative_layout_common_list_recycler;
     private RecyclerView fragment_recent_jobs_recycler_view;
     private RelativeLayout relative_layout_checkout;
     private ArrayList<VegMenuList_NewModel> upcomingYourBookingModelArrayList_new = new ArrayList<VegMenuList_NewModel>();
@@ -94,13 +74,17 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private Context context;
     private boolean isRepeatClicable;
     private int currentQty=0;
-    private CustomExtraMenuAdapter customExtraMenuAdapter;
-    public RadioButton radioButton;
-    //CustomMenuParamterDetailsItem customMenuParamterDetailsItem;
+    private  String dishes_extra_id="";
+
     private int totalQuantityCount = 0;
     private int selectedQuantity;
     private String[] quantityArray;
-    private int tempGroupIdCustom ;
+    //private int tempGroupIdCustom ;
+    private ArrayList<String> selectedCustomRadioButtonId = new ArrayList<>();
+    private String selectedQuantityRadioButtonId="";
+    //private int selectedCustomRadioButtonId;
+    private ArrayList<String> selectedCheckBoxId = new ArrayList<>();
+    private ArrayList<String> selectedRadioButtonIdFromGroupId = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -127,16 +111,13 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         relative_layout_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(context,CartPreviewActivity.class);
                 startActivity(intent);
-
             }
         });
         textView_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //on checkout move to cart view
                 Intent intent = new Intent(context,CartPreviewActivity.class);
                 startActivity(intent);
@@ -158,12 +139,11 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 if(!upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity().isEmpty()){
                     selectedQuantity = Integer.parseInt(upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity());
                 }
-                showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),selectedQuantity);
+                    showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),selectedQuantity);
             }
         }));
         //behavior = BottomSheetBehavior.from(bottomSheet);
         //check slider is already open or not
-
         return rootView;
     }
 
@@ -174,7 +154,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         swipe_refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         textview_no_record_found = (TextView) view.findViewById(R.id.textview_no_record_found);
         textView_total = (TextView) view.findViewById(R.id.textView_total_qty);
-        relative_layout_common_list_recycler = (RelativeLayout) view.findViewById(R.id.relative_layout_common_list_recycler);
+        //relative_layout_common_list_recycler = (RelativeLayout) view.findViewById(R.id.relative_layout_common_list_recycler);
         fragment_common_list_recycler_button_view_cart = (Button) view.findViewById(R.id.fragment_common_list_recycler_button_view_cart);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
@@ -207,7 +187,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                     JSONObject jsonObject = new JSONObject(result);
                     String totalCartAmount = jsonObject.getString("totalcartamount");
                     if(!totalCartAmount.isEmpty()){
-                            relative_layout_checkout.setVisibility(View.VISIBLE);
+                        relative_layout_checkout.setVisibility(View.VISIBLE);
                         textView_total.setText("Rs. "+ totalCartAmount);
                     }else{
                         relative_layout_checkout.setVisibility(View.GONE);
@@ -335,7 +315,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         button_add_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dialog.dismiss();
                 alertAddCustomMenu(quantity, position, totalQuantity, vegMenuListModel, menu_status);
             }
@@ -344,7 +323,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         button_repeat_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //TODO :fetch previously added customization and insert into order menu table
                 dialog.dismiss();
             }
@@ -376,7 +354,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             alert11.show();
         }
         //ArrayList<CustomeOrderItems> requestsItemArrayList = new ArrayList<>();
-        RecyclerView recyclerView_list_popup = (RecyclerView)view1.findViewById(R.id.recyclerView_list_popup);
+        // recyclerView_list_popup = (RecyclerView)view1.findViewById(R.id.recyclerView_list_popup);
         Button button_add = (Button) view1.findViewById(R.id.button_add);
         Button button_cancel = (Button) view1.findViewById(R.id.button_cancel);
 
@@ -496,203 +474,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         super.onAttach(context);
     }
     //adapter to show extras
-    public class CustomExtraMenuAdapter extends RecyclerView.Adapter<CustomExtraMenuAdapter.ViewHolder> {
 
-        private DishCustomExtrasModel requestItems;
-        private Context context;
-        private int size;
-
-        public CustomExtraMenuAdapter(Context context,DishCustomExtrasModel requestItems, int size) {
-            this.context = context;
-            this.requestItems = requestItems;
-            this.size = size;
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-            public TextView textView_label;
-            public TextView textViewNewsCreateDate;
-            public RadioGroup radioGroup;
-            public RelativeLayout relative_layout_type_two;
-            public RelativeLayout relative_layout_type_one;
-            CheckBoxTextRoboto checkbox_select_multiple_menu;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-
-                relative_layout_type_one = (RelativeLayout) itemView.findViewById(R.id.relative_layout_type_one);
-                relative_layout_type_two = (RelativeLayout) itemView.findViewById(R.id.relative_layout_type_one);
-                textView_label = (TextView) itemView.findViewById(R.id.textview_label);
-                checkbox_select_multiple_menu = (CheckBoxTextRoboto) itemView.findViewById(R.id.checkbox_select_multiple_menu);
-                radioGroup =(RadioGroup)itemView.findViewById(R.id.radio_grp_select);
-                radioButton = new RadioButton(context);
-                //checkBox = new CheckBox(context);
-            }
-            @Override
-            public void onClick(View v) {
-            }
-        }
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_customise_menu_popup, parent, false);
-            RadioGroup radioGroup = new RadioGroup(context);
-            radioGroup.setOrientation(RadioGroup.VERTICAL);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final CustomExtraMenuAdapter.ViewHolder holder, final int position) {
-            final DishCustomExtrasModel dishExtrasModel = requestItems;
-            //get(position);
-            //System.out.println("******onBindViewHolder******** : "+homeRecyclerView.getTitle());
-            //holder.textView_label.setText(dishExtrasModel.g());
-            //holder.textView_label.setTag(position);
-
-            //show view for all 3 types
-            //1. Extra if available
-            //2. Custom
-            //3.Quantity
-
-            //TODO : for 'Extra'
-            for(int e=0 ; e < dishExtrasModel.getExtra().size() ; e++){
-
-                holder.textView_label.setText("Extras \n");
-                //holder.textView_label.setTag(position);
-
-                holder.relative_layout_type_one.setVisibility(View.GONE);
-                holder.relative_layout_type_two.setVisibility(View.VISIBLE);
-                holder.checkbox_select_multiple_menu.setText(getActivity().getResources().getString(R.string.Rs)+" "+dishExtrasModel.getExtra().get(e).getDish_extra_name());
-               // holder.checkbox_select_multiple_menu.setText(getActivity().getResources().getString(R.string.Rs)+" "+dishExtrasModel.getDish_extra_price());
-
-                holder.checkbox_select_multiple_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                       /* if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("0")){
-                        holder.checkbox_select_multiple_menu.setChecked(true);
-                        dishExtrasModel.setDish_extra_is_selected("1");
-                    }else if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("1")){
-                        holder.checkbox_select_multiple_menu.setChecked(false);
-                        dishExtrasModel.setDish_extra_is_selected("0");
-                    }*/
-
-                    }
-                });
-                holder.checkbox_select_multiple_menu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    }
-                });
-            }
-            //TODO : FOR 'CUSTOM'
-            for(int i = 0 ; i < dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().size(); i++){
-
-                holder.relative_layout_type_one.setVisibility(View.VISIBLE);
-                holder.relative_layout_type_two.setVisibility(View.GONE);
-
-                holder.textView_label.setText(dishExtrasModel.getCustom().get(i).getGroup_label());
-                holder.textView_label.setTag(position);
-
-                for(int j=0 ; j < dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().size() ; j++) {
-
-                    radioButton = new RadioButton(context);
-                    RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
-                    params.setMargins(10, 20, 20, 5);
-                    radioButton.setLayoutParams(params);
-                    radioButton.setText(dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().get(j).getDish_extra_name());
-                    radioButton.setTextSize(14);
-                    radioButton.setPadding(5, 0, 7, 0);
-                    radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
-                    radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
-                    radioButton.setId(Integer.parseInt(dishExtrasModel.getCustom().get(i).getDishCustomDataModelArrayList().get(j).getDish_extra_id()));
-                    holder.radioGroup.addView(radioButton);
-
-           /*  holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                            String selectedRadioButtonId = i + "";
-                    for(RoleSignUpItem roleSignUpItem: arraylistroleNames){
-                        if(roleSignUpItem.getId().equals(selectedId)) {
-                            //found it!
-                            spinner_role_signup.setText(roleSignUpItem.getRoleName());
-                        }
-                    }
-                        }
-                    });*/
-                }
-                break;
-            }
-
-            //TODO : Extras will be in two types
-            // 1 : Single choice
-            /*if(requestItems.get(position).getDish_extra_selection_type().equals(Constants.single_choice)){
-
-                holder.radioGroup.setVisibility(View.VISIBLE);
-                holder.checkbox_select_multiple_menu.setVisibility(View.GONE);
-               for(int i=0 ; i< requestItems.size() ; i++){
-
-                    radioButton = new RadioButton(context);
-                    RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
-                    params.setMargins(10, 20, 20, 5);
-                    radioButton.setLayoutParams(params);
-                    radioButton.setText(requestItems.get(i).getDish_extra_name());
-                    radioButton.setTextSize(14);
-                    radioButton.setPadding(5,0,7,0);
-                    radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
-                    radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
-                    radioButton.setId(Integer.parseInt(requestItems.get(i).getDish_extra_id()));
-                    holder.radioGroup.addView(radioButton);
-                }
-
-                holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        String selectedRadioButtonId = i + "";
-                   *//* for(RoleSignUpItem roleSignUpItem: arraylistroleNames){
-                        if(roleSignUpItem.getId().equals(selectedId)) {
-                            //found it!
-                            spinner_role_signup.setText(roleSignUpItem.getRoleName());
-                        }
-                    }*//*
-                    }
-                });
-
-            }else{
-                //TODO : 2 - Multi choice
-                //call adapter of multi choice
-                holder.radioGroup.setVisibility(View.GONE);
-                holder.checkbox_select_multiple_menu.setVisibility(View.VISIBLE);
-                holder.checkbox_select_multiple_menu.setText(getActivity().getResources().getString(R.string.Rs)+" "+dishExtrasModel.getDish_extra_price());
-
-                holder.checkbox_select_multiple_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                       *//* if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("0")){
-                            holder.checkbox_select_multiple_menu.setChecked(true);
-                            dishExtrasModel.setDish_extra_is_selected("1");
-                        }else if(dishExtrasModel.getDish_extra_is_selected().equalsIgnoreCase("1")){
-                            holder.checkbox_select_multiple_menu.setChecked(false);
-                            dishExtrasModel.setDish_extra_is_selected("0");
-                        }*//*
-
-                    }
-                });
-//                holder.checkbox_select_multiple_menu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//
-//                    }
-//                });
-            }*/
-
-        }
-        @Override
-        public int getItemCount() {
-            return size;
-        }
-    }
 
 
     //open new co-ordinator layout
@@ -706,20 +488,55 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
         Button button_add_to_card = (Button)view.findViewById(R.id.button_add_to_card);
         TextView textview_cancel = (TextView) view.findViewById(R.id.textview_cancel);
+        TextView textview_label_qty = (TextView) view.findViewById(R.id.textview_label_qty);
+        TextView textview_label_custom = (TextView) view.findViewById(R.id.textview_label_custom);
+
         RecyclerView recyclerView_list_popup = (RecyclerView)view.findViewById(R.id.recyclerView_list_popup);
+        RecyclerView recyclerView_Quantity = (RecyclerView)view.findViewById(R.id.recyclerView_Quantity);
+        RecyclerView recyclerView_extra = (RecyclerView)view.findViewById(R.id.recyclerView_extra);
+
         ImageView list_item_veg_menu_list_imageview_plus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_plus);
         ImageView list_item_veg_menu_list_imageview_minus = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_minus);
         final TextView list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
 
-        int size = upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getCustom().size() +
-                upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra().size() +
-                upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity().size();
-        customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel(),size);
+       /* customExtraMenuAdapter = new CustomExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel(),size);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
         recyclerView_list_popup.setLayoutManager(linearLayoutManager);
         //fragment_recent_jobs_recycler_view.addItemDecoration(new MyDividerItemDecoration(activity, LinearLayoutManager.VERTICAL, 8));
-        recyclerView_list_popup.setAdapter(customExtraMenuAdapter);
+        recyclerView_list_popup.setAdapter(customExtraMenuAdapter);*/
+
+        //custom
+        if(upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getCustom() != null && !upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getCustom().isEmpty()) {
+
+            textview_label_custom.setVisibility(View.VISIBLE);
+            customMenuAdapter = new CustomMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getCustom());
+            final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+            recyclerView_list_popup.setLayoutManager(linearLayoutManager);
+            //fragment_recent_jobs_recycler_view.addItemDecoration(new MyDividerItemDecoration(activity, LinearLayoutManager.VERTICAL, 8));
+            recyclerView_list_popup.setAdapter(customMenuAdapter);
+        }
+
+        //Quantity
+        if(upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity() != null && !upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity().isEmpty()) {
+
+            textview_label_qty.setVisibility(View.VISIBLE);
+            quantityMenuAdapter = new QuantityMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity());
+            final LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(context);
+            linearLayoutManager1.setOrientation(LinearLayout.VERTICAL);
+            recyclerView_Quantity.setLayoutManager(linearLayoutManager1);
+            recyclerView_Quantity.setAdapter(quantityMenuAdapter);
+        }
+
+        //extra
+        if(upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra() != null && !upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra().isEmpty()) {
+            extraMenuAdapter = new ExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra());
+            final LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context);
+            linearLayoutManager2.setOrientation(LinearLayout.VERTICAL);
+            recyclerView_extra.setLayoutManager(linearLayoutManager2);
+            recyclerView_extra.setAdapter(extraMenuAdapter);
+        }
 
 
         // if already present in cart
@@ -750,7 +567,15 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 //call Resto/addCart
                 String dish_qty = totalQuantityCount+"";
                 String table_id = tableNumberId;
-                String dishes_extra_id = "";
+                dishes_extra_id = "";
+                //for group of radio buttons
+                for(String str : selectedRadioButtonIdFromGroupId){
+                    selectedCheckBoxId.add(str);
+                }
+                //for single radio button
+                selectedCheckBoxId.add(selectedQuantityRadioButtonId);
+
+                dishes_extra_id = TextUtils.join(",", selectedCheckBoxId);
 
                 if (internetConnection.isNetworkAvailable(getActivity())) {
                     addMenuToCart(dish_id,dish_qty,table_id,dishes_extra_id,dialog);
@@ -799,6 +624,8 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             }
         });
     }
+
+
     //add items to cart
     private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id,final BottomSheetDialog bottomSheetDialog) {
 
@@ -807,7 +634,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_dish),dish_id);
         postParams.put(getActivity().getResources().getString(R.string.field_dish_quantity),dish_qty);
-        postParams.put(getActivity().getResources().getString(R.string.field_table),"1");
+        postParams.put(getActivity().getResources().getString(R.string.field_table),Constants.table_id);
         // send ids by comma seperated and it is optional
         postParams.put(getActivity().getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
 
@@ -815,12 +642,13 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             @Override
             public void onSuccess(String result) {
                 try {
+
+                    dishes_extra_id="";
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
                         ((ParentActivity)getActivity()).dismissProgressDialog();
                         bottomSheetDialog.dismiss();
                         Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-
                         //refresh
                         if (internetConnection.isNetworkAvailable(getActivity())) {
                             getMenuListByType();
@@ -916,5 +744,260 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
             }
         });
+    }
+
+    //TODO : adapter to set Custom value : Group of radio buttons
+    public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.ViewHolder> {
+
+        private ArrayList<DishCustomModel> requestItems;
+        private Context context;
+
+        public CustomMenuAdapter(Context context,ArrayList<DishCustomModel> requestItems) {
+            this.context = context;
+            this.requestItems = requestItems;
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            public TextView textView_label;
+            public RadioGroup radioGroup;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                textView_label = (TextView) itemView.findViewById(R.id.textview_label);
+                radioGroup = (RadioGroup) itemView.findViewById(R.id.radio_grp_select);
+
+            }
+            @Override
+            public void onClick(View v) {
+            }
+        }
+
+        @Override
+        public  CustomMenuAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View viewCustom = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_extra_menu_popup, parent, false);
+            return new CustomMenuAdapter.ViewHolder(viewCustom);
+
+        }
+
+        @Override
+        public void onBindViewHolder(final CustomMenuAdapter.ViewHolder holder,final int position) {
+            //add logic here
+            final DishCustomModel dishExtrasModel = requestItems.get(position);
+            //TODO : FOR 'CUSTOM'
+            holder.textView_label.setText(dishExtrasModel.getGroup_label());
+            //call radio buttons
+            for(int i = 0 ; i < requestItems.get(position).getDishCustomDataModelArrayList().size(); i++){
+
+                final RadioButton radioButton = new RadioButton(context);
+                RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
+                params.setMargins(5, 10, 20, 2);
+                radioButton.setLayoutParams(params);
+                radioButton.setText(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_name());
+                radioButton.setTextSize(14);
+                radioButton.setPadding(5, 0, 7, 0);
+                radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
+                radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
+                radioButton.setId(Integer.parseInt(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_id()));
+                holder.radioGroup.addView(radioButton);
+
+                radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                        if(isChecked){
+                            selectedRadioButtonIdFromGroupId.add(radioButton.getId()+"");
+                        }else {
+                            ArrayList<String> tempSelectedRadios = new ArrayList<>();
+                            tempSelectedRadios = selectedRadioButtonIdFromGroupId;
+
+                            for (int a = 0 ; a < selectedRadioButtonIdFromGroupId.size(); a++){
+                                if(selectedRadioButtonIdFromGroupId.get(a).equalsIgnoreCase(radioButton.getId()+"")){
+                                    tempSelectedRadios.remove(a);
+                                }
+                            }
+                            //selectedRadioButtonIdFromGroupId.clear();
+                            selectedRadioButtonIdFromGroupId = tempSelectedRadios;
+                        }
+
+                        for (int k = 0; k < selectedRadioButtonIdFromGroupId.size(); k++){
+                            System.out.println("selectedRadioButtonIdFromGroupId: "+selectedRadioButtonIdFromGroupId.get(k));
+                        }
+                        System.out.println("selectedRadioButtonIdFromGroupId: size "+selectedRadioButtonIdFromGroupId.size());
+                    }
+                });
+
+//                holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//                    @Override
+//                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//
+//                        System.out.println("group checked ID :" +radioGroup.getCheckedRadioButtonId());
+//                        selectedRadioButtonIdFromGroupId.add(radioGroup.getCheckedRadioButtonId()+"");
+//
+//                    }
+//                });
+            }
+        }
+        @Override
+        public int getItemCount() {
+            return requestItems.size();
+        }
+    }
+
+    //TODO 'Extra' : Single checkbox
+    public class ExtraMenuAdapter extends RecyclerView.Adapter<ExtraMenuAdapter.ViewHolder> {
+
+        private ArrayList<DishExtrasModel> requestItems;
+        private Context context;
+        ArrayList<Boolean> positionArray;
+
+        public ExtraMenuAdapter(Context context, ArrayList<DishExtrasModel> requestItems) {
+            this.context = context;
+            this.requestItems = requestItems;
+            positionArray = new ArrayList<Boolean>(requestItems.size());
+
+            for(int i =0;i<requestItems.size();i++){
+                positionArray.add(false);
+            }
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            public TextView textview_label_chk;
+            public CheckBox checkbox_select_multiple_menu;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                checkbox_select_multiple_menu = (CheckBox) itemView.findViewById(R.id.checkbox_select_multiple_menu);
+                textview_label_chk = (TextView) itemView.findViewById(R.id.textview_label_chk);
+
+            }
+
+            @Override
+            public void onClick(View v) {
+            }
+        }
+
+
+        @Override
+        public ExtraMenuAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View viewCustom = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_customise_menu_popup, parent, false);
+            return new ExtraMenuAdapter.ViewHolder(viewCustom);
+
+        }
+
+        @Override
+        public void onBindViewHolder(final ExtraMenuAdapter.ViewHolder holder, final int position) {
+            //add logic here
+            final DishExtrasModel dishExtrasModel = requestItems.get(position);
+            //holder.textview_label_chk.setText("Extras");
+            holder.checkbox_select_multiple_menu.setText(dishExtrasModel.getDish_extra_name());
+            holder.checkbox_select_multiple_menu.setTag(position);
+
+            holder.checkbox_select_multiple_menu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if (isChecked) {
+                        positionArray.set(position, true);
+                        // if(!selectedCheckBoxId.isEmpty()) {
+                        selectedCheckBoxId.add(dishExtrasModel.getDish_extra_id());
+                        //  }
+                        //dishExtrasModel.se("1");
+                        //myInterfaceFavouriteAdded.checkboxFavouriteAdded("1", commodityId);
+                    } else {
+                        positionArray.set(position, false);
+                        selectedCheckBoxId.remove(dishExtrasModel.getDish_extra_id());
+                        // completeProfileItem.setCommodity_status("0");
+                        //  myInterfaceFavouriteAdded.checkboxFavouriteAdded("0", commodityId);
+                    }
+
+                }
+            });
+
+
+        }
+        @Override
+        public int getItemCount() {
+            return requestItems.size();
+        }
+    }
+    //END
+    //TODO Quantity : Single radiobuttons
+    public class QuantityMenuAdapter extends RecyclerView.Adapter<QuantityMenuAdapter.ViewHolder> {
+
+        private ArrayList<DishExtrasModel> requestItems;
+        private Context context;
+
+        public QuantityMenuAdapter(Context context,ArrayList<DishExtrasModel> requestItems) {
+            this.context = context;
+            this.requestItems = requestItems;
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            public TextView textView_label;
+            public RadioGroup radioGroup;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                textView_label = (TextView) itemView.findViewById(R.id.textview_label);
+                radioGroup = (RadioGroup) itemView.findViewById(R.id.radio_grp_select);
+                //radioButton = new RadioButton(context);
+
+            }
+            @Override
+            public void onClick(View v) {
+            }
+        }
+
+        @Override
+        public  QuantityMenuAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View viewCustom = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_extra_menu_popup, parent, false);
+            return new QuantityMenuAdapter.ViewHolder(viewCustom);
+
+        }
+
+        @Override
+        public void onBindViewHolder(final QuantityMenuAdapter.ViewHolder holder, final int position) {
+            //add logic here
+            final DishExtrasModel dishExtrasModel = requestItems.get(position);
+            //TODO : FOR 'CUSTOM'
+
+            holder.textView_label.setText("Quantity");
+            for(int i = 0 ; i < requestItems.size(); i++){
+
+                final RadioButton radioButton = new RadioButton(context);
+                RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
+                params.setMargins(5, 10, 20, 2);
+                radioButton.setLayoutParams(params);
+                radioButton.setText(requestItems.get(i).getDish_extra_name());
+                radioButton.setTextSize(14);
+                radioButton.setPadding(5, 0, 7, 0);
+                radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
+                radioButton.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
+                radioButton.setId(Integer.parseInt(requestItems.get(i).getDish_extra_id()));
+                holder.radioGroup.addView(radioButton);
+
+                holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int position) {
+                        // String selectedRadioButtonId = i + "";
+                        selectedQuantityRadioButtonId = radioGroup.getCheckedRadioButtonId()+"";
+                        //selectedQuantityRadioButtonId= requestItems.get(i).getDish_extra_id();
+                        //System.out.println("radio : "+selectedQuantityRadioButtonId);
+                    }
+                });
+            }
+        }
+        @Override
+        public int getItemCount() {
+            return 1;
+        }
     }
 }

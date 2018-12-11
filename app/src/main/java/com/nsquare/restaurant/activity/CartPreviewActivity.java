@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,12 +43,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * Created by Pushkar on 23-04-2018.
  * Updated by Ritu Chavan on 12-06-2018.
  */
-
 public class CartPreviewActivity extends ParentActivity implements MyCartItemsListAdapter.IsQuantityChanged{
 
     private RecyclerView fragment_recent_jobs_recycler_view;
@@ -60,8 +59,9 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
     double subTotal = 0, grandTotal = 0, taxAmount = 0;
     private EditText activity_book_a_table_edittext_name, activity_book_a_table_edittext_mobile_number;
     private String mobileNumber, userName, customer_id = "", customerOrderId = "",order_id="";
-
     boolean flagisTrue=false;
+    private String cart_id ="";
+    private ArrayList<String> cartListIds = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             editor.putString(getResources().getString(R.string.sharedPreferenceRememberUsername), activity_book_a_table_edittext_name.getText().toString());
 
             editor.commit();
+
         }else {
             activity_book_a_table_edittext_name.setText(userName);
             activity_book_a_table_edittext_name.setEnabled(false);
@@ -95,17 +96,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         }
         cartPreviewActivity = this;
         MyCartItemsListAdapter.isQuantityChanged = (MyCartItemsListAdapter.IsQuantityChanged)cartPreviewActivity;
-        ///
-        //getInstance();
-        //CartItemsListAdapter.updateValuesInterface = (CartItemsListAdapter.UpdateValuesInterface) cartPreviewActivity;
-
-        //if(cartModelArrayList.size() > 0){
-       /* cartItemsListAdapter = new MyCartItemsListAdapter(CartPreviewActivity.this,cartModelArrayList);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-        fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
-        fragment_recent_jobs_recycler_view.setAdapter(cartItemsListAdapter);*/
-
 
         if(internetConnection.isNetworkAvailable(getApplicationContext())){
             fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
@@ -117,11 +107,11 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         fragment_common_list_recycler_button_place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //move to verify OTP page if first time
                 //check order-id is already present or not
                 if(order_id.isEmpty()) {
                     Intent intent = new Intent(CartPreviewActivity.this, LoginViaOTPActivity.class);
+                    intent.putExtra("cartIds",cart_id);
                     startActivity(intent);
                 }else {
                     //place order
@@ -434,7 +424,8 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                     if (jsonObject.getInt("status") == 200) {
 
                         cartModelArrayList.clear();
-
+                        cartListIds.clear();
+                        cart_id= "";
                         Gson gson = new Gson();
                         String jsonOutput = jsonString;
                         Type listType = new TypeToken<ArrayList<MyCartData>>(){}.getType();
@@ -455,10 +446,15 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                                 //swipe_refresh_layout.setRefreshing(false);
                             }
 
-                        }else {
+                            //get all cart id
+                            for(MyCartData myCartData : cartModelArrayList){
+                                cartListIds.add(myCartData.getId());
+                            }
+                            cart_id = TextUtils.join(",",cartListIds);
+                        }
                             //textview_no_record_found.setVisibility(View.VISIBLE);
                             //swipe_refresh_layout.setVisibility(View.GONE);
-                        }
+
                     }else if (jsonObject.getInt("status") == 400) {
                         Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
                     }
@@ -469,7 +465,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             }
         });
     }
-    private void sendUserOtp() {
+   /* private void sendUserOtp() {
 
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
@@ -483,10 +479,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-
-
                     if (jsonObject.getInt("status") == 200) {
-
                         String order_id = jsonObject.getString("order_id");
 
 
@@ -499,7 +492,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                 //swipe_refresh_layout.setRefreshing(false);
             }
         });
-    }
+    }*/
 
 
     private void placeOrder() {
@@ -507,23 +500,23 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
 
-        postParams.put(getResources().getString(R.string.field_order_id), mobileNumber);
-        postParams.put(getResources().getString(R.string.field_dish_id), userName);
-        postParams.put(getResources().getString(R.string.field_dish_quantity), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_order_id), order_id);
+        //postParams.put(getResources().getString(R.string.field_dish_id), userName);
+       // postParams.put(getResources().getString(R.string.field_dish_quantity), Constants.table_id);
         postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
-        postParams.put(getResources().getString(R.string.field_dishes_extra_id), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_cart_id), cart_id);
 
         APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-
-
                     if (jsonObject.getInt("status") == 200) {
-
                         String order_id = jsonObject.getString("order_id");
 
+                        editor = sharedPreferencesRemember.edit();
+                        editor.putString(getResources().getString(R.string.order_id), order_id);
+                        editor.commit();
 
                     }else if (jsonObject.getInt("status") == 400) {
                         Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
@@ -543,7 +536,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getResources().getString(R.string.field_dish),dish_id);
         postParams.put(getResources().getString(R.string.field_dish_quantity),dish_qty);
-        postParams.put(getResources().getString(R.string.field_table),"1");
+        postParams.put(getResources().getString(R.string.field_table),Constants.table_id);
         // send ids by comma seperated and it is optional
         postParams.put(getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
 
@@ -563,7 +556,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                         } else {
                             Toast.makeText(CartPreviewActivity.this, getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
                         }
-
                     }else if (jsonObject.getInt("status") == 400) {
                         dismissProgressDialog();
                         bottomSheetDialog.dismiss();

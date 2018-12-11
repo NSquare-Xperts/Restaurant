@@ -1364,6 +1364,7 @@
     <string name="getCategories">resto/getCategories</string>
     <string name="getMastervalues">getMastervalues.php</string>
     <string name="getMenuListByType">resto/getMenuListByType</string>
+    <string name="getOrderDetails">Resto/getOrderDetails</string>
     <string name="getOrderListByCustomer">getOrderListByCustomer.php</string>
     <string name="getTableList">Resto/getTableList</string>
     <string name="get_map">Get Map > </string>
@@ -1593,10 +1594,10 @@
     <string name="username_">username</string>
     <string name="validateQRCode">resto/validateQRCode</string>
     <string name="verify">Verify </string>
-    <string name="verifyOTP">Resto/verifyOTP</string>
     <string name="verify_booking">Verify Booking</string>
     <string name="verify_otp">Verify OTP</string>
     <string name="verify_phone">Verify Phone</string>
+    <string name="verifyotp">Resto/verifyOTP</string>
     <string name="view_cart">View Cart</string>
     <string name="waiterId">waiterId</string>
     <string name="waiterName">waiterName</string>

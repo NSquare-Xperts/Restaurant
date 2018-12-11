@@ -109,16 +109,17 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                 totalQuantityCount = totalQuantityCount - 1;
 
                 quantityArray[position] = String.valueOf(quantityCount[0]);
-
-                if (quantityCount[0] <= 1) {
-                    //Toast.makeText(context, "Are you sure to remove this item", Toast.LENGTH_SHORT).show();
-                    alertRemoveItem(issueItem.getId());
-                }
                 holder.list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
                 holder.list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
-                //isQuantityChanged.checkQuantityIsChangedOrNot("1");
-
-                addMenuToCart(issueItem.getDish_id(),quantityCount[0] + "", Constants.table_id,issueItem.getDish_extra_id());
+                if (quantityCount[0] == 1) {
+                    //Toast.makeText(context, "Are you sure to remove this item", Toast.LENGTH_SHORT).show();
+                    alertRemoveItem(issueItem.getDish_id());
+                }else {
+                   // holder.list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
+                    //holder.list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
+                    //isQuantityChanged.checkQuantityIsChangedOrNot("1");
+                    addMenuToCart(issueItem.getDish_id(), quantityCount[0] + "", Constants.table_id, issueItem.getDish_extra_id());
+                }
 
             }
         });
@@ -139,6 +140,20 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
 
             }
         });
+
+        //remove Item from cart
+        holder.list_item_selected_cart_menus_imageview_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertRemoveItem(issueItem.getDish_id());
+                //quantityArray[position] = "0";
+                //updateValuesInterface.onUpdateValuesInterface(quantityArray[position], position, totalQuantityCount, issueItem, issueItem.getDatabase_menu_status());
+
+               // notifyDataSetChanged();
+            }
+        });
+
 
        /* holder.list_item_veg_menu_list_imageview_minus.setOnClickListener(new View.OnClickListener() {
             @Override

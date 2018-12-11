@@ -22,10 +22,13 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
 import com.nsquare.restaurant.model.CartModel;
+import com.nsquare.restaurant.model.MyCartData;
 import com.nsquare.restaurant.model.OrderHistoryModel;
 import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.APIManager;
@@ -39,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +55,8 @@ public class OrderHistoryFragment extends Fragment {
     private RecyclerView fragment_recent_jobs_recycler_view;
     private ArrayList<OrderHistoryModel> orderHistoryModelArrayList = new ArrayList<OrderHistoryModel>();
     private InternetConnection internetConnection = new InternetConnection();
-    private String customer_id = "", customerOrderId = "";
+    //private String customer_id = "", customerOrderId = "";
+    private String order_id="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,8 +65,8 @@ public class OrderHistoryFragment extends Fragment {
 
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-        customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
-        customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+        order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
+        //customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
 
         setListValues();
 
@@ -92,7 +97,6 @@ public class OrderHistoryFragment extends Fragment {
     private void setListValues(){
 
         orderHistoryModelArrayList.clear();
-
         swipe_refresh_layout.setRefreshing(true);
 
         if(internetConnection.isNetworkAvailable(getActivity())){
@@ -104,19 +108,25 @@ public class OrderHistoryFragment extends Fragment {
 
     private void getOrderListByCustomer() {
         HashMap<String, String> postParams = new HashMap<>();
-        postParams.put(getActivity().getResources().getString(R.string.customer_id), customer_id);
-        postParams.put(getActivity().getResources().getString(R.string.customerOrderId), customerOrderId); //1 = Veg, 2 = Non Veg
-        postParams.put(getActivity().getResources().getString(R.string.apiType), getActivity().getResources().getString(R.string.order_list)); //1 = Veg, 2 = Non Veg
+        postParams.put(getActivity().getResources().getString(R.string.field_order_id), order_id);
+       // postParams.put(getActivity().getResources().getString(R.string.customerOrderId), customerOrderId); //1 = Veg, 2 = Non Veg
+       //postParams.put(getActivity().getResources().getString(R.string.apiType), getActivity().getResources().getString(R.string.order_list)); //1 = Veg, 2 = Non Veg
 
         ((ParentActivity) getActivity()).showProcessingDialog();
-        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getOrderListByCustomer), postParams, new APIManager.VolleyCallback() {
+        APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getOrderDetails), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-                        JSONArray jsonArrayMenuItems = jsonObject.getJSONArray(getResources().getString(R.string.order_list));
-                        if (jsonArrayMenuItems.length() > 0) {
+
+                        JSONArray jsonArrayMenuItems = jsonObject.getJSONArray(getResources().getString(R.string.data));
+
+                        Gson gson = new Gson();
+                        String jsonOutput = jsonObject.getString(getResources().getString(R.string.data));
+                        Type listType = new TypeToken<ArrayList<MyCartData>>(){}.getType();
+                        //cartModelArrayList = gson.fromJson(jsonOutput, listType);
+                        /* if (jsonArrayMenuItems.length() > 0) {
 
                             for (int i = 0; i < jsonArrayMenuItems.length(); i++) {
                                 JSONObject json = jsonArrayMenuItems.getJSONObject(i);
@@ -151,12 +161,12 @@ public class OrderHistoryFragment extends Fragment {
                             fragment_recent_jobs_recycler_view.setAdapter(orderHistoryAdapter);
                             fragment_recent_jobs_recycler_view.setEnabled(true);
                             swipe_refresh_layout.setRefreshing(false);
-                        }
-                    } else {
+                        }*/
+                    } /*else {
                         orderHistoryModelArrayList.clear();
                         //orderHistoryAdapter.notifyDataSetChanged();
                         Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

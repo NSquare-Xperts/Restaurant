@@ -30,10 +30,11 @@
     <string name="removeCart">Resto/removeCart</string>
     <string name="getCartList">Resto/getCartList</string>
     <string name="sendUserOTP">Resto/sendUserOTP</string>
-    <string name="verifyOTP">Resto/verifyOTP</string>
+    <string name="verifyotp">Resto/verifyOTP</string>
     <string name="placeOrder_">Resto/placeOrder</string>
 
     <string name="getCategories">resto/getCategories</string>
+    <string name="getOrderDetails">Resto/getOrderDetails</string>
     <!--<string name="getCategories">getCategories.php</string>-->
 
     <string name="placeOrder">placeOrder.php</string>

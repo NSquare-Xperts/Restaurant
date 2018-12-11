@@ -1703,6 +1703,8 @@ id quantity_label
 id qv_et_change_qty
 id radio
 id radio_grp_select
+id recyclerView_Quantity
+id recyclerView_extra
 id recyclerView_list_popup
 id recyclerview_fast_scroller
 id relative_layout_cancel
@@ -1792,6 +1794,8 @@ id textinput_error
 id textview_cancel
 id textview_label
 id textview_label_chk
+id textview_label_custom
+id textview_label_qty
 id textview_name
 id textview_no_record_found
 id textview_qty
@@ -1815,6 +1819,8 @@ id uniform
 id up
 id upper
 id useLogo
+id view1
+id view2
 id view_offset_helper
 id viewpager
 id visible
@@ -1950,6 +1956,7 @@ layout inventory_two_line_preview
 layout item_listview
 layout list_item_customise_menu_checkbox
 layout list_item_customise_menu_popup
+layout list_item_extra_menu_popup
 layout list_item_my_addresses
 layout list_item_offers
 layout list_item_order_history
@@ -1961,6 +1968,7 @@ layout list_item_tables
 layout list_item_upcoming_booking
 layout list_item_veg_menu_list
 layout list_menu_open_popup
+layout list_radio_button_item
 layout list_tab_item
 layout list_tab_item_pub_details
 layout main_layout
@@ -2219,6 +2227,7 @@ string getCartList
 string getCategories
 string getMastervalues
 string getMenuListByType
+string getOrderDetails
 string getOrderListByCustomer
 string getTableList
 string get_map
@@ -2448,10 +2457,10 @@ string username
 string username_
 string validateQRCode
 string verify
-string verifyOTP
 string verify_booking
 string verify_otp
 string verify_phone
+string verifyotp
 string view_cart
 string waiterId
 string waiterName

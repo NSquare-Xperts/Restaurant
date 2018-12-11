@@ -1,6 +1,7 @@
 package com.nsquare.restaurant.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,14 +35,14 @@ public class LoginViaOTPActivity extends ParentActivity {
     private RelativeLayout activity_login_relative_layout_otp;
     private EditText activitylogin_edittextview_mobileno,  activitylogin_edittextview_otp,activitylogin_edittextview_username;
     private String mobileno, userId, otpValue,username;
-    private SharedPreferences sharedPreferencesRemember;
+    //private SharedPreferences sharedPreferencesRemember;
     private SharedPreferences.Editor editor;
     private TextView activity_login_textView_resend_otp, activity_login_textView_label_verifyotp, activitylogin_textview;
     private CountDownTimer countDownTimer;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-
     private String otpStr="";
     private String order_id="";
+    private String cart_Ids="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,9 @@ public class LoginViaOTPActivity extends ParentActivity {
         setStatusBar();
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.verify));
         findViewById();
-        sharedPreferencesRemember = PreferenceManager.getDefaultSharedPreferences(LoginViaOTPActivity.this);
+        //sharedPreferencesRemember = PreferenceManager.getDefaultSharedPreferences(LoginViaOTPActivity.this);
 
+        cart_Ids = getIntent().getStringExtra("cartIds");
 
         activity_login_button_send_otp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,9 +182,6 @@ public class LoginViaOTPActivity extends ParentActivity {
         inputMethodManager.hideSoftInputFromWindow(new View(LoginViaOTPActivity.this).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
-
-
-
     @Override
     public void onPause() {
         super.onPause();
@@ -213,6 +212,7 @@ public class LoginViaOTPActivity extends ParentActivity {
 
                         editor = sharedPreferencesRemember.edit();
                         editor.putString(getResources().getString(R.string.order_id), order_id);
+                       // editor.apply();
                         editor.commit();
                         //save order
                         Toast.makeText(LoginViaOTPActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
@@ -231,20 +231,21 @@ public class LoginViaOTPActivity extends ParentActivity {
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
 
+
+        String order_id_ = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+
         postParams.put(getResources().getString(R.string. field_mobile), mobileno);
         postParams.put(getResources().getString(R.string. field_otp), otpValue);
-        postParams.put(getResources().getString(R.string. field_order_id),order_id);
+        postParams.put(getResources().getString(R.string. field_order_id),order_id_);
 
-        APIManager.requestPostMethod(LoginViaOTPActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
+        APIManager.requestPostMethod(LoginViaOTPActivity.this, getResources().getString(R.string.verifyotp), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-
                         placeOrder();
                         Toast.makeText(LoginViaOTPActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-
                     }else if (jsonObject.getInt("status") == 400) {
                         Toast.makeText(LoginViaOTPActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
@@ -276,32 +277,27 @@ public class LoginViaOTPActivity extends ParentActivity {
             @Override
             public void onClick(View v) {
                 alert11.dismiss();
+                Intent intent = new Intent(LoginViaOTPActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }
-
 
     private void placeOrder() {
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
 
-        postParams.put(getResources().getString(R.string.field_order_id), mobileno);
-        postParams.put(getResources().getString(R.string.field_dish_id), username);
-        postParams.put(getResources().getString(R.string.field_dish_quantity), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_order_id), order_id);
         postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
-        postParams.put(getResources().getString(R.string.field_dishes_extra_id), Constants.table_id);
+        postParams.put(getResources().getString(R.string.field_cart_id),cart_Ids);
 
-        APIManager.requestPostMethod(LoginViaOTPActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
+        APIManager.requestPostMethod(LoginViaOTPActivity.this, getResources().getString(R.string.placeOrder_), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-
-
                     if (jsonObject.getInt("status") == 200) {
-
                         alertOrderConfirmed();
-
                     }else if (jsonObject.getInt("status") == 400) {
                         Toast.makeText(LoginViaOTPActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
                     }
@@ -312,7 +308,6 @@ public class LoginViaOTPActivity extends ParentActivity {
             }
         });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

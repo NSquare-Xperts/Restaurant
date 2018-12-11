@@ -40,16 +40,16 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int scroll_bar = 0x7f0901a3;
-        public static final int scroll_handle = 0x7f0901a4;
-        public static final int section_indicator_text = 0x7f0901b0;
-        public static final int section_title_popup = 0x7f0901b1;
+        public static final int scroll_bar = 0x7f0901a5;
+        public static final int scroll_handle = 0x7f0901a6;
+        public static final int section_indicator_text = 0x7f0901b2;
+        public static final int section_title_popup = 0x7f0901b3;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int section_indicator_with_title = 0x7f0b0085;
-        public static final int vertical_recycler_fast_scroller_layout = 0x7f0b008c;
+        public static final int section_indicator_with_title = 0x7f0b0087;
+        public static final int vertical_recycler_fast_scroller_layout = 0x7f0b008e;
     }
     public static final class string {
         private string() {}

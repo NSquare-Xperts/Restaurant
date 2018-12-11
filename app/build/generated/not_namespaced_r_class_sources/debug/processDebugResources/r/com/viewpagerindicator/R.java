@@ -109,9 +109,9 @@ public final class R {
 
         public static final int bottom = 0x7f0900a0;
         public static final int none = 0x7f090169;
-        public static final int top = 0x7f0901f1;
-        public static final int triangle = 0x7f0901f9;
-        public static final int underline = 0x7f0901fa;
+        public static final int top = 0x7f0901f5;
+        public static final int triangle = 0x7f0901fd;
+        public static final int underline = 0x7f0901fe;
     }
     public static final class integer {
         private integer() {}

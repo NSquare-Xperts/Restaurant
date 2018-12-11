@@ -215,26 +215,26 @@ public final class R {
         public static final int promo_root = 0x7f090188;
         public static final int promo_subtitle = 0x7f090189;
         public static final int promo_title = 0x7f09018a;
-        public static final int right = 0x7f090197;
-        public static final int selected = 0x7f0901b3;
-        public static final int start = 0x7f0901cd;
-        public static final int test_dropin = 0x7f0901d5;
-        public static final int test_dropin_styled = 0x7f0901d6;
-        public static final int test_dropin_tag = 0x7f0901d7;
-        public static final int test_interactive = 0x7f0901d8;
-        public static final int top = 0x7f0901f1;
-        public static final int upper = 0x7f0901fd;
-        public static final int web_back = 0x7f090202;
-        public static final int web_chrome = 0x7f090203;
-        public static final int web_chrome_top = 0x7f090204;
-        public static final int web_close = 0x7f090205;
-        public static final int web_controls = 0x7f090206;
-        public static final int web_forward = 0x7f090207;
-        public static final int web_loading = 0x7f090208;
-        public static final int web_open_app = 0x7f090209;
-        public static final int web_open_app_icon = 0x7f09020a;
-        public static final int web_open_app_text = 0x7f09020b;
-        public static final int web_webview = 0x7f09020c;
+        public static final int right = 0x7f090199;
+        public static final int selected = 0x7f0901b5;
+        public static final int start = 0x7f0901cf;
+        public static final int test_dropin = 0x7f0901d7;
+        public static final int test_dropin_styled = 0x7f0901d8;
+        public static final int test_dropin_tag = 0x7f0901d9;
+        public static final int test_interactive = 0x7f0901da;
+        public static final int top = 0x7f0901f5;
+        public static final int upper = 0x7f090201;
+        public static final int web_back = 0x7f090208;
+        public static final int web_chrome = 0x7f090209;
+        public static final int web_chrome_top = 0x7f09020a;
+        public static final int web_close = 0x7f09020b;
+        public static final int web_controls = 0x7f09020c;
+        public static final int web_forward = 0x7f09020d;
+        public static final int web_loading = 0x7f09020e;
+        public static final int web_open_app = 0x7f09020f;
+        public static final int web_open_app_icon = 0x7f090210;
+        public static final int web_open_app_text = 0x7f090211;
+        public static final int web_webview = 0x7f090212;
     }
     public static final class integer {
         private integer() {}
@@ -253,26 +253,26 @@ public final class R {
         public static final int inventory_one_line = 0x7f0b0056;
         public static final int inventory_two_line = 0x7f0b0057;
         public static final int inventory_two_line_preview = 0x7f0b0058;
-        public static final int overlay_web_view = 0x7f0b007b;
-        public static final int preview_interactive = 0x7f0b007f;
-        public static final int preview_two_line = 0x7f0b0080;
-        public static final int promotion_card_product = 0x7f0b0081;
-        public static final int promotion_grouped_inventory = 0x7f0b0082;
-        public static final int test_activity_promotion = 0x7f0b008b;
+        public static final int overlay_web_view = 0x7f0b007d;
+        public static final int preview_interactive = 0x7f0b0081;
+        public static final int preview_two_line = 0x7f0b0082;
+        public static final int promotion_card_product = 0x7f0b0083;
+        public static final int promotion_grouped_inventory = 0x7f0b0084;
+        public static final int test_activity_promotion = 0x7f0b008d;
     }
     public static final class string {
         private string() {}
 
         public static final int app_name = 0x7f0e0035;
         public static final int continue_in_app = 0x7f0e006d;
-        public static final int go_to_app = 0x7f0e00d8;
-        public static final int install = 0x7f0e00f0;
-        public static final int loading_promotion = 0x7f0e0102;
-        public static final int message_waiting_to_install = 0x7f0e0110;
-        public static final int no_store_close = 0x7f0e0125;
-        public static final int no_store_message = 0x7f0e0126;
-        public static final int no_store_title = 0x7f0e0127;
-        public static final int was_installed = 0x7f0e01c2;
+        public static final int go_to_app = 0x7f0e00d9;
+        public static final int install = 0x7f0e00f1;
+        public static final int loading_promotion = 0x7f0e0103;
+        public static final int message_waiting_to_install = 0x7f0e0111;
+        public static final int no_store_close = 0x7f0e0126;
+        public static final int no_store_message = 0x7f0e0127;
+        public static final int no_store_title = 0x7f0e0128;
+        public static final int was_installed = 0x7f0e01c3;
     }
     public static final class style {
         private style() {}

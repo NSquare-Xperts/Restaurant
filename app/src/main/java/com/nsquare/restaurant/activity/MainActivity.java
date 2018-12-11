@@ -26,6 +26,7 @@ import com.nsquare.restaurant.fragment.MyAddressesFragment;
 import com.nsquare.restaurant.fragment.OrderHistoryFragment;
 import com.nsquare.restaurant.fragment.YourBookingTabsFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.nsquare.restaurant.util.Constants;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends ParentActivity
@@ -47,6 +48,7 @@ public class MainActivity extends ParentActivity
     public static Activity myActivity;
     private ImageView toolbar_title;
     private ImageView add_to_cart;
+    private String order_id_ ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,9 @@ public class MainActivity extends ParentActivity
         final String sharedPreferencefirst_name = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencefirst_name), "");
         final String sharedPreferencelast_name = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencelast_name), "");
         String sharedPreferenceprofileimage = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceprofileimage), "");
+        String tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencetableid), "");
+        order_id_ = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+        Constants.table_id =tableId;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,7 +88,6 @@ public class MainActivity extends ParentActivity
         View hView = navigationView.getHeaderView(0);
         textview_name = (TextView) hView.findViewById(R.id.textview_name);
         activity_company_sign_up_imageView_profile_pic = (CircularImageView) hView.findViewById(R.id.activity_company_sign_up_imageView_profile_pic);
-
 
         if(sharedPreferencefirst_name == null || sharedPreferencefirst_name.equalsIgnoreCase("")){
         }else {
@@ -148,10 +152,10 @@ public class MainActivity extends ParentActivity
         }else if (id == R.id.order_history) {
 
             //sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-            String customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
-            String customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
-
-            if(customer_id == null || customer_id.equalsIgnoreCase("null") || customer_id.equalsIgnoreCase("")){
+            //String order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
+            //String customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+            System.out.println("order_id_ : "+order_id_);
+            if(order_id_ == null || order_id_.equalsIgnoreCase("null") || order_id_.equalsIgnoreCase("")){
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_no_order), Toast.LENGTH_SHORT).show();
             }else{
                 toolbar_title.setVisibility(View.GONE);

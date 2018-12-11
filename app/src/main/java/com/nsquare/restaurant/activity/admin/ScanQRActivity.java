@@ -26,7 +26,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
 /**
  * Created by Pushkar on 28-08-2017.
  */
@@ -228,14 +227,14 @@ public class ScanQRActivity extends ParentActivity implements View.OnClickListen
 
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getResources().getString(R.string.field_tableNo), splittedValue[0]);
-        System.out.println("validateQRCode "+postParams.toString());
+        //System.out.println("validateQRCode "+postParams.toString());
 
         (ScanQRActivity.this).showProcessingDialog();
         APIManager.requestPostMethod(ScanQRActivity.this, getResources().getString(R.string.validateQRCode), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
-                    System.out.println("validateQRCode "+result.toString());
+                    //System.out.println("validateQRCode "+result.toString());
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getString(getResources().getString(R.string.status)).equalsIgnoreCase(getResources().getString(R.string.status200))) {
 

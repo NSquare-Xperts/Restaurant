@@ -54,7 +54,7 @@ public class LoginActivity extends ParentActivity implements View.OnClickListene
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_via_otp);
+        setContentView(R.layout.activity_login);
 
         setStatusBar();
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.button_login));
@@ -460,16 +460,19 @@ public class LoginActivity extends ParentActivity implements View.OnClickListene
 
                         if(role.equalsIgnoreCase("1")){
 
-                            finish();
-                            Intent intentMainActivity = new Intent(getApplicationContext(), AdminConfigurationActivity.class);
-                            startActivity(intentMainActivity);
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                         }else if(role.equalsIgnoreCase("2")){
 
                         }else if(role.equalsIgnoreCase("3")){
 
+                            //to scan table number
+                            finish();
+                            Intent intentMainActivity = new Intent(getApplicationContext(), AdminConfigurationActivity.class);
+                            startActivity(intentMainActivity);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                         }else if(role.equalsIgnoreCase("4")){
+                            //staff login
                             finish();
                             Intent intentMainActivity = new Intent(getApplicationContext(), WaiterMainActivity.class);
                             startActivity(intentMainActivity);
@@ -479,7 +482,6 @@ public class LoginActivity extends ParentActivity implements View.OnClickListene
                         Toast.makeText(getApplicationContext(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    System.out.println("API response exception: "+e.toString());
                     e.printStackTrace();
                 }
                 (LoginActivity.this).dismissProgressDialog();
