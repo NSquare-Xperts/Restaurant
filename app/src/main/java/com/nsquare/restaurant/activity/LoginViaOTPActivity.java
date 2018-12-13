@@ -212,7 +212,6 @@ public class LoginViaOTPActivity extends ParentActivity {
 
                         editor = sharedPreferencesRemember.edit();
                         editor.putString(getResources().getString(R.string.order_id), order_id);
-                       // editor.apply();
                         editor.commit();
                         //save order
                         Toast.makeText(LoginViaOTPActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();

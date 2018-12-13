@@ -250,7 +250,7 @@
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="colorAccent">#ff4081</color>
+    <color name="colorAccent">#F57E2E</color>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
@@ -1232,12 +1232,15 @@
     <string name="button_staff_login">Staff Login</string>
     <string name="button_submit">Submit</string>
     <string name="button_yes">YES</string>
+    <string name="by_cash">By Cash</string>
+    <string name="by_wallet">By wallet</string>
     <string name="cafe_tab">Cafe</string>
     <string name="call_flipq_support">Call FlipQ Support</string>
     <string name="call_flipq_support_message">Available 11 AM - 6 PM, 7 Days a week</string>
     <string name="camera_temp_file_error">图片错误</string>
     <string name="cancel">Cancel</string>
     <string name="cancelOrder">cancelOrder.php</string>
+    <string name="cancelOrder_">Resto/orderCancel</string>
     <string name="cancel_booking">Cancel Booking</string>
     <string name="cancel_booking_dialog_message">Are you sure you want to cancel this booking ?</string>
     <string name="canceled">CANCELED</string>
@@ -1248,6 +1251,8 @@
     <string name="categoryName">categoryName</string>
     <string name="categryId">categryId</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
+    <string name="checkout">Checkout</string>
+    <string name="choose_payment_mode">Choose Payment mode</string>
     <string name="code">code</string>
     <string name="code_1">1</string>
     <string name="code_2">2</string>
@@ -1329,6 +1334,7 @@
     <string name="field_dishes_extra_id">field_dishes_extra_id</string>
     <string name="field_fullname">field_fullname</string>
     <string name="field_menuType">field_menuType</string>
+    <string name="field_menu_order_id">field_menu_order_id</string>
     <string name="field_mobile">field_mobile</string>
     <string name="field_order_id">field_order_id</string>
     <string name="field_otp">field_otp</string>
@@ -1412,6 +1418,7 @@
     <string name="leave_a_message">Leave message for restaurant</string>
     <string name="loading_promotion" translatable="false">Loading…</string>
     <string name="londge">Londge</string>
+    <string name="makePayment">Resto/makePayment</string>
     <string name="make_payment">Make Payment</string>
     <string name="masterType">masterType</string>
     <string name="menu">MENU</string>
@@ -1430,6 +1437,7 @@
     <string name="mobile_number1">Mobile number</string>
     <string name="mobile_number_">mobile_number</string>
     <string name="mobileno">Mobile number</string>
+    <string name="mode_of_payment">Mode Of Payment</string>
     <string name="modify_booking">Modify Booking</string>
     <string name="modify_booking_dialog_message">Are you sure you want to modify this booking ?</string>
     <string name="more_info">MORE INFO</string>
@@ -1556,6 +1564,7 @@
     <string name="sub_total">sub_total</string>
     <string name="subcategoryId">subcategoryId</string>
     <string name="subcategoryName">subcategoryName</string>
+    <string name="submit">Submit</string>
     <string name="subtotal">Subtotal</string>
     <string name="tab_cuisines">CUISINES</string>
     <string name="tab_history">HISTORY</string>
@@ -1567,6 +1576,7 @@
     <string name="tableId">tableId</string>
     <string name="tableIdValues">111</string>
     <string name="tableNumber">tableNumber</string>
+    <string name="table_wise_order_id">table_wise_order_id</string>
     <string name="tables">tables</string>
     <string name="take_photo">Take a photo</string>
     <string name="taxes">Taxes</string>

@@ -17,21 +17,17 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
+import com.nsquare.restaurant.activity.CartPreviewActivity;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.activity.waiter.WaiterCartPreviewActivity;
-import com.nsquare.restaurant.activity.waiter.TableOrdersActivity;
-import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
+import com.nsquare.restaurant.activity.waiter.WaiterMainActivity;
 import com.nsquare.restaurant.adapter.waiter.TablesAdapter;
-import com.nsquare.restaurant.model.OrderHistoryModel;
 import com.nsquare.restaurant.model.TablesItem;
-import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
 import com.nsquare.restaurant.util.InternetConnection;
 import com.nsquare.restaurant.util.RecyclerItemClickListener;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
@@ -39,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WaiterTablesFragment extends Fragment {
+
     private SharedPreferences sharedPreferencesRemember;
     private TablesAdapter orderHistoryAdapter;
     private SwipeRefreshLayout swipe_refresh_layout;
@@ -46,6 +43,7 @@ public class WaiterTablesFragment extends Fragment {
     private ArrayList<TablesItem> orderHistoryModelArrayList = new ArrayList<TablesItem>();
     private InternetConnection internetConnection = new InternetConnection();
     private String customer_id = "", customerOrderId = "";
+    private SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,10 +51,6 @@ public class WaiterTablesFragment extends Fragment {
         findViewByIds(rootView);
 
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-        customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
-        customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
-
         setListValues();
 
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,11 +63,25 @@ public class WaiterTablesFragment extends Fragment {
         fragment_recent_jobs_recycler_view.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), WaiterCartPreviewActivity.class);
-                intent.putExtra(getActivity().getResources().getString(R.string.customerOrderId), orderHistoryModelArrayList.get(position).getOrder_id());
-                intent.putExtra(getActivity().getResources().getString(R.string.tableId), orderHistoryModelArrayList.get(position).getId());
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                //save order id in local db
+                if(!orderHistoryModelArrayList.get(position).getOrder_id().isEmpty()){
+
+                    editor = sharedPreferencesRemember.edit();
+                    editor.putString(getResources().getString(R.string.table_wise_order_id), orderHistoryModelArrayList.get(position).getOrder_id());
+                    // editor.apply();
+                    editor.commit();
+
+                    Intent intent = new Intent(getActivity(), MakePaymentActivity.class);
+                    intent.putExtra("orderID", orderHistoryModelArrayList.get(position).getOrder_id());
+                    intent.putExtra(Constants.statusMakePayment,Constants.statusMakePayment);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                }else {
+                    Toast.makeText(getActivity(),getResources().getString(R.string.error_no_order),Toast.LENGTH_SHORT).show();
+                }
+
             }
         }));
 
@@ -88,9 +96,7 @@ public class WaiterTablesFragment extends Fragment {
     private void setListValues(){
 
         orderHistoryModelArrayList.clear();
-
         swipe_refresh_layout.setRefreshing(false);
-
         if(internetConnection.isNetworkAvailable(getActivity())){
             getTableList();
         }else{
@@ -100,7 +106,7 @@ public class WaiterTablesFragment extends Fragment {
 
     private void getTableList() {
 
-        final String sharedPreferenceUserId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceUserId), "");
+        final String sharedPreferenceUserId = ((ParentActivity)getActivity()).sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceUserId), "");
 
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_user_id), sharedPreferenceUserId); //1 = Veg, 2 = Non Veg
@@ -146,7 +152,7 @@ public class WaiterTablesFragment extends Fragment {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("Exception: "+e.toString());
+                    //System.out.println("Exception: "+e.toString());
                 }
                 swipe_refresh_layout.setRefreshing(false);
                 ((ParentActivity) getActivity()).dismissProgressDialog();

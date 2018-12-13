@@ -22,5 +22,13 @@
 
         </group>
 
+        <group android:id="@+id/grp2">
+
+            <item
+                android:id="@+id/signout"
+                android:icon="@drawable/signout"
+                android:title="@string/signout" />
+        </group>
+
     </group>
 </menu>

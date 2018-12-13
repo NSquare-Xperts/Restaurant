@@ -25,12 +25,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.adapter.MyCartItemsListAdapter;
+import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
 import com.nsquare.restaurant.adapter.VegMenuListAdapter;
 import com.nsquare.restaurant.databasehelper.DatabaseHelper;
 import com.nsquare.restaurant.model.CartModel;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.adapter.CartItemsListAdapter;
 import com.nsquare.restaurant.model.MyCartData;
+import com.nsquare.restaurant.model.MyOrderHistory;
 import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.APIManager;
@@ -50,6 +52,7 @@ import java.util.Map;
 public class CartPreviewActivity extends ParentActivity implements MyCartItemsListAdapter.IsQuantityChanged{
 
     private RecyclerView fragment_recent_jobs_recycler_view;
+    private LinearLayout linear_layout_to_hide;
     private ArrayList<MyCartData> cartModelArrayList = new ArrayList<MyCartData>();
     private MyCartItemsListAdapter cartItemsListAdapter;
     public static CartPreviewActivity cartPreviewActivity;
@@ -62,6 +65,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
     boolean flagisTrue=false;
     private String cart_id ="";
     private ArrayList<String> cartListIds = new ArrayList<>();
+    private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<MyOrderHistory>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,14 +76,16 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.order_preview));
         findViewByIds();
 
+        fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.checkout));
         fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
         fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
 
         mobileNumber = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberMobileno),"");
         userName = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberUsername),"");
-        customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
-        customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+        //customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
+        //customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
         order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+        //tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.tableId), "");
 
         if(mobileNumber.equalsIgnoreCase(null) || mobileNumber.equalsIgnoreCase("")) {
             editor = sharedPreferencesRemember.edit();
@@ -87,7 +93,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             editor.putString(getResources().getString(R.string.sharedPreferenceRememberUsername), activity_book_a_table_edittext_name.getText().toString());
 
             editor.commit();
-
         }else {
             activity_book_a_table_edittext_name.setText(userName);
             activity_book_a_table_edittext_name.setEnabled(false);
@@ -98,7 +103,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         MyCartItemsListAdapter.isQuantityChanged = (MyCartItemsListAdapter.IsQuantityChanged)cartPreviewActivity;
 
         if(internetConnection.isNetworkAvailable(getApplicationContext())){
-            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+            //fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
             getCartList();
         }else{
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
@@ -120,13 +125,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             }
         });
 
-        fragment_common_list_recycler_button_checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //call update cart API
-               // addMenuToCart(cartModelArrayList.get(po),);
-            }
-        });
     }
 
     private void findViewByIds(){
@@ -139,6 +137,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         fragment_common_list_recycler_button_place_order = (Button) findViewById(R.id.fragment_common_list_recycler_button_place_order);
         activity_book_a_table_edittext_name = (EditText) findViewById(R.id.activity_book_a_table_edittext_name);
         activity_book_a_table_edittext_mobile_number = (EditText) findViewById(R.id.activity_book_a_table_edittext_mobile_number);
+        linear_layout_to_hide =  (LinearLayout) findViewById(R.id.relative_layout_to_hide);
     }
 
     @Override
@@ -409,7 +408,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
 
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
-
         postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
 
         APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.getCartList), postParams, new APIManager.VolleyCallback() {
@@ -452,8 +450,8 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                             }
                             cart_id = TextUtils.join(",",cartListIds);
                         }
-                            //textview_no_record_found.setVisibility(View.VISIBLE);
-                            //swipe_refresh_layout.setVisibility(View.GONE);
+                        //textview_no_record_found.setVisibility(View.VISIBLE);
+                        //swipe_refresh_layout.setVisibility(View.GONE);
 
                     }else if (jsonObject.getInt("status") == 400) {
                         Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
@@ -501,25 +499,27 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         HashMap<String, String> postParams = new HashMap<>();
 
         postParams.put(getResources().getString(R.string.field_order_id), order_id);
-        //postParams.put(getResources().getString(R.string.field_dish_id), userName);
-       // postParams.put(getResources().getString(R.string.field_dish_quantity), Constants.table_id);
         postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
         postParams.put(getResources().getString(R.string.field_cart_id), cart_id);
 
-        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.sendUserOTP), postParams, new APIManager.VolleyCallback() {
+
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.placeOrder_), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-                        String order_id = jsonObject.getString("order_id");
+                        //String order_id = jsonObject.getString("order_id");
 
-                        editor = sharedPreferencesRemember.edit();
-                        editor.putString(getResources().getString(R.string.order_id), order_id);
-                        editor.commit();
+                        //editor = sharedPreferencesRemember.edit();
+                        //editor.putString(getResources().getString(R.string.order_id), order_id);
+                        //editor.commit();
+                        Intent intent = new Intent(CartPreviewActivity.this, MakePaymentActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
 
                     }else if (jsonObject.getInt("status") == 400) {
-                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -586,5 +586,31 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
             fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
         }
+    }
+
+
+    //getOrder details
+    private void getOrderListByCustomer() {
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(getResources().getString(R.string.field_order_id), order_id);
+
+        //showProcessingDialog();
+        APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.getOrderDetails), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.getInt("status") == 200) {
+                        String jsonOutput = jsonObject.getJSONArray(Constants.data).toString();
+
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<ArrayList<MyOrderHistory>>(){}.getType();
+                        orderHistoryModelArrayList = gson.fromJson(jsonOutput, listType);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

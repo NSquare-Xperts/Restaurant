@@ -12,6 +12,35 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+        <LinearLayout
+            android:id="@+id/linearlayout_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="end">
+
+            <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+                android:id="@+id/list_item_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:gravity="end"
+                android:visibility="gone"
+                android:layout_gravity="end"
+                android:background="@color/orange"
+                android:textColor="@color/white"/>
+
+            <ImageView
+                android:id="@+id/list_item_selected_cart_menus_imageview_close_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_action_clear" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,8 +76,26 @@
                 android:id="@+id/list_item_selected_cart_menus_imageview_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_action_clear" />
+
+            <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+                android:id="@+id/list_item_status_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:gravity="end"
+                android:visibility="gone"
+                android:layout_gravity="end"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="12sp"
+                android:layout_alignParentRight="true"
+                android:background="@color/orange"
+                android:textColor="@color/white"/>
+
+
         </RelativeLayout>
 
         <RelativeLayout

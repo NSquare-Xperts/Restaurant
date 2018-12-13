@@ -12,51 +12,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
-import com.nsquare.restaurant.model.CartModel;
-import com.nsquare.restaurant.model.MyCartData;
-import com.nsquare.restaurant.model.OrderHistoryModel;
-import com.nsquare.restaurant.util.APIController;
+import com.nsquare.restaurant.model.MyOrderHistory;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
 import com.nsquare.restaurant.util.InternetConnection;
-import com.nsquare.restaurant.util.RecyclerItemClickListener;
-
 import com.nsquare.restaurant.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class OrderHistoryFragment extends Fragment {
+
     private SharedPreferences sharedPreferencesRemember;
     private OrderHistoryAdapter orderHistoryAdapter;
     private SwipeRefreshLayout swipe_refresh_layout;
+    private TextView fragment_common_list_recycler_button_view_cart;
     private RecyclerView fragment_recent_jobs_recycler_view;
-    private ArrayList<OrderHistoryModel> orderHistoryModelArrayList = new ArrayList<OrderHistoryModel>();
+    private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<MyOrderHistory>();
     private InternetConnection internetConnection = new InternetConnection();
-    //private String customer_id = "", customerOrderId = "";
     private String order_id="";
+    private TextView textview_make_payment;
+    private RelativeLayout relative_layout_checkout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,10 +51,10 @@ public class OrderHistoryFragment extends Fragment {
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
-        //customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
-
         setListValues();
+        relative_layout_checkout.setVisibility(View.VISIBLE);
 
+        textview_make_payment.setText(getResources().getString(R.string.make_payment));
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -77,14 +62,14 @@ public class OrderHistoryFragment extends Fragment {
             }
         });
 
-        fragment_recent_jobs_recycler_view.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+        relative_layout_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), MakePaymentActivity.class);
+            public void onClick(View view) {
+
+                Intent intent= new Intent(getActivity(),MakePaymentActivity.class);
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
-        }));
+        });
 
         return rootView;
     }
@@ -92,13 +77,17 @@ public class OrderHistoryFragment extends Fragment {
     private void findViewByIds(View view){
         fragment_recent_jobs_recycler_view = (RecyclerView) view.findViewById(R.id.fragment_recent_jobs_recycler_view);
         swipe_refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+        fragment_common_list_recycler_button_view_cart = (TextView) view.findViewById(R.id.fragment_common_list_recycler_button_view_cart);
+        textview_make_payment = (TextView) view.findViewById(R.id.textview_make_payment);
+        relative_layout_checkout = (RelativeLayout) view.findViewById(R.id.relative_layout_checkout);
     }
 
     private void setListValues(){
 
         orderHistoryModelArrayList.clear();
-        swipe_refresh_layout.setRefreshing(true);
 
+        swipe_refresh_layout.setVisibility(View.VISIBLE);
+        swipe_refresh_layout.setRefreshing(true);
         if(internetConnection.isNetworkAvailable(getActivity())){
             getOrderListByCustomer();
         }else{
@@ -109,8 +98,6 @@ public class OrderHistoryFragment extends Fragment {
     private void getOrderListByCustomer() {
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getActivity().getResources().getString(R.string.field_order_id), order_id);
-       // postParams.put(getActivity().getResources().getString(R.string.customerOrderId), customerOrderId); //1 = Veg, 2 = Non Veg
-       //postParams.put(getActivity().getResources().getString(R.string.apiType), getActivity().getResources().getString(R.string.order_list)); //1 = Veg, 2 = Non Veg
 
         ((ParentActivity) getActivity()).showProcessingDialog();
         APIManager.requestPostMethod(getActivity(), getResources().getString(R.string.getOrderDetails), postParams, new APIManager.VolleyCallback() {
@@ -119,33 +106,16 @@ public class OrderHistoryFragment extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-
-                        JSONArray jsonArrayMenuItems = jsonObject.getJSONArray(getResources().getString(R.string.data));
+                        String jsonOutput = jsonObject.getJSONArray(Constants.data).toString();
 
                         Gson gson = new Gson();
-                        String jsonOutput = jsonObject.getString(getResources().getString(R.string.data));
-                        Type listType = new TypeToken<ArrayList<MyCartData>>(){}.getType();
-                        //cartModelArrayList = gson.fromJson(jsonOutput, listType);
-                        /* if (jsonArrayMenuItems.length() > 0) {
+                        Type listType = new TypeToken<ArrayList<MyOrderHistory>>(){}.getType();
+                        orderHistoryModelArrayList = gson.fromJson(jsonOutput, listType);
+                        if (orderHistoryModelArrayList.size() > 0) {
 
-                            for (int i = 0; i < jsonArrayMenuItems.length(); i++) {
-                                JSONObject json = jsonArrayMenuItems.getJSONObject(i);
-                                String order_id = json.getString(getActivity().getResources().getString(R.string.order_id));
-                                String order_unique_id = json.getString(getActivity().getResources().getString(R.string.order_unique_id));
+                            swipe_refresh_layout.setRefreshing(false);
 
-                                String total_amount = "";
-                                if (json.getInt("order_status") == 0) {
-                                    total_amount = json.getString(getActivity().getResources().getString(R.string.sub_total));
-                                } else if (json.getInt("order_status") == 3) {
-                                    total_amount = json.getString(getActivity().getResources().getString(R.string.total_amount));
-                                }
-                                String order_status = json.getString(getActivity().getResources().getString(R.string.order_status));
-                                String created_at = json.getString(getActivity().getResources().getString(R.string.created_at));
-
-                                orderHistoryModelArrayList.add(new OrderHistoryModel(order_id, order_unique_id, total_amount, order_status, created_at));
-                            }
-
-                            orderHistoryAdapter = new OrderHistoryAdapter(getActivity(), orderHistoryModelArrayList, getActivity());
+                            orderHistoryAdapter = new OrderHistoryAdapter(getActivity(), orderHistoryModelArrayList);
                             final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                             linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
                             fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
@@ -153,20 +123,11 @@ public class OrderHistoryFragment extends Fragment {
                             fragment_recent_jobs_recycler_view.setEnabled(true);
                             swipe_refresh_layout.setRefreshing(false);
 
-                        } else {
-                            orderHistoryAdapter = new OrderHistoryAdapter(getActivity(), orderHistoryModelArrayList, getActivity());
-                            final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                            linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-                            fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
-                            fragment_recent_jobs_recycler_view.setAdapter(orderHistoryAdapter);
-                            fragment_recent_jobs_recycler_view.setEnabled(true);
-                            swipe_refresh_layout.setRefreshing(false);
-                        }*/
-                    } /*else {
-                        orderHistoryModelArrayList.clear();
-                        //orderHistoryAdapter.notifyDataSetChanged();
-                        Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-                    }*/
+                        }else {
+                            Toast.makeText(getActivity(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

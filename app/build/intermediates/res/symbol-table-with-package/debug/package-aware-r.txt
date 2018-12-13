@@ -1226,6 +1226,7 @@ drawable notification_bg_low_normal
 drawable notification_bg_low_pressed
 drawable notification_bg_normal
 drawable notification_bg_normal_pressed
+drawable notification_circle
 drawable notification_icon_background
 drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
@@ -1476,11 +1477,13 @@ id btn_preview_title
 id btn_texts
 id buttonPanel
 id button_add
+id button_add_more
 id button_add_new
 id button_add_to_card
 id button_cancel
 id button_popup_no
 id button_popup_ok
+id button_popup_submit
 id button_popup_yes
 id button_repeat_last
 id buymyrequirement_button_cancel
@@ -1504,6 +1507,7 @@ id container_body
 id contentPanel
 id content_home
 id coordinator
+id counterValuePanel
 id custom
 id customPanel
 id decor_content_parent
@@ -1569,6 +1573,7 @@ id group_items
 id group_items_scroller
 id grp
 id grp10
+id grp2
 id home
 id homeAsUp
 id icon
@@ -1606,6 +1611,7 @@ id line3
 id linearLayout_mobile_no
 id linearlayout
 id linearlayout_bottom_view
+id linearlayout_cart
 id linearlayout_static_data
 id linearlayout_veg_menu_list_item
 id linearlayout_viewpager
@@ -1623,6 +1629,7 @@ id list_item_reviews_textview_person_name
 id list_item_reviews_textview_review
 id list_item_reviews_textview_time
 id list_item_selected_cart_menus_imageview_close
+id list_item_selected_cart_menus_imageview_close_top
 id list_item_selected_cart_menus_textview_multiply
 id list_item_speakers_imageview_profile_pic
 id list_item_speakers_textview_address
@@ -1631,6 +1638,8 @@ id list_item_speakers_textview_dishes
 id list_item_speakers_textview_order_online
 id list_item_speakers_textview_rate
 id list_item_speakers_textview_restro_name
+id list_item_status
+id list_item_status_bottom
 id list_item_tables_table_number
 id list_item_upcoming_booking_imageview_profile_pic
 id list_item_upcoming_booking_textview_address
@@ -1702,6 +1711,8 @@ id promo_title
 id quantity_label
 id qv_et_change_qty
 id radio
+id radio_by_cash
+id radio_by_wallet
 id radio_grp_select
 id recyclerView_Quantity
 id recyclerView_extra
@@ -1711,6 +1722,7 @@ id relative_layout_cancel
 id relative_layout_checkout
 id relative_layout_common_list_recycler
 id relative_layout_see_all_prate
+id relative_layout_to_hide
 id relative_layout_type_one
 id relative_layout_type_two
 id right
@@ -1796,6 +1808,7 @@ id textview_label
 id textview_label_chk
 id textview_label_custom
 id textview_label_qty
+id textview_make_payment
 id textview_name
 id textview_no_record_found
 id textview_qty
@@ -1939,6 +1952,7 @@ layout design_text_input_password_icon
 layout dialog_modify_booking
 layout dialog_oder_confirmed
 layout dialog_remove_item
+layout dialogbox_payment_mode
 layout fragment_add_customization_dialog
 layout fragment_address_book
 layout fragment_bottom_sheet_dialog
@@ -1963,6 +1977,7 @@ layout list_item_order_history
 layout list_item_photos
 layout list_item_reviews
 layout list_item_selected_cart_menus
+layout list_item_show_order_history_menu
 layout list_item_speakers
 layout list_item_tables
 layout list_item_upcoming_booking
@@ -2095,12 +2110,15 @@ string button_signup
 string button_staff_login
 string button_submit
 string button_yes
+string by_cash
+string by_wallet
 string cafe_tab
 string call_flipq_support
 string call_flipq_support_message
 string camera_temp_file_error
 string cancel
 string cancelOrder
+string cancelOrder_
 string cancel_booking
 string cancel_booking_dialog_message
 string canceled
@@ -2111,6 +2129,8 @@ string categoryId
 string categoryName
 string categryId
 string character_counter_pattern
+string checkout
+string choose_payment_mode
 string code
 string code_1
 string code_2
@@ -2192,6 +2212,7 @@ string field_dish_quantity
 string field_dishes_extra_id
 string field_fullname
 string field_menuType
+string field_menu_order_id
 string field_mobile
 string field_order_id
 string field_otp
@@ -2275,6 +2296,7 @@ string last_name_title
 string leave_a_message
 string loading_promotion
 string londge
+string makePayment
 string make_payment
 string masterType
 string menu
@@ -2293,6 +2315,7 @@ string mobile_number
 string mobile_number1
 string mobile_number_
 string mobileno
+string mode_of_payment
 string modify_booking
 string modify_booking_dialog_message
 string more_info
@@ -2419,6 +2442,7 @@ string subCategoryId
 string sub_total
 string subcategoryId
 string subcategoryName
+string submit
 string subtotal
 string tab_cuisines
 string tab_history
@@ -2430,6 +2454,7 @@ string tab_veg
 string tableId
 string tableIdValues
 string tableNumber
+string table_wise_order_id
 string tables
 string take_photo
 string taxes

@@ -1,5 +1,8 @@
 package com.nsquare.restaurant.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 /**
  * Created by Pushkar on 07-09-2017.
  */
@@ -13,6 +16,9 @@ public class MyOrderHistory {
     public String discount_amount;
     public String tax_amount;
     public String total_amount;
+
+    @SerializedName("order_menu_details")
+    public ArrayList<OrderMenuDetails> arrayList_order_menu_details = new ArrayList();
 
     public String getId() {
         return id;
@@ -76,5 +82,14 @@ public class MyOrderHistory {
 
     public void setTotal_amount(String total_amount) {
         this.total_amount = total_amount;
+    }
+
+
+    public ArrayList<OrderMenuDetails> getArrayList_order_menu_details() {
+        return arrayList_order_menu_details;
+    }
+
+    public void setArrayList_order_menu_details(ArrayList<OrderMenuDetails> arrayList_order_menu_details) {
+        this.arrayList_order_menu_details = arrayList_order_menu_details;
     }
 }

@@ -28,13 +28,36 @@
                 android:layout_gravity="center"
                 android:id="@+id/toolbar_title" />
 
-            <ImageView
+            <RelativeLayout
+                android:id="@+id/counterValuePanel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/cart_icon"
-                android:layout_gravity="center|end"
-                android:layout_marginRight="10dp"
-                android:id="@+id/add_to_cart" />
+                android:layout_gravity="right">
+
+               <!-- <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/counterBackground"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/notification_circle" />
+
+                <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/blue"
+                    android:text="1111111111"
+                    android:textSize="8sp" />-->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cart_icon"
+                    android:layout_gravity="center|end"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/add_to_cart" />
+
+            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 

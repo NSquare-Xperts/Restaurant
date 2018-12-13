@@ -90,6 +90,8 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
 
     public HomeFragment() {
         // Required empty public constructor
+
+
     }
 
     @Override
@@ -115,7 +117,7 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
         WheelCarousel.updateHomepageCategoryTitle = (WheelCarousel.UpdateHomepageCategoryTitle) collapsingActivity;
 
         if (internetConnection.isNetworkAvailable(getActivity())) {
-            System.out.println("call getCategory api");
+            //System.out.println("call getCategory api");
             getCategories();
         } else {
             Toast.makeText(getActivity(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();

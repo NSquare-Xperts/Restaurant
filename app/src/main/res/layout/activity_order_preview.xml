@@ -6,18 +6,17 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-
     <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
         android:id="@+id/fragment_common_list_recycler_button_place_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/place_order"
+        android:text="@string/make_payment"
         android:background="@drawable/selector_button_send_booking_request"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="16dp"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
         android:id="@+id/fragment_common_list_recycler_button_checkout"
@@ -31,24 +30,35 @@
         android:layout_alignParentBottom="true"
         android:visibility="gone"/>
 
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/fragment_common_list_recycler_button_place_order">
 
         <LinearLayout
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingBottom="12dp">
+
+            <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+                android:id="@+id/button_add_more"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Add More"
+                android:textColor="@color/white"
+                android:layout_gravity="end"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:background="@color/orange"/>
 
             <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:text="@string/your_preorder_details"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"/>
@@ -154,95 +164,100 @@
                 android:background="@drawable/separate_line"
                 android:layout_marginTop="8dp"></View>
 
-            <RelativeLayout
+
+            <LinearLayout
+                android:id="@+id/relative_layout_to_hide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:padding="5dp">
-
-                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
-                    android:layout_width="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:text="@string/subtotal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
+                    android:visibility="visible"
+                    android:padding="5dp">
 
-                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
-                    android:id="@+id/activity_order_preview_textview_subtotal"
-                    android:layout_width="wrap_content"
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:text="@string/subtotal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
+
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/activity_order_preview_textview_subtotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:text=""
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:layout_alignParentRight="true"
-                    android:text=""
+                    android:visibility="visible"
+                    android:padding="5dp">
 
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
-            </RelativeLayout>
+                    <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:text="@string/taxes"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="5dp">
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/activity_order_preview_textview_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:text=""
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
+                </RelativeLayout>
 
-                <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:text="@string/taxes"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
+                    android:background="@drawable/separate_line"
+                    android:layout_marginTop="8dp"></View>
 
-                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
-                    android:id="@+id/activity_order_preview_textview_tax"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:layout_alignParentRight="true"
-                    android:text=""
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
-            </RelativeLayout>
+                    android:visibility="visible"
+                    android:padding="5dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/separate_line"
-                android:layout_marginTop="8dp"></View>
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:text="@string/grandtotal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="5dp">
-
-                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:text="@string/grandtotal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
-
-                <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
-                    android:id="@+id/activity_order_preview_textview_grand_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:layout_alignParentRight="true"
-                    android:text=""
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"/>
-            </RelativeLayout>
-
+                    <com.nsquare.restaurant.util.RobotoBold.TextViewRoboto
+                        android:id="@+id/activity_order_preview_textview_grand_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:text=""
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"/>
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </RelativeLayout>

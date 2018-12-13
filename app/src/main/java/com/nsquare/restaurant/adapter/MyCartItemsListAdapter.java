@@ -18,6 +18,8 @@ import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.model.CartModel;
 import com.nsquare.restaurant.model.MyCartData;
+import com.nsquare.restaurant.model.MyOrderDetails;
+import com.nsquare.restaurant.model.MyOrderHistory;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
 import com.squareup.picasso.Picasso;
@@ -26,7 +28,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * Created by Pushkar on 07-09-2017.
  * Updated by Ritu Chavan on 06-12-2018.
@@ -34,9 +35,10 @@ import java.util.HashMap;
 public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsListAdapter.MyViewHolder> {
 
     private ArrayList<MyCartData> upcomingYourBookingModelArrayList;
+    //private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<>();
     private String[] quantityArray;
     private Context context;
-   // public static UpdateValuesInterface updateValuesInterface;
+    //private String isComingFrom;
     public static IsQuantityChanged isQuantityChanged;
     private int totalQuantityCount = 0;
 
@@ -53,6 +55,10 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
         public ImageView list_item_veg_menu_list_imageview_minus, list_item_veg_menu_list_imageview_plus, list_item_veg_menu_list_imageview_plus_general,
                 list_item_selected_cart_menus_imageview_close;
 
+        public TextView list_item_status_bottom;
+        public ImageView list_item_selected_cart_menus_imageview_close_top;
+        public TextView list_item_status;
+
         public MyViewHolder(View view) {
             super(view);
             list_item_veg_menu_list_imageview_profile_pic = (ImageView) view.findViewById(R.id.list_item_veg_menu_list_imageview_profile_pic);
@@ -61,6 +67,11 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
             list_item_veg_menu_list_textview_total = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_total);
             list_item_veg_menu_list_textview_menu_description = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_menu_description);
             list_item_veg_menu_list_textview_quantity = (TextView) view.findViewById(R.id.list_item_veg_menu_list_textview_quantity);
+
+            list_item_status_bottom = (TextView) view.findViewById(R.id.list_item_status_bottom);
+            list_item_selected_cart_menus_imageview_close_top = (ImageView) view.findViewById(R.id.list_item_selected_cart_menus_imageview_close_top);
+            list_item_status = (TextView) view.findViewById(R.id.list_item_status);
+
             //list_item_veg_menu_list_imageview_add_general = (TextView) view.findViewById(R.id.list_item_veg_menu_list_imageview_add_general);
             //list_item_veg_menu_list_linearlayout_add_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_add_view);
             list_item_veg_menu_list_linearlayout_count_view = (LinearLayout) view.findViewById(R.id.list_item_veg_menu_list_linearlayout_count_view);
@@ -74,6 +85,8 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
     public MyCartItemsListAdapter(Context context, ArrayList<MyCartData> upcomingYourBookingModelArrayList) {
         this.upcomingYourBookingModelArrayList = upcomingYourBookingModelArrayList;
         this.context = context;
+        //this.isComingFrom = isComingFrom;
+        //this.orderHistoryModelArrayList = orderHistoryModelArrayList;
         quantityArray = new String[upcomingYourBookingModelArrayList.size()];
         totalQuantityCount = 0;
     }
@@ -92,6 +105,29 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
         /*if (issueItem.getDatabase_menu_image().equalsIgnoreCase("")) {
         } else {
             Picasso.with(context).load(issueItem.getDatabase_menu_image()).placeholder(R.drawable.app_icon).into(holder.list_item_veg_menu_list_imageview_profile_pic);
+        }*/
+       /* if (isComingFrom.equalsIgnoreCase(Constants.order_history)){
+            holder.list_item_veg_menu_list_imageview_minus.setEnabled(false);
+            holder.list_item_veg_menu_list_imageview_plus.setEnabled(false);
+
+            // status "is_processed": 0=Pending, 1=Cooking, 2=Cancelled, 3=Delivered
+            if(orderHistoryModelArrayList.get(position).getArrayList_order_menu_details().get(position).getIs_processed().equalsIgnoreCase("0")){
+
+                holder.list_item_selected_cart_menus_imageview_close_top.setVisibility(View.VISIBLE);
+                holder.list_item_selected_cart_menus_imageview_close.setVisibility(View.GONE);
+                holder.list_item_status.setVisibility(View.GONE);
+                holder.list_item_status_bottom.setVisibility(View.VISIBLE);
+
+            }else{
+
+                holder.list_item_selected_cart_menus_imageview_close_top.setVisibility(View.GONE);
+                holder.list_item_selected_cart_menus_imageview_close.setVisibility(View.GONE);
+                holder.list_item_status.setVisibility(View.GONE);
+                holder.list_item_status_bottom.setVisibility(View.VISIBLE);
+            }
+
+
+
         }*/
         holder.list_item_veg_menu_list_textview_menu_name.setText(issueItem.getDish_name());
         holder.list_item_veg_menu_list_textview_menu_price.setText(context.getResources().getString(R.string.Rs) + " " + issueItem.getDish_price());

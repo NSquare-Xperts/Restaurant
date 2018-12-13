@@ -17,6 +17,7 @@ public class DishExtrasModel {
     private String dish_extra_price;
     private String dish_extra_is_chargeable;
     private String dish_extra_selection_type;
+    private String dish_extra_selected;
 
     public String getDish_extra_id() {
         return dish_extra_id;
@@ -75,7 +76,15 @@ public class DishExtrasModel {
         this.group_label = group_label;
     }
 
-    public DishExtrasModel(String dish_extra_id, String dish_extra_name, String dish_extra_price, String dish_extra_is_chargeable, String dish_extra_selection_type, String group_id, String group_label) {
+    public String getDish_extra_selected() {
+        return dish_extra_selected;
+    }
+
+    public void setDish_extra_selected(String dish_extra_selected) {
+        this.dish_extra_selected = dish_extra_selected;
+    }
+
+    public DishExtrasModel(String dish_extra_id, String dish_extra_name, String dish_extra_price, String dish_extra_is_chargeable, String dish_extra_selection_type, String group_id, String group_label, String dish_extra_selected) {
         this.dish_extra_id = dish_extra_id;
         this.dish_extra_name = dish_extra_name;
         this.dish_extra_price = dish_extra_price;
@@ -83,7 +92,7 @@ public class DishExtrasModel {
         this.dish_extra_selection_type = dish_extra_selection_type;
         this.group_id = group_id;
         this.group_label = group_label;
-        //this.dish_extra_is_selected = dish_extra_is_selected;
+        this.dish_extra_selected = dish_extra_selected;
     }
 }
 

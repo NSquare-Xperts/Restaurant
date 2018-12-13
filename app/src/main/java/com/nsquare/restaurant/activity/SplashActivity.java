@@ -75,7 +75,7 @@ public class SplashActivity extends ParentActivity {
 
                     }else if(sharedPreferencerole.equalsIgnoreCase("4")){
                         finish();
-                        Intent intentMainActivity = new Intent(getApplicationContext(), WaiterMainActivity.class);
+                        Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intentMainActivity);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }

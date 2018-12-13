@@ -53,6 +53,7 @@
         android:layout_alignParentBottom="true">
 
         <com.nsquare.restaurant.util.RobotoMedium.TextViewRoboto
+            android:id="@+id/textview_make_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Checkout"

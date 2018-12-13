@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\b2f84382e2b501e849ff98b21edfe568\AndroidManifest.xml:17:1-22:12
 MERGED from [com.zfdang.multiple-images-selector:multiple-images-selector:1.1.3] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\multiple-images-selector-1.1.3.aar\94ff03adcbf92637098d41ca41334a1e\AndroidManifest.xml:2:1-17:12
 MERGED from [me.himanshusoni.quantityview:quantity-view:1.2.0] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\quantity-view-1.2.0.aar\52b3b2b3ba38e94e52355c718c27bd34\AndroidManifest.xml:2:1-16:12
@@ -41,20 +41,20 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Nsquare Android\.gra
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\98f04605af2aae3d13665ad840791560\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\d4c55a97aa35eacc55661927ccef2d29\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\0d2b7819603430dc4c9353848132a75d\AndroidManifest.xml:17:1-22:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
-INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
+INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
 	package
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:3:5-37
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-201:12
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:1-212:12
 		INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:2:11-69
@@ -89,7 +89,7 @@ ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:11:5
 	android:name
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:11:22-72
 application
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:13:5-198:19
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:13:5-209:19
 MERGED from [com.zfdang.multiple-images-selector:multiple-images-selector:1.1.3] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\multiple-images-selector-1.1.3.aar\94ff03adcbf92637098d41ca41334a1e\AndroidManifest.xml:11:5-15:19
 MERGED from [com.zfdang.multiple-images-selector:multiple-images-selector:1.1.3] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\multiple-images-selector-1.1.3.aar\94ff03adcbf92637098d41ca41334a1e\AndroidManifest.xml:11:5-15:19
 MERGED from [me.himanshusoni.quantityview:quantity-view:1.2.0] C:\Users\Nsquare Android\.gradle\caches\transforms-1\files-1.1\quantity-view-1.2.0.aar\52b3b2b3ba38e94e52355c718c27bd34\AndroidManifest.xml:11:5-14:19
@@ -192,192 +192,202 @@ ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:63:9
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:66:13-56
 	android:name
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:64:13-72
+activity#com.nsquare.restaurant.activity.waiter.WaiterCartPreviewActivity
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:71:9-75:63
+	android:screenOrientation
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:73:13-49
+	android:windowSoftInputMode
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:75:13-60
+	android:theme
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:74:13-56
+	android:name
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:72:13-92
 activity#com.nsquare.restaurant.activity.waiter.WaiterMainActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:69:9-73:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:80:9-84:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:71:13-49
-	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:73:13-60
-	android:theme
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:72:13-56
-	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:70:13-85
-activity#com.nsquare.restaurant.activity.SignUpAndLoginDecisionActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:75:9-79:63
-	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:77:13-49
-	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:79:13-60
-	android:theme
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:78:13-56
-	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:76:13-90
-activity#com.nsquare.restaurant.activity.MenuListActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:81:9-84:63
-	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:83:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:82:13-49
 	android:windowSoftInputMode
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:84:13-60
+	android:theme
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:83:13-56
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:82:13-76
-activity#com.nsquare.restaurant.activity.waiter.TableOrdersActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:86:9-89:63
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:81:13-85
+activity#com.nsquare.restaurant.activity.SignUpAndLoginDecisionActivity
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:86:9-90:63
 	android:screenOrientation
 		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:88:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:89:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:90:13-60
+	android:theme
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:89:13-56
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:87:13-86
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:87:13-90
+activity#com.nsquare.restaurant.activity.MenuListActivity
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:92:9-95:63
+	android:screenOrientation
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:94:13-49
+	android:windowSoftInputMode
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:95:13-60
+	android:name
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:93:13-76
+activity#com.nsquare.restaurant.activity.waiter.TableOrdersActivity
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:97:9-100:63
+	android:screenOrientation
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:99:13-49
+	android:windowSoftInputMode
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:100:13-60
+	android:name
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:98:13-86
 activity#com.nsquare.restaurant.activity.RestroDetailsActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:91:9-94:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:102:9-105:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:93:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:104:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:94:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:105:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:92:13-81
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:103:13-81
 activity#com.nsquare.restaurant.activity.BookATableActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:96:9-99:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:107:9-110:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:98:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:109:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:99:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:110:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:97:13-78
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:108:13-78
 activity#com.nsquare.restaurant.activity.VerifyPhoneActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:101:9-104:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:112:9-115:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:103:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:114:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:104:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:115:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:102:13-79
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:113:13-79
 activity#com.nsquare.restaurant.activity.VerifyOTPActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:106:9-109:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:117:9-120:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:108:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:119:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:109:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:120:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:107:13-77
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:118:13-77
 activity#com.nsquare.restaurant.activity.YourBookingDetailsActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:111:9-114:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:122:9-125:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:113:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:124:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:114:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:125:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:112:13-86
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:123:13-86
 activity#com.nsquare.restaurant.activity.ViewProfileActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:116:9-119:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:127:9-130:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:118:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:129:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:119:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:130:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:117:13-79
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:128:13-79
 activity#com.nsquare.restaurant.activity.EditProfileActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:121:9-124:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:132:9-135:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:123:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:134:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:124:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:135:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:122:13-79
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:133:13-79
 activity#com.nsquare.restaurant.activity.AddNewAddressActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:126:9-129:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:137:9-140:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:128:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:139:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:129:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:140:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:127:13-81
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:138:13-81
 activity#com.nsquare.restaurant.activity.AddReviewActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:131:9-134:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:142:9-145:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:133:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:144:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:134:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:145:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:132:13-77
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:143:13-77
 activity#com.nsquare.restaurant.activity.AllReviewsActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:136:9-139:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:147:9-150:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:138:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:149:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:139:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:150:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:137:13-78
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:148:13-78
 activity#com.nsquare.restaurant.activity.TestingActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:141:9-144:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:152:9-155:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:143:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:154:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:144:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:155:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:142:13-75
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:153:13-75
 activity#com.nsquare.restaurant.activity.ReviewBookATableActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:146:9-149:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:157:9-160:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:148:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:159:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:149:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:160:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:147:13-84
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:158:13-84
 activity#com.nsquare.restaurant.activity.CartPreviewActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:151:9-154:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:162:9-165:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:153:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:164:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:154:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:165:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:152:13-79
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:163:13-79
 activity#com.nsquare.restaurant.activity.MakePaymentActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:156:9-159:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:167:9-170:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:158:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:169:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:159:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:170:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:157:13-79
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:168:13-79
 activity#com.zfdang.multiple_images_selector.ImagesSelectorActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:161:9-166:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:172:9-177:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:165:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:176:13-49
 	android:hardwareAccelerated
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:164:13-48
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:175:13-48
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:166:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:177:13-60
 	android:configChanges
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:163:13-59
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:174:13-59
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:162:13-86
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:173:13-86
 activity#com.nsquare.restaurant.activity.admin.AdminConfigurationActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:168:9-171:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:179:9-182:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:170:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:181:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:171:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:182:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:169:13-92
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:180:13-92
 activity#com.nsquare.restaurant.activity.admin.ScanQRActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:173:9-176:63
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:184:9-187:63
 	android:screenOrientation
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:175:13-49
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:186:13-49
 	android:windowSoftInputMode
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:176:13-60
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:187:13-60
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:174:13-80
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:185:13-80
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:179:9-181:55
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:190:9-192:55
 	android:value
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:181:13-52
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:192:13-52
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:180:13-58
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:191:13-58
 activity#com.facebook.FacebookActivity
-ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:183:9-66
+ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:194:9-66
 	android:name
-		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:183:19-63
+		ADDED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml:194:19-63
 uses-sdk
 INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from F:\Restaurant\Self-Order-master\app\src\main\AndroidManifest.xml

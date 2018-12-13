@@ -1,6 +1,5 @@
 package com.nsquare.restaurant.activity;
 
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -19,13 +18,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.fragment.HomeFragment;
-import com.nsquare.restaurant.fragment.MyAddressesFragment;
 import com.nsquare.restaurant.fragment.OrderHistoryFragment;
-import com.nsquare.restaurant.fragment.YourBookingTabsFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.nsquare.restaurant.fragment.waiter.WaiterTablesFragment;
 import com.nsquare.restaurant.util.Constants;
 import com.squareup.picasso.Picasso;
 
@@ -48,7 +45,8 @@ public class MainActivity extends ParentActivity
     public static Activity myActivity;
     private ImageView toolbar_title;
     private ImageView add_to_cart;
-    private String order_id_ ="";
+    private String sharedPreferencerole = "";
+    private String order_id_ = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,11 @@ public class MainActivity extends ParentActivity
         setSupportActionBar(toolbar);
         setStatusBar();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        String tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencetableid), "");
+        order_id_ = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+        Constants.table_id =tableId;
+
 //        setActionBarCustomWithBackLeftText(getResources().getString(R.string.app_name));
 //        setActionBarCustomWithoutBack(getResources().getString(R.string.app_name));
         fragmentManager = getSupportFragmentManager();
@@ -68,10 +71,8 @@ public class MainActivity extends ParentActivity
         final String sharedPreferenceUserId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceUserId), "");
         final String sharedPreferencefirst_name = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencefirst_name), "");
         final String sharedPreferencelast_name = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencelast_name), "");
+        sharedPreferencerole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
         String sharedPreferenceprofileimage = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceprofileimage), "");
-        String tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencetableid), "");
-        order_id_ = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
-        Constants.table_id =tableId;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,14 +90,14 @@ public class MainActivity extends ParentActivity
         textview_name = (TextView) hView.findViewById(R.id.textview_name);
         activity_company_sign_up_imageView_profile_pic = (CircularImageView) hView.findViewById(R.id.activity_company_sign_up_imageView_profile_pic);
 
+
         if(sharedPreferencefirst_name == null || sharedPreferencefirst_name.equalsIgnoreCase("")){
         }else {
             textview_name.setText(sharedPreferencefirst_name + " " + sharedPreferencelast_name);
         }
-
         if (sharedPreferenceprofileimage.equalsIgnoreCase("")) {
         } else {
-            System.out.println("getprofileActivity: " + sharedPreferenceprofileimage);
+            //System.out.println("getprofileActivity: " + sharedPreferenceprofileimage);
             Picasso.with(getApplicationContext()).load(sharedPreferenceprofileimage).placeholder(R.drawable.app_icon).into(activity_company_sign_up_imageView_profile_pic);
         }
 
@@ -126,10 +127,33 @@ public class MainActivity extends ParentActivity
             }
         });
 
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        HomeFragment fragment = new HomeFragment();
-        fragmentTransaction.replace(R.id.container_body, fragment);
-        fragmentTransaction.commit();
+        if(sharedPreferencerole.equalsIgnoreCase("4")){
+
+            if(getIntent().hasExtra("Make")){
+                //show menu
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                HomeFragment fragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+
+            }else {
+                toolbar_title.setVisibility(View.VISIBLE);
+                toolbar.setTitle("");
+                optionMenuFlag = 0;
+                //toolbar.inflateMenu(R.menu.home);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                WaiterTablesFragment fragment = new WaiterTablesFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+            }
+
+        }else{
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            HomeFragment fragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+        }
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -138,23 +162,52 @@ public class MainActivity extends ParentActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         navigationView.getMenu().findItem(id).setCheckable(true);
+
+
         if (id == R.id.home) {
-            toolbar_title.setVisibility(View.VISIBLE);
-            toolbar.setTitle("");
-            optionMenuFlag = 0;
+
+            if(sharedPreferencerole.equalsIgnoreCase("4")){
+                toolbar_title.setVisibility(View.VISIBLE);
+                toolbar.setTitle("");
+                optionMenuFlag = 0;
 //            toolbar.inflateMenu(R.menu.home);
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            HomeFragment fragment = new HomeFragment();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                WaiterTablesFragment fragment = new WaiterTablesFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+            }else{
+                toolbar_title.setVisibility(View.VISIBLE);
+                toolbar.setTitle("");
+                optionMenuFlag = 0;
+//            toolbar.inflateMenu(R.menu.home);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                HomeFragment fragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+            }
+
+
 
             // Handle the camera action
         }else if (id == R.id.order_history) {
 
             //sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-            //String order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
-            //String customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
-            System.out.println("order_id_ : "+order_id_);
+            /*String customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
+            String customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
+
+            if(customer_id == null || customer_id.equalsIgnoreCase("null") || customer_id.equalsIgnoreCase("")){
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_no_order), Toast.LENGTH_SHORT).show();
+            }else{
+                toolbar_title.setVisibility(View.GONE);
+                toolbar.setTitle(getResources().getString(R.string.order_history));
+                optionMenuFlag = 2;
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                OrderHistoryFragment fragment = new OrderHistoryFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
+            }*/
+
+            //System.out.println("order_id_ : "+order_id_);
             if(order_id_ == null || order_id_.equalsIgnoreCase("null") || order_id_.equalsIgnoreCase("")){
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_no_order), Toast.LENGTH_SHORT).show();
             }else{
@@ -166,125 +219,34 @@ public class MainActivity extends ParentActivity
                 fragmentTransaction.replace(R.id.container_body, fragment);
                 fragmentTransaction.commit();
             }
+
+        }else if (id == R.id.signout) {
+            new android.app.AlertDialog.Builder(MainActivity.this)
+                    .setMessage(getResources().getString(R.string.are_you_sure_you_want_logout))
+                    .setCancelable(false)
+                    .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id) {
+                            SharedPreferences.Editor editor = sharedPreferencesRemember.edit();
+                            editor.remove(getResources().getString(R.string.sharedPreferenceUserId));
+                            editor.remove(getResources().getString(R.string.sharedPreferenceprofileimage));
+                            editor.remove(getResources().getString(R.string.sharedPreferencefirst_name));
+                            editor.remove(getResources().getString(R.string.sharedPreferencelast_name));
+                            editor.remove(getResources().getString(R.string.sharedPreferenceemail));
+                            editor.remove(getResources().getString(R.string.sharedPreferencepassword));
+                            editor.remove(getResources().getString(R.string.sharedPreferencerole));
+                            editor.commit();
+
+                            try {
+                                finish();
+                                Intent intentLogout=new Intent(getApplicationContext(),LoginActivity.class);
+                                startActivity(intentLogout);
+                            }catch (Exception e){
+                                System.out.println("Exception: "+e);
+                            }
+                        }
+                    }).setNegativeButton(getResources().getString(R.string.no), null).show();
         }
-//
-//        else if (id == R.id.transaction) {
-//
-//            optionMenuFlag = 2;
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            TransactionFragment fragment = new TransactionFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        } else if (id == R.id.directory) {
-//
-//            optionMenuFlag = 3;
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            DirectoryFragment fragment = new DirectoryFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        } else if (id == R.id.payment) {
-//            optionMenuFlag = 4;
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            PaymentFragment fragment = new PaymentFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//
-//        }  else if (id == R.id.mynetwork) {
-//            optionMenuFlag = 5;
-////            toolbar.inflateMenu(R.menu.home_search);
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            MyNetworkFragment fragment = new MyNetworkFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        }else if (id == R.id.wallet) {
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            WalletFragment fragment = new WalletFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        }else if (id == R.id.wishlist) {
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            WishListFragment fragment = new WishListFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//        }else if (id == R.id.logistics) {
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            LogisticsFragment fragment = new LogisticsFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//        }else if (id == R.id.help) {
-//
-//        }else if (id == R.id.faq) {
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            FAQFragment fragment = new FAQFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//
-//        }else if (id == R.id.aboutus) {
-//
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            AboutFragment fragment = new AboutFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        }else if(id==R.id.contactus){
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            ContactUsFragment fragment = new ContactUsFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//
-//        }
-//
-//        else if (id == R.id.setting) {
-//
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            SettingFragment fragment = new SettingFragment();
-//            fragmentTransaction.replace(R.id.container_body, fragment);
-//            fragmentTransaction.commit();
-//        }else if (id == R.id.logout) {
-//            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-//            LayoutInflater factory = LayoutInflater.from(MainActivity.this);
-//            final View view1 = factory.inflate(R.layout.logout_dailogue_layout, null);
-//            //builder1.setMessage("Your Request to connect has been sent successfully");
-//            builder1.setView(view1);
-//            builder1.setCancelable(true);
-//             alert11 = builder1.create();
-//            alert11.show();
-//
-//            Button btnlogoutYes = (Button) view1.findViewById(R.id.btnlogoutYes);
-//            Button btnlogoutno = (Button) view1.findViewById(R.id.btnlogoutno);
-//
-//            btnlogoutYes.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    if (internetConnection.isNetworkAvailable(getApplicationContext())) {
-//                        logoutuser();
-//
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                }
-//            });
-//
-//            btnlogoutno.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    alert11.cancel();
-//                }
-//            });
-//        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -293,6 +255,18 @@ public class MainActivity extends ParentActivity
     @Override
     protected void onResume() {
         super.onResume();
+
+        sharedPreferencerole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
+
+        navigationView.getMenu().clear();
+        navigationView.inflateMenu(R.menu.menu_home);
+
+        if(sharedPreferencerole.equalsIgnoreCase("4")){
+            navigationView.getMenu().findItem(R.id.signout).setVisible(true);
+            navigationView.getMenu().findItem(R.id.order_history).setVisible(false);
+        }else{
+            navigationView.getMenu().findItem(R.id.signout).setVisible(false);
+        }
     }
 
     @Override

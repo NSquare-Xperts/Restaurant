@@ -19,20 +19,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.LoginActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.activity.ViewProfileActivity;
-import com.nsquare.restaurant.fragment.HomeFragment;
-import com.nsquare.restaurant.fragment.MyAddressesFragment;
-import com.nsquare.restaurant.fragment.OrderHistoryFragment;
-import com.nsquare.restaurant.fragment.YourBookingTabsFragment;
 import com.nsquare.restaurant.fragment.waiter.WaiterTablesFragment;
 import com.squareup.picasso.Picasso;
-
-;
 
 public class WaiterMainActivity extends ParentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +35,7 @@ public class WaiterMainActivity extends ParentActivity
     private TextView textview_name;
     private LinearLayout linearlayout;
     private ImageView activity_company_sign_up_imageView_profile_pic;
-    String reedempoint, companyname, name, lastname, image, profile_image, sharedPreferencescompany, userId;
+    //String reedempoint, companyname, name, lastname, image, profile_image, sharedPreferencescompany, userId;
     private Dialog dialogLogout;
     private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
