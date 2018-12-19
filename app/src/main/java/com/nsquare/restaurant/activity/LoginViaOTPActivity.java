@@ -80,6 +80,7 @@ public class LoginViaOTPActivity extends ParentActivity {
                 }
             }
         });
+        
 
         activity_login_button_verify_otp.setOnClickListener(new View.OnClickListener() {
             @Override
