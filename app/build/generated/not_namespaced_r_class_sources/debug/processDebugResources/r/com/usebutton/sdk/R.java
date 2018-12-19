@@ -265,14 +265,14 @@ public final class R {
 
         public static final int app_name = 0x7f0e0035;
         public static final int continue_in_app = 0x7f0e0072;
-        public static final int go_to_app = 0x7f0e00df;
-        public static final int install = 0x7f0e00f7;
-        public static final int loading_promotion = 0x7f0e0109;
-        public static final int message_waiting_to_install = 0x7f0e0118;
-        public static final int no_store_close = 0x7f0e012e;
-        public static final int no_store_message = 0x7f0e012f;
-        public static final int no_store_title = 0x7f0e0130;
-        public static final int was_installed = 0x7f0e01cd;
+        public static final int go_to_app = 0x7f0e00e0;
+        public static final int install = 0x7f0e00f8;
+        public static final int loading_promotion = 0x7f0e010a;
+        public static final int message_waiting_to_install = 0x7f0e0119;
+        public static final int no_store_close = 0x7f0e0130;
+        public static final int no_store_message = 0x7f0e0131;
+        public static final int no_store_title = 0x7f0e0132;
+        public static final int was_installed = 0x7f0e01d0;
     }
     public static final class style {
         private style() {}

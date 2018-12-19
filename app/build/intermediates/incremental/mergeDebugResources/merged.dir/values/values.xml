@@ -1314,6 +1314,7 @@
     <string name="error_name">Please enter name</string>
     <string name="error_no_login">You are not logged in into the application. Please login to view profile.</string>
     <string name="error_no_order">You haven\'t placed order yet.</string>
+    <string name="error_otp">OTP can not be blank..!</string>
     <string name="error_password">Please enter password</string>
     <string name="error_password_lenght">Password length must be equal or greater than 6 characters</string>
     <string name="error_select_atleast_one">Please select atleast one.</string>
@@ -1453,6 +1454,7 @@
     <string name="need_to_allow">You need to allow this permission to continue.</string>
     <string name="no">No</string>
     <string name="no_images_selected">No images selected</string>
+    <string name="no_record_found">No Record Found..!</string>
     <string name="no_store_close">Dismiss</string>
     <string name="no_store_message">This device doesn\'t have the Google Play Store installed. Please test on a device with Google Play to install %s.</string>
     <string name="no_store_title">No Google Play Store</string>
@@ -1510,6 +1512,7 @@
     <string name="request">request</string>
     <string name="resend">resend</string>
     <string name="resendOTP">resendOTP</string>
+    <string name="resendotp_label">resend OTP</string>
     <string name="reset_device">Reset Device</string>
     <string name="review">Review</string>
     <string name="role">role</string>

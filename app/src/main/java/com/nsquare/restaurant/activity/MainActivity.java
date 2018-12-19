@@ -1,7 +1,6 @@
 package com.nsquare.restaurant.activity;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,31 +10,42 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
+import com.nsquare.restaurant.adapter.MyCartItemsListAdapter;
 import com.nsquare.restaurant.fragment.HomeFragment;
 import com.nsquare.restaurant.fragment.OrderHistoryFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nsquare.restaurant.fragment.waiter.WaiterTablesFragment;
+import com.nsquare.restaurant.model.MyCartData;
+import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends ParentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private android.support.v4.app.FragmentManager fragmentManager;
-    private MenuItem callbutton, bellbutton, searchbutton;
     private TextView textview_name;
     private LinearLayout linearlayout;
     private ImageView activity_company_sign_up_imageView_profile_pic;
-    String reedempoint, companyname, name, lastname, image, profile_image, sharedPreferencescompany, userId;
-    private Dialog dialogLogout;
     private static final int TIME_INTERVAL = 2000;
     private long mBackPressed;
     NavigationView navigationView;
@@ -47,6 +57,9 @@ public class MainActivity extends ParentActivity
     private ImageView add_to_cart;
     private String sharedPreferencerole = "";
     private String order_id_ = "";
+
+    private String statusCount;
+    //private ArrayList<MyCartData> toGetCountcartModelArrayList = new ArrayList<MyCartData>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,21 +135,27 @@ public class MainActivity extends ParentActivity
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this,CartPreviewActivity.class);
-                startActivity(intent);
+                //check internet connection
+                if(internetConnection.isNetworkAvailable(getApplicationContext())){
+                    getCartList();
+                }else{
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        if(sharedPreferencerole.equalsIgnoreCase("4")){
 
-            if(getIntent().hasExtra("Make")){
-                //show menu
-                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                HomeFragment fragment = new HomeFragment();
-                fragmentTransaction.replace(R.id.container_body, fragment);
-                fragmentTransaction.commit();
+        if(getIntent().hasExtra(Constants.homeFromWaiter)){
+            //load only home fragment
+            add_to_cart.setVisibility(View.GONE);
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            HomeFragment fragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
 
-            }else {
+        }else {
+            if (sharedPreferencerole.equalsIgnoreCase("4")) {
+
                 toolbar_title.setVisibility(View.VISIBLE);
                 toolbar.setTitle("");
                 optionMenuFlag = 0;
@@ -145,24 +164,22 @@ public class MainActivity extends ParentActivity
                 WaiterTablesFragment fragment = new WaiterTablesFragment();
                 fragmentTransaction.replace(R.id.container_body, fragment);
                 fragmentTransaction.commit();
+            } else {
+
+                add_to_cart.setVisibility(View.VISIBLE);
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                HomeFragment fragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.container_body, fragment);
+                fragmentTransaction.commit();
             }
-
-        }else{
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            HomeFragment fragment = new HomeFragment();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
         }
-
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         navigationView.getMenu().findItem(id).setCheckable(true);
-
 
         if (id == R.id.home) {
 
@@ -289,4 +306,29 @@ public class MainActivity extends ParentActivity
         mBackPressed = System.currentTimeMillis();
     }
 
+
+
+    private void getCartList() {
+
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
+
+        APIManager.requestPostMethod(MainActivity.this, getResources().getString(R.string.getCartList), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    statusCount = jsonObject.getString("status");
+                    if(statusCount.equalsIgnoreCase("200")){
+                        Intent intent = new Intent(MainActivity.this,CartPreviewActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(MainActivity.this,jsonObject.getString(getResources().getString(R.string.message)),Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

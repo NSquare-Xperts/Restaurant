@@ -20,9 +20,9 @@ import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.activity.CartPreviewActivity;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
-import com.nsquare.restaurant.activity.waiter.WaiterCartPreviewActivity;
-import com.nsquare.restaurant.activity.waiter.WaiterMainActivity;
 import com.nsquare.restaurant.adapter.waiter.TablesAdapter;
+import com.nsquare.restaurant.fragment.OrderHistoryFragment;
+import com.nsquare.restaurant.fragment.OrderHistoryFragment_Staff;
 import com.nsquare.restaurant.model.TablesItem;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
@@ -44,6 +44,7 @@ public class WaiterTablesFragment extends Fragment {
     private InternetConnection internetConnection = new InternetConnection();
     private String customer_id = "", customerOrderId = "";
     private SharedPreferences.Editor editor;
+    private android.support.v4.app.FragmentManager fragmentManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class WaiterTablesFragment extends Fragment {
 
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         setListValues();
-
+        fragmentManager = getFragmentManager();
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -63,28 +64,26 @@ public class WaiterTablesFragment extends Fragment {
         fragment_recent_jobs_recycler_view.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 //save order id in local db
                 if(!orderHistoryModelArrayList.get(position).getOrder_id().isEmpty()){
 
                     editor = sharedPreferencesRemember.edit();
                     editor.putString(getResources().getString(R.string.table_wise_order_id), orderHistoryModelArrayList.get(position).getOrder_id());
-                    // editor.apply();
                     editor.commit();
 
-                    Intent intent = new Intent(getActivity(), MakePaymentActivity.class);
-                    intent.putExtra("orderID", orderHistoryModelArrayList.get(position).getOrder_id());
-                    intent.putExtra(Constants.statusMakePayment,Constants.statusMakePayment);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    String tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencetableid), "");
+                    Constants.table_id = tableId;
+
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    OrderHistoryFragment_Staff fragment = new OrderHistoryFragment_Staff();
+                    fragmentTransaction.replace(R.id.container_body, fragment);
+                    fragmentTransaction.commit();
 
                 }else {
                     Toast.makeText(getActivity(),getResources().getString(R.string.error_no_order),Toast.LENGTH_SHORT).show();
                 }
-
             }
         }));
-
         return rootView;
     }
 

@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,13 +17,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -49,7 +44,6 @@ public class LoginViaOTPActivity extends ParentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_via_otp);
         setStatusBar();
-
         /*Changes by : *Ritu Chavan
             Date :6-12-2018
          */
@@ -90,12 +84,11 @@ public class LoginViaOTPActivity extends ParentActivity {
         activity_login_button_verify_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //mobileno = activitylogin_edittextview_mobileno.getText().toString();
                 otpValue = activitylogin_edittextview_otp.getText().toString();
 
                 if (otpValue.equalsIgnoreCase("")) {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_password), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_otp), Toast.LENGTH_SHORT).show();
                 } else {
                     if (validateform()) {
                         verifyOTP();
@@ -150,6 +143,17 @@ public class LoginViaOTPActivity extends ParentActivity {
 
     private boolean validateform() {
 
+
+        if(activitylogin_edittextview_username.getText().toString().trim().isEmpty()){
+            activitylogin_edittextview_username.setError(getResources().getString(R.string.error_username));
+            return false;
+        }
+
+        if(activitylogin_edittextview_username.getText().toString().trim().length() <6){
+            activitylogin_edittextview_username.setError(getResources().getString(R.string.error_username_length));
+            return false;
+        }
+
         if (activitylogin_edittextview_mobileno.getText().toString().trim().equalsIgnoreCase("")) {
             activitylogin_edittextview_mobileno.setError(getResources().getString(R.string.error_mobile));
             return false;
@@ -158,10 +162,7 @@ public class LoginViaOTPActivity extends ParentActivity {
             activitylogin_edittextview_mobileno.setError(getResources().getString(R.string.error_mobile_length));
             return false;
         }
-        if(activitylogin_edittextview_username.getText().toString().trim().isEmpty()){
-            activitylogin_edittextview_username.setError(getResources().getString(R.string.error_username));
-            return false;
-        }
+
 
         return true;
     }
@@ -229,8 +230,6 @@ public class LoginViaOTPActivity extends ParentActivity {
     private void verifyOTP() {
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
-
-
         String order_id_ = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
 
         postParams.put(getResources().getString(R.string. field_mobile), mobileno);
@@ -256,7 +255,6 @@ public class LoginViaOTPActivity extends ParentActivity {
     }
 
     //order confirmed pop up
-
     public void alertOrderConfirmed(){
 
         final AlertDialog alert11;
@@ -280,6 +278,11 @@ public class LoginViaOTPActivity extends ParentActivity {
                 startActivity(intent);
             }
         });
+
+        //window not visible
+        if(!alert11.isShowing()) {
+            alert11.dismiss();
+        }
     }
 
     private void placeOrder() {

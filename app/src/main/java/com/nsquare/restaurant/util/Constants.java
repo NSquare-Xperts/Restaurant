@@ -19,11 +19,13 @@ public class Constants {
    public static String quantity="Quantity";
    public static String extra="Extra";
    public static String custom="Custom";
-   public static String table_id="6";
+   public static String table_id="0";
    public static String status="status";
    public static String message="message";
    public static String status_422="422";
+   public static String fromWaiter="fromWaiter";
    public static String statusMakePayment="statusMakePayment";
+   public static String homeFromWaiter="homeFromWaiter";
 
 
    public static String order_history="order_history";

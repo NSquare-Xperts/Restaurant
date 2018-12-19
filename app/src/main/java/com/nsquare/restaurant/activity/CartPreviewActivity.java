@@ -1,9 +1,12 @@
 package com.nsquare.restaurant.activity;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -28,6 +31,7 @@ import com.nsquare.restaurant.adapter.MyCartItemsListAdapter;
 import com.nsquare.restaurant.adapter.OrderHistoryAdapter;
 import com.nsquare.restaurant.adapter.VegMenuListAdapter;
 import com.nsquare.restaurant.databasehelper.DatabaseHelper;
+import com.nsquare.restaurant.fragment.HomeFragment;
 import com.nsquare.restaurant.model.CartModel;
 import com.nsquare.restaurant.R;
 import com.nsquare.restaurant.adapter.CartItemsListAdapter;
@@ -49,8 +53,9 @@ import java.util.Map;
  * Created by Pushkar on 23-04-2018.
  * Updated by Ritu Chavan on 12-06-2018.
  */
-public class CartPreviewActivity extends ParentActivity implements MyCartItemsListAdapter.IsQuantityChanged{
+public class CartPreviewActivity extends ParentActivity implements MyCartItemsListAdapter.IsQuantityChanged {
 
+    private android.support.v4.app.FragmentManager fragmentManager;
     private RecyclerView fragment_recent_jobs_recycler_view;
     private LinearLayout linear_layout_to_hide;
     private ArrayList<MyCartData> cartModelArrayList = new ArrayList<MyCartData>();
@@ -58,6 +63,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
     public static CartPreviewActivity cartPreviewActivity;
     private TextView activity_order_preview_textview_subtotal,fragment_common_list_recycler_button_checkout, activity_order_preview_textview_tax, activity_order_preview_textview_grand_total;
     private Button fragment_common_list_recycler_button_place_order;
+    private Button button_add_more;
     private double taxes = 0;
     double subTotal = 0, grandTotal = 0, taxAmount = 0;
     private EditText activity_book_a_table_edittext_name, activity_book_a_table_edittext_mobile_number;
@@ -65,7 +71,9 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
     boolean flagisTrue=false;
     private String cart_id ="";
     private ArrayList<String> cartListIds = new ArrayList<>();
+    private String sharedPreferencerole = "";
     private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<MyOrderHistory>();
+    private TextView textview_no_record_found;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,15 +84,29 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.order_preview));
         findViewByIds();
 
-        fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.checkout));
-        fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
-        fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
+        sharedPreferencerole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
+        order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+
+        if (sharedPreferencerole.equalsIgnoreCase("4")) {
+            //waiter login
+            order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.table_wise_order_id),"");
+            button_add_more.setVisibility(View.GONE);
+            linear_layout_to_hide.setVisibility(View.GONE);
+
+            fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.place_order));
+            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+            fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
+        }else {
+            fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.checkout));
+            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+            fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
+        }
 
         mobileNumber = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberMobileno),"");
         userName = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberUsername),"");
         //customer_id = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerId),"");
         //customerOrderId = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferenceRememberCustomerOrderId),"");
-        order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id), "");
+
         //tableId = sharedPreferencesRemember.getString(getResources().getString(R.string.tableId), "");
 
         if(mobileNumber.equalsIgnoreCase(null) || mobileNumber.equalsIgnoreCase("")) {
@@ -114,26 +136,36 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             public void onClick(View v) {
                 //move to verify OTP page if first time
                 //check order-id is already present or not
-                if(order_id.isEmpty()) {
-                    Intent intent = new Intent(CartPreviewActivity.this, LoginViaOTPActivity.class);
-                    intent.putExtra("cartIds",cart_id);
-                    startActivity(intent);
-                }else {
-                    //place order
+                if (sharedPreferencerole.equalsIgnoreCase("4")) {
                     placeOrder();
+                } else {
+                    if (order_id.isEmpty()) {
+                        Intent intent = new Intent(CartPreviewActivity.this, LoginViaOTPActivity.class);
+                        intent.putExtra("cartIds", cart_id);
+                        startActivity(intent);
+                    } else {
+                        //place order
+                        placeOrder();
+                    }
                 }
             }
         });
+
+
 
     }
 
     private void findViewByIds(){
         fragment_recent_jobs_recycler_view = (RecyclerView) findViewById(R.id.fragment_recent_jobs_recycler_view);
         activity_order_preview_textview_subtotal = (TextView) findViewById(R.id.activity_order_preview_textview_subtotal);
+
+        textview_no_record_found = (TextView) findViewById(R.id.textview_no_record_found);
+
         activity_order_preview_textview_tax = (TextView) findViewById(R.id.activity_order_preview_textview_tax);
         activity_order_preview_textview_grand_total = (TextView) findViewById(R.id.activity_order_preview_textview_grand_total);
         fragment_common_list_recycler_button_checkout = (TextView) findViewById(R.id.fragment_common_list_recycler_button_checkout);
 
+        button_add_more = (Button) findViewById(R.id.button_add_more);
         fragment_common_list_recycler_button_place_order = (Button) findViewById(R.id.fragment_common_list_recycler_button_place_order);
         activity_book_a_table_edittext_name = (EditText) findViewById(R.id.activity_book_a_table_edittext_name);
         activity_book_a_table_edittext_mobile_number = (EditText) findViewById(R.id.activity_book_a_table_edittext_mobile_number);
@@ -415,11 +447,13 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    String totalCartAmount = jsonObject.getString("total_amount");
-                    activity_order_preview_textview_grand_total.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
-                    activity_order_preview_textview_subtotal.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
-                    String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
+
                     if (jsonObject.getInt("status") == 200) {
+
+                        String totalCartAmount = jsonObject.getString("total_amount");
+                        activity_order_preview_textview_grand_total.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
+                        activity_order_preview_textview_subtotal.setText(getResources().getString(R.string.Rs)+" "+totalCartAmount);
+                        String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
 
                         cartModelArrayList.clear();
                         cartListIds.clear();
@@ -443,18 +477,23 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                                 fragment_recent_jobs_recycler_view.setEnabled(true);
                                 //swipe_refresh_layout.setRefreshing(false);
                             }
-
                             //get all cart id
                             for(MyCartData myCartData : cartModelArrayList){
                                 cartListIds.add(myCartData.getId());
                             }
                             cart_id = TextUtils.join(",",cartListIds);
+                        }else {
+                            textview_no_record_found.setVisibility(View.VISIBLE);
+                            fragment_recent_jobs_recycler_view.setVisibility(View.GONE);
+                            //textview_no_record_found.setVisibility(View.VISIBLE);
+                            //swipe_refresh_layout.setVisibility(View.GONE);
                         }
-                        //textview_no_record_found.setVisibility(View.VISIBLE);
-                        //swipe_refresh_layout.setVisibility(View.GONE);
-
                     }else if (jsonObject.getInt("status") == 400) {
-                        Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.msg)), Toast.LENGTH_SHORT).show();
+
+                        textview_no_record_found.setVisibility(View.VISIBLE);
+                        fragment_recent_jobs_recycler_view.setVisibility(View.GONE);
+
+                       // Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -514,7 +553,8 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                         //editor = sharedPreferencesRemember.edit();
                         //editor.putString(getResources().getString(R.string.order_id), order_id);
                         //editor.commit();
-                        Intent intent = new Intent(CartPreviewActivity.this, MakePaymentActivity.class);
+                        Intent intent = new Intent(CartPreviewActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
 
@@ -613,4 +653,5 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             }
         });
     }
+
 }

@@ -2192,6 +2192,7 @@ string error_mobileno
 string error_name
 string error_no_login
 string error_no_order
+string error_otp
 string error_password
 string error_password_lenght
 string error_select_atleast_one
@@ -2331,6 +2332,7 @@ string navigation_drawer_open
 string need_to_allow
 string no
 string no_images_selected
+string no_record_found
 string no_store_close
 string no_store_message
 string no_store_title
@@ -2388,6 +2390,7 @@ string repeat_last_used_customization
 string request
 string resend
 string resendOTP
+string resendotp_label
 string reset_device
 string review
 string role

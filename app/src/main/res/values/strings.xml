@@ -135,6 +135,7 @@
     <string name="skip">Skip</string>
     <string name="error_name">Please enter name</string>
     <string name="error_password">Please enter password</string>
+    <string name="error_otp">OTP can not be blank..!</string>
     <string name="error_password_lenght">Password length must be equal or greater than 6 characters</string>
     <string name="open_now">Open Now</string>
     <string name="error_terms">Please accept terms and conditions</string>
@@ -452,6 +453,7 @@
     <string name="otp_will_be_sent_on_mobile_number">OTP will be sent on mobile number</string>
     <string name="error_mobile">Mobile No can not be empty</string>
     <string name="error_username">Username cannot be empty</string>
+    <string name="error_username_length">Username must be atleast 6 digits</string>
     <string name="field_otp">field_otp</string>
     <string name="field_order_id">field_order_id</string>
     <string name="field_dish_id">field_dish_id</string>
@@ -464,5 +466,7 @@
     <string name="by_wallet">By wallet</string>
     <string name="table_wise_order_id">table_wise_order_id</string>
     <string name="checkout">Checkout</string>
+    <string name="resendotp_label">resend OTP</string>
+    <string name="no_record_found">No Record Found..!</string>
 
 </resources>

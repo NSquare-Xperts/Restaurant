@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
     private TextView activity_collapse_layout_textView_title, activity_collapse_layout_textView_category_title;
     private Button activity_collapse_layout_button_book_now, activity_collapse_layout_button_make_payment;
     private ArrayList<SubCategoryModel> subCategoryArrayList;
-    private DatabaseHelper databaseHelper;
+   // private DatabaseHelper databaseHelper;
     private int cartCount = 0, cartCountForPayment = 0;
     private Activity activity;
 //    private ObservableWebView activity_collapse_layout_observableview;
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
         int i;
         findViewByIds(view);
 
-        databaseHelper = new DatabaseHelper(getActivity());
+       // databaseHelper = new DatabaseHelper(getActivity());
 //        activity_collapse_layout_observableview.setScrollViewCallbacks(this);
 
 //        mParallaxImageHeight = getResources().getDimensionPixelSize(
@@ -307,8 +307,8 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
     public void onResume() {
         super.onResume();
 
-        cartCount = databaseHelper.getCartCount(0);
-        cartCountForPayment = databaseHelper.getCartCount(1);
+        //cartCount = databaseHelper.getCartCount(0);
+       // cartCountForPayment = databaseHelper.getCartCount(1);
 
         if(cartCount > 0){
             activity_collapse_layout_button_book_now.setVisibility(View.VISIBLE);
@@ -469,6 +469,8 @@ public class HomeFragment extends Fragment implements WheelCarousel.UpdateHomepa
     public void updateHomepageCategoryTitle(String title) {
         activity_collapse_layout_textView_category_title.setText(title);
     }
+
+
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

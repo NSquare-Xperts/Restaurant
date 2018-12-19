@@ -16,7 +16,7 @@
         android:textAllCaps="false"
         android:textSize="16dp"
         android:layout_alignParentBottom="true"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
     <com.nsquare.restaurant.util.RobotoBold.ButtonTextRoboto
         android:id="@+id/fragment_common_list_recycler_button_checkout"
@@ -29,6 +29,18 @@
         android:textSize="16dp"
         android:layout_alignParentBottom="true"
         android:visibility="gone"/>
+
+
+    <com.nsquare.restaurant.util.RobotoRegular.TextViewRoboto
+        android:id="@+id/textview_no_record_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="@string/no_record_found"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:gravity="center" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -151,6 +163,7 @@
                 android:layout_marginTop="8dp"/>
 
 
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fragment_recent_jobs_recycler_view"
                 android:layout_width="match_parent"
@@ -162,8 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/separate_line"
-                android:layout_marginTop="8dp"></View>
-
+                android:layout_marginTop="8dp"/>
 
             <LinearLayout
                 android:id="@+id/relative_layout_to_hide"

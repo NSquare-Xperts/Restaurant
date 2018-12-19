@@ -14,7 +14,6 @@
         android:orientation="vertical"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-
         <include
             layout="@layout/customise_menu_already_available_popup" />
 

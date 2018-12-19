@@ -33,6 +33,7 @@ import java.util.HashMap;
 public class OrderHistoryFragment extends Fragment {
 
     private SharedPreferences sharedPreferencesRemember;
+    private String sharedPreferencesRememberRole;
     private OrderHistoryAdapter orderHistoryAdapter;
     private SwipeRefreshLayout swipe_refresh_layout;
     private TextView fragment_common_list_recycler_button_view_cart;
@@ -50,9 +51,17 @@ public class OrderHistoryFragment extends Fragment {
 
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
+        sharedPreferencesRememberRole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
         order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
-        setListValues();
         relative_layout_checkout.setVisibility(View.VISIBLE);
+        if(sharedPreferencesRememberRole.equals("4")){
+            //waiter login
+            relative_layout_checkout.setVisibility(View.GONE);
+            order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.table_wise_order_id), "");
+        }
+
+        setListValues();
+
 
         textview_make_payment.setText(getResources().getString(R.string.make_payment));
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

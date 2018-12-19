@@ -15,7 +15,6 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/orange_light"
@@ -55,6 +54,7 @@
                     android:src="@drawable/cart_icon"
                     android:layout_gravity="center|end"
                     android:layout_marginRight="20dp"
+                    android:visibility="gone"
                     android:id="@+id/add_to_cart" />
 
             </RelativeLayout>

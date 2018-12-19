@@ -74,7 +74,7 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
     private String order_id;
     RadioButton radio_mode;
     private LinearLayout linear_layout_to_hide;
-   // private android.support.v4.app.FragmentManager fragmentManager;
+    // private android.support.v4.app.FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,10 +85,16 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
         setActionBarCustomWithBackLeftText(getResources().getString(R.string.order_preview));
         findViewByIds();
 
-       sharedPreferencerole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
-       //for staff show add more
+        sharedPreferencerole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
+        //for staff show add more
         //check coming from
         if(getIntent().hasExtra(Constants.statusMakePayment)){
+
+            if(sharedPreferencerole.equalsIgnoreCase("4")){
+                fragment_common_list_recycler_button_place_order.setVisibility(View.GONE);
+            }else{
+                fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.choose_payment_mode));
+            }
 
             order_id = getIntent().getStringExtra("orderID");
             button_add_more.setVisibility(View.VISIBLE);
@@ -133,14 +139,14 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
             @Override
             public void onClick(View v) {
                 //if(validateForm()){
-                    if (internetConnection.isNetworkAvailable(getApplicationContext())) {
-                        //make payment
-                        //open alert to show mode of transaction
-                        alertToShowMakePaymentOption();
-                    }else{
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-                    }
-               // }
+                if (internetConnection.isNetworkAvailable(getApplicationContext())) {
+                    //make payment
+                    //open alert to show mode of transaction
+                    alertToShowMakePaymentOption();
+                }else{
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                }
+                // }
             }
         });
 
@@ -176,8 +182,6 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
 
         linear_layout_to_hide =  (LinearLayout) findViewById(R.id.relative_layout_to_hide);
 
-
-        fragment_common_list_recycler_button_place_order.setText(getResources().getString(R.string.choose_payment_mode));
         activity_book_a_table_edittext_name = (EditText) findViewById(R.id.activity_book_a_table_edittext_name);
         activity_book_a_table_edittext_mobile_number = (EditText) findViewById(R.id.activity_book_a_table_edittext_mobile_number);
 
@@ -302,16 +306,24 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
                         if (orderHistoryModelArrayList.size() > 0) {
 
                             //swipe_refresh_layout.setRefreshing(false);
-                            fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+                            if(sharedPreferencerole.equalsIgnoreCase("4")){
+                                fragment_common_list_recycler_button_place_order.setVisibility(View.GONE);
+                            }else{
+                                fragment_common_list_recycler_button_place_order.setVisibility(View.VISIBLE);
+                            }
+
                             activity_order_preview_textview_subtotal.setText(orderHistoryModelArrayList.get(0).getBill_amount() + "");
                             activity_order_preview_textview_tax.setText(orderHistoryModelArrayList.get(0).getTax_amount() + "");
                             activity_order_preview_textview_grand_total.setText(orderHistoryModelArrayList.get(0).getTotal_amount() + "");
 
-                            makePaymentCartItemsListAdapter = new MakePaymentCartItemsListAdapter(context, orderHistoryModelArrayList, MakePaymentActivity.this,order_id);
-                            final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MakePaymentActivity.this);
-                            linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
-                            fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
-                            fragment_recent_jobs_recycler_view.setAdapter(makePaymentCartItemsListAdapter);
+                            if(orderHistoryModelArrayList.get(0).getArrayList_order_menu_details().size() > 0){
+                                makePaymentCartItemsListAdapter = new MakePaymentCartItemsListAdapter(context, orderHistoryModelArrayList, MakePaymentActivity.this,order_id);
+                                final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MakePaymentActivity.this);
+                                linearLayoutManager.setOrientation(LinearLayout.VERTICAL);
+                                fragment_recent_jobs_recycler_view.setLayoutManager(linearLayoutManager);
+                                fragment_recent_jobs_recycler_view.setAdapter(makePaymentCartItemsListAdapter);
+
+                            }
                             fragment_recent_jobs_recycler_view.setEnabled(true);
                             //swipe_refresh_layout.setRefreshing(false);
                         } else {
@@ -379,7 +391,7 @@ public class MakePaymentActivity extends ParentActivity implements MakePaymentCa
 
     private void selectPaymentMode() {
 
-       // String order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
+        // String order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.order_id),"");
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getResources().getString(R.string.field_order_id), order_id);
         showProcessingDialog();

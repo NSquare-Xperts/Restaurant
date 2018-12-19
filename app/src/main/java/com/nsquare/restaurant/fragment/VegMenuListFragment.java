@@ -109,17 +109,22 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             }
         });
 
+        //for waiter login
+        if(sharedPreferencerole.equalsIgnoreCase("4")){
+            relative_layout_checkout.setVisibility(View.GONE);
+        }
+
         relative_layout_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(sharedPreferencerole.equalsIgnoreCase("4")) {
+                /*if(sharedPreferencerole.equalsIgnoreCase("4")) {
                     Intent intent = new Intent(context, MakePaymentActivity.class);
                     startActivity(intent);
-                }else {
+                }else {*/
                     Intent intent = new Intent(context, CartPreviewActivity.class);
                     startActivity(intent);
-                }
+               // }
             }
         });
 
@@ -132,7 +137,6 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
             }
         });
-
         fragment_common_list_recycler_button_view_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +153,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 if(!upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity().isEmpty()){
                     selectedQuantity = Integer.parseInt(upcomingYourBookingModelArrayList_new.get(position).getSelected_dish_quantity());
                 }
-                    showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),selectedQuantity);
+                showCoordinatorLayout_with_custome_menu_if_available(position, upcomingYourBookingModelArrayList_new.get(position).getDish_id(),selectedQuantity);
             }
         }));
         //behavior = BottomSheetBehavior.from(bottomSheet);
@@ -160,7 +164,10 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
     private void findViewByIds(View view){
 
         fragment_recent_jobs_recycler_view = (RecyclerView) view.findViewById(R.id.fragment_recent_jobs_recycler_view);
+
         relative_layout_checkout = (RelativeLayout) view.findViewById(R.id.relative_layout_checkout);
+
+
         swipe_refresh_layout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         textview_no_record_found = (TextView) view.findViewById(R.id.textview_no_record_found);
         textView_total = (TextView) view.findViewById(R.id.textView_total_qty);
@@ -195,15 +202,16 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    String totalCartAmount = jsonObject.getString("totalcartamount");
-                    if(!totalCartAmount.isEmpty()){
-                        relative_layout_checkout.setVisibility(View.VISIBLE);
-                        textView_total.setText("Rs. "+ totalCartAmount);
-                    }else{
-                        relative_layout_checkout.setVisibility(View.GONE);
-                    }
-                    String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
                     if (jsonObject.getInt("status") == 200) {
+
+                        String totalCartAmount = jsonObject.getString("totalcartamount");
+                        if(!totalCartAmount.isEmpty()){
+                            relative_layout_checkout.setVisibility(View.VISIBLE);
+                            textView_total.setText("Rs. "+ totalCartAmount);
+                        }else{
+                            relative_layout_checkout.setVisibility(View.GONE);
+                        }
+                        String jsonString =  jsonObject.getJSONArray(Constants.data).toString();
 
                         upcomingYourBookingModelArrayList_new.clear();
 
@@ -528,7 +536,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
         //Quantity
         if(upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity() != null && !upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity().isEmpty()) {
 
-            textview_label_qty.setVisibility(View.VISIBLE);
+            //textview_label_qty.setVisibility(View.VISIBLE);
             quantityMenuAdapter = new QuantityMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getQuantity());
             final LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(context);
             linearLayoutManager1.setOrientation(LinearLayout.VERTICAL);
@@ -538,6 +546,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
         //extra
         if(upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra() != null && !upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra().isEmpty()) {
+            textview_label_qty.setVisibility(View.VISIBLE);
             extraMenuAdapter = new ExtraMenuAdapter(context, upcomingYourBookingModelArrayList_new.get(position).getDishCustomExtrasModel().getExtra());
             final LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context);
             linearLayoutManager2.setOrientation(LinearLayout.VERTICAL);
@@ -797,7 +806,12 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
                 params.setMargins(5, 10, 20, 2);
                 radioButton.setLayoutParams(params);
-                radioButton.setText(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_name() +" : Rs."+ dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_price());
+                if(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_is_chargeable().equalsIgnoreCase("1")){
+                    radioButton.setText(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_name() +" : Rs."+ dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_price());
+                }else{
+                    radioButton.setText(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_name());
+                }
+
                 radioButton.setTextSize(14);
                 radioButton.setPadding(5, 0, 7, 0);
                 radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
@@ -807,11 +821,11 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
                 //show already selected radio buttons
                 //for(int j=0 ; j<= i  ; j++){
-                    if(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_selected() == "1") {
-                        radioButton.setChecked(true);
-                    }else {
-                        radioButton.setChecked(false);
-                    }
+                if(dishExtrasModel.getDishCustomDataModelArrayList().get(i).getDish_extra_selected() == "1") {
+                    radioButton.setChecked(true);
+                }else {
+                    radioButton.setChecked(false);
+                }
                 //}
 
                 radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -890,7 +904,13 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
             //add logic here
             final DishExtrasModel dishExtrasModel = requestItems.get(position);
             //holder.textview_label_chk.setText("Extras");
-            holder.checkbox_select_multiple_menu.setText(dishExtrasModel.getDish_extra_name() +" : Rs."+dishExtrasModel.getDish_extra_price());
+            if(dishExtrasModel.getDish_extra_is_chargeable().equalsIgnoreCase("1")){
+                holder.checkbox_select_multiple_menu.setText(dishExtrasModel.getDish_extra_name() +" : Rs."+dishExtrasModel.getDish_extra_price());
+            }else{
+                holder.checkbox_select_multiple_menu.setText(dishExtrasModel.getDish_extra_name());
+            }
+
+
             holder.checkbox_select_multiple_menu.setTag(position);
 
             //check already selected if yes add to array
@@ -1003,7 +1023,12 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
                 RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(context, null);
                 params.setMargins(5, 10, 20, 2);
                 radioButton.setLayoutParams(params);
-                radioButton.setText(requestItems.get(i).getDish_extra_name() +"  : Rs."+requestItems.get(i).getDish_extra_price());
+                if(requestItems.get(i).getDish_extra_is_chargeable().equalsIgnoreCase("1")){
+                    radioButton.setText(requestItems.get(i).getDish_extra_name() +"  : Rs."+requestItems.get(i).getDish_extra_price());
+                }else{
+                    radioButton.setText(requestItems.get(i).getDish_extra_name());
+                }
+
                 radioButton.setTextSize(14);
                 radioButton.setPadding(5, 0, 7, 0);
                 radioButton.setButtonDrawable(getResources().getDrawable(R.drawable.selector_role_radio_button_bacground));
@@ -1014,7 +1039,7 @@ public class VegMenuListFragment extends Fragment implements VegMenuListAdapter.
 
                 for (int j =0 ; j<= i ; j++){
                     if(requestItems.get(j).getDish_extra_selected().equalsIgnoreCase("1"))
-                    radioButton.setChecked(true);
+                        radioButton.setChecked(true);
                 }
 
                 holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

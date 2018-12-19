@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:id="@+id/relative_layout_common_list_recycler"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.nsquare.restaurant.util.RobotoRegular.ButtonTextRoboto
+        android:id="@+id/button_add_more"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Add More"
+        android:textColor="@color/white"
+        android:layout_gravity="end"
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:background="@color/orange"/>
 
     <TextView
         android:id="@+id/textview_no_record_found"
@@ -11,6 +25,7 @@
         android:layout_height="match_parent"
         android:textSize="16sp"
         android:gravity="center"
+        android:layout_below="@id/button_add_more"
         android:textColor="@color/white"
         android:text="No Dish Is Available..!"/>
 
@@ -31,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
+        android:layout_below="@+id/button_add_more"
         android:layout_above="@id/fragment_common_list_recycler_button_view_cart">
 
         <android.support.v7.widget.RecyclerView
@@ -73,4 +89,7 @@
             android:background="@color/green_light"/>
 
     </RelativeLayout>
+
+
+
 </RelativeLayout>

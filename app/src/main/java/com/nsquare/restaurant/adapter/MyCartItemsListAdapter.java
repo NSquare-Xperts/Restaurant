@@ -477,7 +477,6 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                         } else {
                             Toast.makeText(context,context.getResources().getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
                         }*/
-
                     }else if (jsonObject.getInt("status") == 400) {
                         ((ParentActivity)context).dismissProgressDialog();
                         Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();

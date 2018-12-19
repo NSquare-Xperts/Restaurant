@@ -129,8 +129,6 @@ public class MakePaymentCartItemsListAdapter extends RecyclerView.Adapter<MakePa
         /*final int[] quantityCount = {0};
 
         quantityCount[0] = Integer.parseInt(issueItem.getDatabase_menu_quantity());
-
-
         if (quantityCount[0] > 0) {
             //quantityCount[0] = quantityCount[0] + 1;
             totalQuantityCount = totalQuantityCount + quantityCount[0];

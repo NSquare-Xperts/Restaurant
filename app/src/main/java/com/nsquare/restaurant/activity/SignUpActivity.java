@@ -294,7 +294,7 @@ public class SignUpActivity extends ParentActivity implements View.OnClickListen
             @Override
             public void onResponse(String s) {
                 try {
-                    System.out.println("signUp: " + s);
+
                     JSONObject object = new JSONObject(s);
                     if (object.getString(getResources().getString(R.string.code)).equalsIgnoreCase(getResources().getString(R.string.code_1))) {
 

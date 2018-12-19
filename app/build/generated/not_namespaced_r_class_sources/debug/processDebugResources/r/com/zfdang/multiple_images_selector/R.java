@@ -743,15 +743,15 @@ public final class R {
         public static final int abc_toolbar_collapse_description = 0x7f0e0021;
         public static final int app_name = 0x7f0e0035;
         public static final int camera_temp_file_error = 0x7f0e0056;
-        public static final int msg_no_camera = 0x7f0e0123;
-        public static final int selector_action_done = 0x7f0e0170;
-        public static final int selector_caption = 0x7f0e0171;
-        public static final int selector_folder_all = 0x7f0e0172;
-        public static final int selector_permission_error = 0x7f0e0173;
-        public static final int selector_preview = 0x7f0e0174;
-        public static final int selector_reach_max_image_hint = 0x7f0e0175;
-        public static final int status_bar_notification_info_overflow = 0x7f0e0197;
-        public static final int tip_take_photo = 0x7f0e01af;
+        public static final int msg_no_camera = 0x7f0e0124;
+        public static final int selector_action_done = 0x7f0e0173;
+        public static final int selector_caption = 0x7f0e0174;
+        public static final int selector_folder_all = 0x7f0e0175;
+        public static final int selector_permission_error = 0x7f0e0176;
+        public static final int selector_preview = 0x7f0e0177;
+        public static final int selector_reach_max_image_hint = 0x7f0e0178;
+        public static final int status_bar_notification_info_overflow = 0x7f0e019a;
+        public static final int tip_take_photo = 0x7f0e01b2;
     }
     public static final class style {
         private style() {}

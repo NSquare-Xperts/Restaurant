@@ -1,7 +1,6 @@
 package com.nsquare.restaurant.activity.admin;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,19 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.zxing.Result;
 import com.nsquare.restaurant.R;
-import com.nsquare.restaurant.activity.LoginActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
-import com.nsquare.restaurant.activity.waiter.WaiterMainActivity;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by Pushkar on 28-08-2017.
@@ -227,14 +220,13 @@ public class ScanQRActivity extends ParentActivity implements View.OnClickListen
 
         HashMap<String, String> postParams = new HashMap<>();
         postParams.put(getResources().getString(R.string.field_tableNo), splittedValue[0]);
-        //System.out.println("validateQRCode "+postParams.toString());
 
         (ScanQRActivity.this).showProcessingDialog();
         APIManager.requestPostMethod(ScanQRActivity.this, getResources().getString(R.string.validateQRCode), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
-                    //System.out.println("validateQRCode "+result.toString());
+
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getString(getResources().getString(R.string.status)).equalsIgnoreCase(getResources().getString(R.string.status200))) {
 
@@ -244,15 +236,14 @@ public class ScanQRActivity extends ParentActivity implements View.OnClickListen
                         editor.putString(getResources().getString(R.string.sharedPreferencetabletype), splittedValue[2]);
                         editor.commit();
 
+                        Constants.table_id = splittedValue[0];
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    System.out.println("API response exception: "+e.toString());
                     e.printStackTrace();
                 }
                 (ScanQRActivity.this).dismissProgressDialog();

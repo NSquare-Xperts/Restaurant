@@ -26,7 +26,6 @@
         android:padding="2dp"
         android:layout_marginBottom="5dp">
 
-
         <TextView
             android:id="@+id/textview_label_custom"
             android:layout_width="match_parent"
@@ -37,7 +36,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="2dp"
             android:textStyle="bold"/>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_list_popup"
@@ -88,8 +86,6 @@
             android:scrollbars="vertical"
             android:layout_below="@+id/textview_label_qty"
             android:background="@color/black"/>
-
-
 
     </RelativeLayout>
 
