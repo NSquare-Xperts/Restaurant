@@ -107,11 +107,11 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int bottom = 0x7f0900a0;
-        public static final int none = 0x7f090171;
-        public static final int top = 0x7f090201;
-        public static final int triangle = 0x7f090209;
-        public static final int underline = 0x7f09020a;
+        public static final int bottom = 0x7f0900a1;
+        public static final int none = 0x7f090172;
+        public static final int top = 0x7f090202;
+        public static final int triangle = 0x7f09020a;
+        public static final int underline = 0x7f09020b;
     }
     public static final class integer {
         private integer() {}

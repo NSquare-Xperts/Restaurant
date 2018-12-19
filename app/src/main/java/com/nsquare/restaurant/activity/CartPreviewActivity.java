@@ -2,14 +2,17 @@ package com.nsquare.restaurant.activity;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +44,8 @@ import com.nsquare.restaurant.model.vegMenuList.VegMenuList_NewModel;
 import com.nsquare.restaurant.util.APIController;
 import com.nsquare.restaurant.util.APIManager;
 import com.nsquare.restaurant.util.Constants;
+import com.usebutton.sdk.models.Text;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -137,7 +142,8 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                 //move to verify OTP page if first time
                 //check order-id is already present or not
                 if (sharedPreferencerole.equalsIgnoreCase("4")) {
-                    placeOrder();
+                    alertConfirmOrder();
+                    //placeOrder();
                 } else {
                     if (order_id.isEmpty()) {
                         Intent intent = new Intent(CartPreviewActivity.this, LoginViaOTPActivity.class);
@@ -145,7 +151,8 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                         startActivity(intent);
                     } else {
                         //place order
-                        placeOrder();
+                        //placeOrder();
+                        alertConfirmOrder();
                     }
                 }
             }
@@ -466,6 +473,7 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                         if (cartModelArrayList.size() > 0) {
                             // textview_no_record_found.setVisibility(View.GONE);
                             //swipe_refresh_layout.setVisibility(View.VISIBLE);
+                            fragment_common_list_recycler_button_place_order.setEnabled(true);
                             if(flagisTrue){
                                 cartItemsListAdapter.updateList(cartModelArrayList);
                             }else {
@@ -484,16 +492,18 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                             cart_id = TextUtils.join(",",cartListIds);
                         }else {
                             textview_no_record_found.setVisibility(View.VISIBLE);
+                            fragment_common_list_recycler_button_place_order.setEnabled(false);
                             fragment_recent_jobs_recycler_view.setVisibility(View.GONE);
                             //textview_no_record_found.setVisibility(View.VISIBLE);
                             //swipe_refresh_layout.setVisibility(View.GONE);
                         }
                     }else if (jsonObject.getInt("status") == 400) {
+                        fragment_common_list_recycler_button_place_order.setEnabled(false);
 
                         textview_no_record_found.setVisibility(View.VISIBLE);
                         fragment_recent_jobs_recycler_view.setVisibility(View.GONE);
 
-                       // Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(CartPreviewActivity.this, jsonObject.getString(getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -533,7 +543,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
 
 
     private void placeOrder() {
-
         // swipe_refresh_layout.setRefreshing(true);
         HashMap<String, String> postParams = new HashMap<>();
 
@@ -541,18 +550,13 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
         postParams.put(getResources().getString(R.string.field_table), Constants.table_id);
         postParams.put(getResources().getString(R.string.field_cart_id), cart_id);
 
-
         APIManager.requestPostMethod(CartPreviewActivity.this, getResources().getString(R.string.placeOrder_), postParams, new APIManager.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.getInt("status") == 200) {
-                        //String order_id = jsonObject.getString("order_id");
 
-                        //editor = sharedPreferencesRemember.edit();
-                        //editor.putString(getResources().getString(R.string.order_id), order_id);
-                        //editor.commit();
                         Intent intent = new Intent(CartPreviewActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -564,7 +568,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //swipe_refresh_layout.setRefreshing(false);
             }
         });
     }
@@ -627,8 +630,6 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
             fragment_common_list_recycler_button_checkout.setVisibility(View.GONE);
         }
     }
-
-
     //getOrder details
     private void getOrderListByCustomer() {
         HashMap<String, String> postParams = new HashMap<>();
@@ -649,6 +650,47 @@ public class CartPreviewActivity extends ParentActivity implements MyCartItemsLi
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    //confirm ur order
+
+    public void alertConfirmOrder(){
+
+        final AlertDialog alert11;
+        final AlertDialog.Builder builder1 = new AlertDialog.Builder(CartPreviewActivity.this);
+
+        LayoutInflater factory = LayoutInflater.from(CartPreviewActivity.this);
+        final View view1 = factory.inflate(R.layout.dialog_remove_item, null);
+        builder1.setView(view1);
+        builder1.setCancelable(true);
+
+        alert11 = builder1.create();
+        alert11.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        alert11.show();
+        Button button_popup_no = (Button) view1.findViewById(R.id.button_popup_no);
+        Button button_popup_yes = (Button) view1.findViewById(R.id.button_popup_yes);
+        TextView textView_popup = (TextView) view1.findViewById(R.id.textView_popup);
+        textView_popup.setText(getResources().getString(R.string.are_you_sure_you_want_to_place_this_order));
+
+        button_popup_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert11.dismiss();
+            }
+        });
+
+        button_popup_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert11.dismiss();
+                if (internetConnection.isNetworkAvailable(CartPreviewActivity.this)) {
+                    placeOrder();
+                } else {
+                    Toast.makeText(CartPreviewActivity.this, getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
                 }
             }
         });

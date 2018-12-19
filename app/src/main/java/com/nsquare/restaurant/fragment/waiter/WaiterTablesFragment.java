@@ -1,7 +1,6 @@
 package com.nsquare.restaurant.fragment.waiter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,15 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
-import com.nsquare.restaurant.activity.CartPreviewActivity;
-import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
 import com.nsquare.restaurant.adapter.waiter.TablesAdapter;
-import com.nsquare.restaurant.fragment.OrderHistoryFragment;
 import com.nsquare.restaurant.fragment.OrderHistoryFragment_Staff;
 import com.nsquare.restaurant.model.TablesItem;
 import com.nsquare.restaurant.util.APIManager;
@@ -29,7 +24,6 @@ import com.nsquare.restaurant.util.Constants;
 import com.nsquare.restaurant.util.InternetConnection;
 import com.nsquare.restaurant.util.RecyclerItemClickListener;
 import org.json.JSONObject;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,6 +71,7 @@ public class WaiterTablesFragment extends Fragment {
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     OrderHistoryFragment_Staff fragment = new OrderHistoryFragment_Staff();
                     fragmentTransaction.replace(R.id.container_body, fragment);
+                    fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
                 }else {
@@ -158,4 +153,7 @@ public class WaiterTablesFragment extends Fragment {
             }
         });
     }
+
+
+
 }

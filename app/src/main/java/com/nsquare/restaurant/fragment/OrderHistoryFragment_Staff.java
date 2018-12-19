@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nsquare.restaurant.R;
+import com.nsquare.restaurant.activity.CartPreviewActivity;
 import com.nsquare.restaurant.activity.MainActivity;
 import com.nsquare.restaurant.activity.MakePaymentActivity;
 import com.nsquare.restaurant.activity.ParentActivity;
@@ -40,7 +43,6 @@ public class OrderHistoryFragment_Staff extends Fragment {
     private String sharedPreferencesRememberRole;
     private OrderHistoryAdapter orderHistoryAdapter;
     private SwipeRefreshLayout swipe_refresh_layout;
-    //private TextView fragment_common_list_recycler_button_view_cart;
     private RecyclerView fragment_recent_jobs_recycler_view;
     private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<MyOrderHistory>();
     private InternetConnection internetConnection = new InternetConnection();
@@ -48,15 +50,18 @@ public class OrderHistoryFragment_Staff extends Fragment {
     private TextView textview_make_payment;
     private RelativeLayout relative_layout_checkout;
     private Button button_add_more;
-    Toolbar toolbar;
-    ImageView add_to_cart;
+
+    MenuItem addToCart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_common_list_recycler, container, false);
 
-        findViewByIds(rootView);
+        setHasOptionsMenu(true);
+        //((ParentActivity)getActivity()).setActionBarCustomWithBackLeftText(getResources().getString(R.string.configure_device));
 
+        findViewByIds(rootView);
+        ((ParentActivity)getActivity()).setStatusBar();
         sharedPreferencesRemember = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         sharedPreferencesRememberRole = sharedPreferencesRemember.getString(getResources().getString(R.string.sharedPreferencerole), "");
 
@@ -69,7 +74,6 @@ public class OrderHistoryFragment_Staff extends Fragment {
             order_id = sharedPreferencesRemember.getString(getResources().getString(R.string.table_wise_order_id), "");
         }
         setListValues();
-
 
         textview_make_payment.setText(getResources().getString(R.string.make_payment));
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -166,4 +170,29 @@ public class OrderHistoryFragment_Staff extends Fragment {
             }
         });
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.menu_add_to_cart, menu);
+        setHasOptionsMenu(true);
+        addToCart = menu.findItem(R.id.addToCart);
+        addToCart.setVisible(true);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.addToCart) {
+             Intent intent = new Intent(getContext(),CartPreviewActivity.class);
+             startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

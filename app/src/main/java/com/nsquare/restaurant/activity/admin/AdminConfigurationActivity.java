@@ -149,7 +149,6 @@ public class AdminConfigurationActivity extends ParentActivity implements View.O
                     }).setNegativeButton(getResources().getString(R.string.no), null).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

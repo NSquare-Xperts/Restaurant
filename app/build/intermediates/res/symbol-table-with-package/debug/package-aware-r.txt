@@ -1450,6 +1450,7 @@ id activitylogin_edittextview_username
 id activitylogin_textview
 id adapter_vegmenu_linearlayout
 id add
+id addToCart
 id add_to_cart
 id alertTitle
 id all
@@ -2024,6 +2025,7 @@ layout test_activity_promotion
 layout vertical_recycler_fast_scroller_layout
 layout waiter_main_layout
 layout wheel_carousel
+menu menu_add_to_cart
 menu menu_home
 menu menu_home_admin
 menu menu_home_waiter
@@ -2086,6 +2088,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string are_you_sure_cancel_order
 string are_you_sure_you_want_logout
+string are_you_sure_you_want_to_place_this_order
 string average_cost
 string baseURL
 string book_a_table
@@ -2199,6 +2202,7 @@ string error_select_atleast_one
 string error_something_went_wrong
 string error_terms
 string error_username
+string error_username_length
 string events
 string facebook_app_id
 string failed_to_connect_with_facebook

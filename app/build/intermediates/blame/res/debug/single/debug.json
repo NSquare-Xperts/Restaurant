@@ -136,6 +136,10 @@
         "source": "C:\\Users\\Nsquare Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\abb4dc248b9b88163e73428a9dd55388\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
+        "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_add_to_cart.xml.flat",
+        "source": "F:\\Restaurant\\Self-Order-master\\app\\src\\main\\res\\menu\\menu_add_to_cart.xml"
+    },
+    {
         "merged": "F:\\Restaurant\\Self-Order-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_dialog_material_background.xml.flat",
         "source": "C:\\Users\\Nsquare Android\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\abb4dc248b9b88163e73428a9dd55388\\res\\drawable\\abc_dialog_material_background.xml"
     },

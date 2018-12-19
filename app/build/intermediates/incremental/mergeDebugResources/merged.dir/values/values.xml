@@ -1208,6 +1208,7 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="are_you_sure_cancel_order">Are you sure want to cancel this order?</string>
     <string name="are_you_sure_you_want_logout">Are you sure want to sign out?</string>
+    <string name="are_you_sure_you_want_to_place_this_order">Are you sure you want to place this order ?? </string>
     <string name="average_cost">AVERAGE COST</string>
     <string name="baseURL">http://18.188.253.46/webRestaurant/api/</string>
     <string name="book_a_table">Book a Table</string>
@@ -1321,6 +1322,7 @@
     <string name="error_something_went_wrong">Something went wrong. Please try again....</string>
     <string name="error_terms">Please accept terms and conditions</string>
     <string name="error_username">Username cannot be empty</string>
+    <string name="error_username_length">Username must be atleast 6 digits</string>
     <string name="events">Events</string>
     <string name="facebook_app_id">116124135725397</string>
     <string name="failed_to_connect_with_facebook">Failed to connect with Facebook</string>

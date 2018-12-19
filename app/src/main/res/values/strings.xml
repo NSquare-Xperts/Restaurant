@@ -268,6 +268,7 @@
     <string name="url_login">login</string>
     <string name="url_deviceregistration">deviceregistration</string>
     <string name="url_auth">auth</string>
+    <string name="are_you_sure_you_want_to_place_this_order">Are you sure you want to place this order ?? </string>
 
 
     <string name="field_tableNo">field_tableNo</string>
@@ -465,8 +466,8 @@
     <string name="by_cash">By Cash</string>
     <string name="by_wallet">By wallet</string>
     <string name="table_wise_order_id">table_wise_order_id</string>
-    <string name="checkout">Checkout</string>
     <string name="resendotp_label">resend OTP</string>
     <string name="no_record_found">No Record Found..!</string>
+    <string name="checkout">Checkout</string>
 
 </resources>

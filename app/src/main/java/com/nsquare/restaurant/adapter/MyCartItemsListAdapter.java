@@ -35,10 +35,8 @@ import java.util.HashMap;
 public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsListAdapter.MyViewHolder> {
 
     private ArrayList<MyCartData> upcomingYourBookingModelArrayList;
-    //private ArrayList<MyOrderHistory> orderHistoryModelArrayList = new ArrayList<>();
     private String[] quantityArray;
     private Context context;
-    //private String isComingFrom;
     public static IsQuantityChanged isQuantityChanged;
     private int totalQuantityCount = 0;
 
@@ -151,7 +149,7 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                     //Toast.makeText(context, "Are you sure to remove this item", Toast.LENGTH_SHORT).show();
                     alertRemoveItem(issueItem.getDish_id());
                 }else {
-                   // holder.list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
+                    // holder.list_item_veg_menu_list_textview_quantity.setText(quantityCount[0] + "");
                     //holder.list_item_veg_menu_list_textview_quantity.setTag(quantityCount[0] + "");
                     //isQuantityChanged.checkQuantityIsChangedOrNot("1");
                     addMenuToCart(issueItem.getDish_id(), quantityCount[0] + "", Constants.table_id, issueItem.getDish_extra_id());
@@ -186,7 +184,7 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                 //quantityArray[position] = "0";
                 //updateValuesInterface.onUpdateValuesInterface(quantityArray[position], position, totalQuantityCount, issueItem, issueItem.getDatabase_menu_status());
 
-               // notifyDataSetChanged();
+                // notifyDataSetChanged();
             }
         });
 
@@ -450,7 +448,6 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                 } else {
                     Toast.makeText(context, context.getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -471,6 +468,7 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
                     if (jsonObject.getInt("status") == 200) {
                         ((ParentActivity)context).dismissProgressDialog();
                         Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
                         //refresh page
                         /*if (((ParentActivity)context).internetConnection.isNetworkAvailable(context)) {
                             getMenuListByType();
@@ -488,54 +486,52 @@ public class MyCartItemsListAdapter extends RecyclerView.Adapter<MyCartItemsList
             }
         });
     }
-
     public void updateList(ArrayList<MyCartData> data ) {
         this.upcomingYourBookingModelArrayList = data;
         notifyDataSetChanged();
     }
-  public interface IsQuantityChanged {
+    public interface IsQuantityChanged {
+        public void checkQuantityIsChangedOrNot(String data);
+    }
 
-      public void checkQuantityIsChangedOrNot(String data);
-  }
+    //add to cart API
+    // on evry +,_ update menu
+    private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id) {
 
-  //add to cart API
-  // on evry +,_ update menu
-  private void addMenuToCart(String dish_id, String dish_qty, String table_no, String dish_extra_id) {
+        ((ParentActivity)context).showProcessingDialog();
 
-      ((ParentActivity)context).showProcessingDialog();
+        HashMap<String, String> postParams = new HashMap<>();
+        postParams.put(context.getResources().getString(R.string.field_dish),dish_id);
+        postParams.put(context.getResources().getString(R.string.field_dish_quantity),dish_qty);
+        postParams.put(context.getResources().getString(R.string.field_table),"1");
+        // send ids by comma seperated and it is optional
+        postParams.put(context.getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
 
-      HashMap<String, String> postParams = new HashMap<>();
-      postParams.put(context.getResources().getString(R.string.field_dish),dish_id);
-      postParams.put(context.getResources().getString(R.string.field_dish_quantity),dish_qty);
-      postParams.put(context.getResources().getString(R.string.field_table),"1");
-      // send ids by comma seperated and it is optional
-      postParams.put(context.getResources().getString(R.string.field_dishes_extra_id), dish_extra_id);
+        APIManager.requestPostMethod(context, context.getString(R.string.addCart), postParams, new APIManager.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.getInt("status") == 200) {
+                        ((ParentActivity)context).dismissProgressDialog();
+                        Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
 
-      APIManager.requestPostMethod(context, context.getString(R.string.addCart), postParams, new APIManager.VolleyCallback() {
-          @Override
-          public void onSuccess(String result) {
-              try {
-                  JSONObject jsonObject = new JSONObject(result);
-                  if (jsonObject.getInt("status") == 200) {
-                      ((ParentActivity)context).dismissProgressDialog();
-                      Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                        //refresh
+                        if (((ParentActivity)context).internetConnection.isNetworkAvailable(context)) {
+                            //getMenuListByType();
+                        } else {
+                            Toast.makeText(context, context.getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
+                        }
 
-                      //refresh
-                      if (((ParentActivity)context).internetConnection.isNetworkAvailable(context)) {
-                          //getMenuListByType();
-                      } else {
-                          Toast.makeText(context, context.getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
-                      }
-
-                  }else if (jsonObject.getInt("status") == 400) {
-                      ((ParentActivity)context).dismissProgressDialog();
-                      Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
-                  }
-              } catch (Exception e) {
-                  e.printStackTrace();
-                  ((ParentActivity)context).dismissProgressDialog();
-              }
-          }
-      });
-  }
+                    }else if (jsonObject.getInt("status") == 400) {
+                        ((ParentActivity)context).dismissProgressDialog();
+                        Toast.makeText(context, jsonObject.getString(context.getResources().getString(R.string.message)), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ((ParentActivity)context).dismissProgressDialog();
+                }
+            }
+        });
+    }
 }
